@@ -1,0 +1,141 @@
+﻿@model RegisterFormModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
+    <meta name="description" content="Türkiyənin onlayn alış-veriş saytlarından Azərbaycana çatdırılma. Türkiyədən sifariş 3-5 gün ərzində Azərbaycanda. Sürətli çatdırılma və ucuz kargo.">
+    <meta name="keywords" content="Onlayn alış-veriş, çatdırılma, onlayn sifariş, Türkiyədən Azərbaycana onlayn sifariş, paltar sifarişi, türkiyədən sifariş, onlayn çatdırılma, sürətli və ucuz kargo.">
+    <title>MediClinic &#8211; Register</title>
+    <meta name="title" content="MediClinic">
+    <link rel="icon" href="~/assets/icons/cropped-favicon-32x32.png" sizes="32x32" />
+    <link rel="stylesheet" href="~/assets/flickity/flickity.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+    <link href="~/libs/toastr.js/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        .login__wrapper {
+            height:100vh;
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            background-color: rgb(46 72 74 / 75%)
+        }
+
+        .register__wrapper {
+            height: 100vh;
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            background-color: rgb(46 72 74 / 75%)
+        }
+    </style>
+</head>
+<body>
+        <div class="register__wrapper">
+            <div class="register">
+                <div class="appointment-modal__form-wrapper">
+                    <div class="appointment-modal__title-box">
+                        <h4>Register</h4>
+                        <div class="appointment-modal__title-text">
+                            We provide the most full medical services, so every person could have the
+                            oportunity to receive qualitative medical help.
+                        </div>
+                    </div>
+                    <form class="appointment-modal__form" id="registerfrm" method="post">
+                        <div class="row">
+                            <label class="text-danger label-validation">@ViewBag.Message</label>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                                <input type="text" class="appointment-modal__input" asp-for="UserName" placeholder="Your Username">
+                                <span asp-validation-for="UserName"></span>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                                <input type="email" class="appointment-modal__input" asp-for="Email" placeholder="Your E-mail">
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                                <input type="password" asp-for="Password" class="appointment-modal__input appointment-modal__input--pass" placeholder="Your Password">
+                                <span class="login__eye">
+                                    <i class="flaticon-eye"></i>
+                                </span>
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                                <button class="btn btn--black btn--login" style="border:none">Submit now</button>
+                            </div>
+                        </div>
+                    </form>
+                    <span class="register__signUp">
+                        Already have an account?
+                        <a asp-controller="account" asp-action="signIn">Sign in</a>
+                    </span>
+                    <span class="register__signUp">
+                        Go to
+                        <a asp-controller="home" asp-action="index">Home</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="~/assets/flickity/flickity.min.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#registerfrm").submit(function (e) {
+                e.preventDefault();
+                console.log("a")
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("Register", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+                            e.currentTarget.reset();
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorClass: "invalid",
+                validClass: "valid"
+            });
+        })
+    </script>
+    </body >
+</html >
+    

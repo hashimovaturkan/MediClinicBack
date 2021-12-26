@@ -1,0 +1,22 @@
+﻿@model BlogPostComment
+
+<div class="blog-details__comments-first @(Model.ParentId != null?"blog-details__comments-first--sub":"") " id="#c-@Model.Id" data-comment-id="@Model.Id">
+    <div class="blog-details__comments-first-img">
+        <img src="./assets/images/@Model.MediClinicUser.ImgUrl" alt="photo">
+    </div>
+    <div class="blog-details__comments-first-info">
+        <h5>@Model.MediClinicUser.UserName</h5>
+        <p>@Model.Comment</p>
+        <div class="blog-details__comments-first-mini">
+            <span>@Model.CreatedDate.ToString("dd MMMM yyyy")</span>
+            @if (Model.ParentId == null)
+            {
+                <a class="blog-details__comments-first-reply">
+                    <i class="fa fa-reply"></i>
+                    reply
+                </a>
+            }
+
+        </div>
+    </div>
+</div>

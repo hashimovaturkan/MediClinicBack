@@ -1,0 +1,37 @@
+.setting{
+    margin: 10rem 0;
+    &__main{
+        background-image: url('../images/shop-parallax-img.jpg');
+        background-repeat: no-repeat;
+        background-position: center top;
+        height: 31rem;
+    }
+    &__wrapper{
+        background-color:#c8cbcf;
+        padding: 3rem;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 991.98px) { 
+    .aside-form {
+        border: none;
+    }
+    .form{
+        margin-top: 4rem;
+    }
+  }
+  
+@media (max-width: 767.98px) { 
+    .form{
+        padding: 0;
+    }
+ 
+  }
+  
+  @media (max-width: 575.98px) {
+    .setting .heading__title{
+        font-size: 3rem;
+    }
+  
+  }

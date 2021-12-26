@@ -1,0 +1,57 @@
+﻿@model BlogPostCategoriesViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="blog__main">
+    <div class="custom-container-fluid p-0 main__img">
+        <div class="main__wrapper main__wrapper--left">
+            <h1 class="main__title">Blogs</h1>
+        </div>
+    </div>
+</section>
+<section class="blog">
+    <div class="custom-container">
+        <ul class="blog__categories">
+            <li><a href="#" data-filter="all">All</a><span>@{Model.BlogPosts.Items.Count();}</span></li>
+            @foreach (var category in Model.BlogCategories)
+            {
+                <li><a href="#" data-filter="@{MediClinic.Application.Core.Extensions.Extension.ReplaceWhitespace(category.Name, "");}">@category.Name</a><span>@{Model.BlogPosts.Items.Where(e => e.BlogCategoryId == category.Id).Select(e => e.Id).Count();}</span></li>
+            }
+        </ul>
+        <div class="row">
+            @foreach (var blog in Model.BlogPosts.Items)
+            {
+                <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-4" data-target="@{MediClinic.Application.Core.Extensions.Extension.ReplaceWhitespace(blog.BlogCategory?.Name, "");}">
+                    <div class="blog-cart">
+                        <a href="#" class="blog-cart__img-link">
+                            <img class="blog-cart__img" src="./assets/images/@blog.ImgUrl?" alt="photo">
+                        </a>
+                        <div class="blog-cart__info">
+                            <a href="#" class="blog-cart__info-item">@blog.BlogCategory.Name</a>
+                            <span class="blog-cart__info-item">@blog.PublishedDate?.ToString("dd MMMM, yyyy")</span>
+                            <span>
+                                By
+                                <a href="#" class="blog-cart__info-item">@blog.Doctor.Name</a>
+                            </span>
+                        </div>
+                        <div class="blog-cart__body">
+                            <a class="blog-cart__title" asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">@blog.Title</a>
+                            <p>
+                                @blog.Description
+                            </p>
+                            <div class="blog-cart__footer">
+                                <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">Learn more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        <div class="pagination-up">
+            <div class="pagination-wrapper">
+                @Model.BlogPosts.GetPagenation(Url, "Index")
+            </div>
+        </div>
+        </div>
+    </div>
+</section>

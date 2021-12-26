@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+<div class="register__wrapper">
+    <div class="register">
+        <div class="appointment-modal__form-wrapper">
+            <div class="appointment-modal__title-box">
+                <h4>Register</h4>
+                <div class="appointment-modal__title-text">
+                    We provide the most full medical services, so every person could have the
+                    oportunity to receive qualitative medical help.
+                </div>
+            </div>
+            <form action="" class="appointment-modal__form" id="registerfrm">
+                <div class="row">
+                    <label class="text-danger label-validation">@ViewBag.Message</label>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                        <input type="text" class="appointment-modal__input" name="UserName" placeholder="Your Username"
+                               data-rule-required="true" data-msg-required="Please, enter your username">
+                        @*<span asp-validation-for="UserName" style="color:red;"></span>*@
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                        <input type="email" class="appointment-modal__input" name="Email" placeholder="Your E-mail" 
+                                            data-rule-required="true"
+                                           data-rule-email="true"
+                                           data-msg-required="Please, enter email"
+                                           data-msg-email="Invalid E-mail! Please, enter your email" >
+                        @*<span asp-validation-for="Email" style="color:red;"></span>*@
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                        <input type="password" name="Password"  class="appointment-modal__input appointment-modal__input--pass" placeholder="Your Password"
+                                data-rule-required="true" data-msg-required="Please, enter your password">
+                        <span class="login__eye">
+                            <i class="flaticon-eye"></i>
+                        </span>
+                        @*<span style="color:red;" asp-validation-for="Password"></span>*@
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                        <button class="btn btn--black btn--login" style="border:none">Submit now</button>
+                    </div>
+
+                </div>
+            </form>
+            <span class="register__signUp">
+                Already have an account?
+                <a href="#" class="makeLoginModal">Sign in</a>
+            </span>
+        </div>
+        <a href="#" class="register__form-close"></a>
+    </div>
+</div>
+

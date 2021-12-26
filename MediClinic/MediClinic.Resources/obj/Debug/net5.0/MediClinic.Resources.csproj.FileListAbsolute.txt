@@ -1,0 +1,17 @@
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.deps.json
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.dll
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\ref\MediClinic.Resources.dll
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.pdb
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\en\MediClinic.Resources.resources.dll
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.AssemblyReference.cache
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Contact.ContactResource.resources
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Contact.ContactResource.en.resources
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.GenerateResource.cache
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.GeneratedMSBuildEditorConfig.editorconfig
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.AssemblyInfoInputs.cache
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.AssemblyInfo.cs
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.CoreCompileInputs.cache
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\en\MediClinic.Resources.resources.dll
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.dll
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\ref\MediClinic.Resources.dll
+E:\Lesson folder\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.pdb
