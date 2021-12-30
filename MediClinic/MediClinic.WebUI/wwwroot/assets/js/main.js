@@ -374,12 +374,21 @@ inputs.forEach((input)=>{
             label.style.fontSize="14px";
             label.style.color="rgba(white, .2)";
         })
-        input.addEventListener("focusout",(e)=>{
+    input.addEventListener("focusout", (e) => {
+        if (input.value != "") {
             input.style.paddingBottom = "0";
-                label.style.left="17px";
-                label.style.top="16px";
-                label.style.fontSize="16px";
-                label.style.color="rgba(white, .3)";
+            label.style.left = "17px";
+            label.style.top = "4px";
+            label.style.fontSize = "14px";
+            label.style.color = "rgba(white, .2)";
+        } else {
+            input.style.paddingBottom = "0";
+            label.style.left = "17px";
+            label.style.top = "16px";
+            label.style.fontSize = "16px";
+            label.style.color = "rgba(white, .3)";
+        }
+            
         })
 
     input.addEventListener("input",(event)=>{
@@ -392,6 +401,7 @@ inputs.forEach((input)=>{
                 label.style.color="rgba(white, .2)";
                 console.log(warning)
                 warning?.classList.add("d-none");
+                console.log("a")
                 
                 
             }
@@ -402,12 +412,21 @@ inputs.forEach((input)=>{
                 label.style.fontSize="16px";
                 label.style.color="rgba(white, .3)";
                 warning?.classList.remove("d-none");
+                console.log("b")
             }
             
         });
 
         
     })
+
+    if (input.value != "") {
+        input.style.paddingBottom = "0";
+        label.style.left = "17px";
+        label.style.top = "4px";
+        label.style.fontSize = "14px";
+        label.style.color = "rgba(white, .2)";
+    }
 });
 
 const profileBtn = document.querySelectorAll(".profile-btn");

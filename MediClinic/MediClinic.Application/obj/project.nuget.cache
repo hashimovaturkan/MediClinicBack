@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1eqtpvccresFsEOFQiqHmE7px4Gs3SHMp5G/2/nZSvt2DN7NhRB7T+cIQaH3WJwmD11HNk7aD55ZBomsPKAVjA==",
+  "dgSpecHash": "8UgTTMObqlQz3zRZKEpTJV3iCzOcDK4jxev/uv/3vMCmGMSZjirbz1sy9GvPp+DsTpQofuwJDKi9dkyQUa9y4Q==",
   "success": true,
-  "projectFilePath": "E:\\Lesson folder\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj",
+  "projectFilePath": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

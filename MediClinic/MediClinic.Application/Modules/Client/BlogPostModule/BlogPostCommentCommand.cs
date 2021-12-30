@@ -21,6 +21,7 @@ namespace MediClinic.Application.Modules.Client.BlogPostModule
         public int? commentId { get; set; }
         public int postId { get; set; }
         public string comment { get; set; }
+        public string id { get; set; }
 
         public class BlogPostCommentCommandHandler : IRequestHandler<BlogPostCommentCommand, BlogPostCommentViewModel>
         {
@@ -75,7 +76,7 @@ namespace MediClinic.Application.Modules.Client.BlogPostModule
                     BlogPostId = request.postId,
                     Comment = request.comment,
                     //MediClinicUserId = Microsoft.AspNetCore.Mvc.Razor.RazorPageBase.User.GetCurrentUserId()
-                    MediClinicUserId = 1
+                    MediClinicUserId = Int32.Parse(request.id)
                     //,CreatedByUserId= User.GetCurrentUserId()
             };
 

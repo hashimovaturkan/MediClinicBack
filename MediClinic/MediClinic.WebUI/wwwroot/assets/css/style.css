@@ -9927,7 +9927,8 @@ i.icon-lg {
   transition: all 1s;
   opacity: 0;
   width: 0;
-  padding: 0%; }
+  padding: 0%;
+}
 
 .header__user-side-name {
   color: #000;
@@ -10240,9 +10241,9 @@ footer {
     font-weight: 500;
     font-size: 1.2rem;
     line-height: 1.6rem;
-    color: #FFB47D;
-    margin-left: 1.6rem;
-    margin-top: 0.5rem; }
+    color: red;
+    /*margin-left: 1.6rem;*/
+    /*margin-top: 0.5rem;*/ }
   .form__icon-box {
     position: absolute;
     top: 1.3rem;

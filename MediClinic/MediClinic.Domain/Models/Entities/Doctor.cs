@@ -20,6 +20,7 @@ namespace MediClinic.Domain.Models.Entities
         public virtual ICollection<BlogPost> BlogPosts { get; set; }
         public int WorkTimeId { get; set; }
         public virtual WorkTime WorkTime { get; set; }
+        public virtual ICollection<DoctorSocialMediaRelation> DoctorSocialMediaRelations { get; set; }
 
     }
 }

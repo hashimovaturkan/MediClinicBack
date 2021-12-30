@@ -7,6 +7,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace MediClinic.WebUI.Controllers
 {
@@ -18,17 +25,223 @@ namespace MediClinic.WebUI.Controllers
         readonly RoleManager<MediClinicRole> roleManager;
         readonly IConfiguration configuration;
         readonly MediClinicDbContext db;
+        readonly IWebHostEnvironment env;
         public AccountController(UserManager<MediClinicUser> userManager,
                                  SignInManager<MediClinicUser> signInManager,
                                  RoleManager<MediClinicRole> roleManager,
                                  IConfiguration configuration,
-                                 MediClinicDbContext db)
+                                 MediClinicDbContext db,
+                                 IWebHostEnvironment env)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.configuration = configuration;
+            this.env = env;
             this.db = db;
+        }
+
+        public async Task<IActionResult> Profile()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = await userManager.FindByIdAsync(userId);
+
+            return View(user);
+        }
+
+        public async Task<IActionResult> Setting()
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var user = await userManager.FindByIdAsync(userId);
+
+                return View(user);
+            }
+            catch (Exception)
+            {
+
+                return Redirect("Index");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Setting(UserFormModel newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var mUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var mUser = await userManager.FindByIdAsync(mUserId);
+
+                mUser.Name = newUser.Name;
+                mUser.Surname = newUser.Surname;
+                mUser.PhoneNumber = newUser.PhoneNumber;
+
+                if(newUser.UserName != mUser.UserName)
+                {
+                    var username = await userManager.FindByNameAsync(newUser.UserName);
+                    if (username != null)
+                        return Json(new
+                        {
+                            error = true,
+                            message = "Your username is already used!"
+                        });
+                    else
+                    {
+                        mUser.UserName = newUser.UserName;
+                    }
+                }
+
+                if (newUser.Email != mUser.Email)
+                {
+                    var email = await userManager.FindByEmailAsync(newUser.Email);
+
+                    if (email != null)
+                        return Json(new
+                        {
+                            error = true,
+                            message = "Your email is already registered!"
+                        });
+                    else
+                    {
+                        mUser.Email = newUser.Email;
+                        mUser.EmailConfirmed = false;
+                    }
+
+
+                    string token = userManager.GenerateEmailConfirmationTokenAsync(mUser).Result;
+                    string path = $"{Request.Scheme}://{Request.Host}/email-confirm?email={mUser.Email}&token={token}";
+                    var sendMail = configuration.SendEmail(mUser.Email, "MediClinic email confirming", $"Please, use <a href={path}>this link</a> for confirming");
+                    
+                    
+                    if (sendMail == false)
+                    {
+                        return Json(new
+                        {
+                            error = true,
+                            message = "Please, try again"
+                        });
+                    }
+
+                    await userManager.UpdateAsync(mUser);
+                    return Json(new
+                    {
+                        error = false,
+                        message = "Successfully, Your account is updated, Please check your email for confirming!"
+                    });
+                }
+
+                await userManager.UpdateAsync(mUser);
+
+                return Json(new
+                {
+                    error = false,
+                    message = "Successfully, Your account is updated!"
+                });
+
+            }
+            return Json(new
+            {
+                error = true,
+                message = "Incomplete data"
+            });
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeImage(IFormFile file)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = await userManager.FindByIdAsync(userId);
+
+            string extension = Path.GetExtension(file.FileName);
+            user.ImgUrl = $"{Guid.NewGuid()}{extension}";
+
+            string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                   "wwwroot",
+                                                   "uploads",
+                                                   "images",
+                                                   user.ImgUrl);
+
+            using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            await userManager.UpdateAsync(user);
+
+            return Json(new
+            {
+                error = false,
+                message = "Your account's image is changed! Please, refresh page!"
+            });
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(PasswordFormModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                //var user = await userManager.FindByIdAsync(userId);
+
+                //var token = await userManager.GeneratePasswordResetTokenAsync(user);
+
+                //var result = await userManager.ResetPasswordAsync(user, token, "MyN3wP@ssw0rd");
+
+                if(model.NewPass != model.NewPassAgain)
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Error, Please try again!"
+                    });
+                }
+
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var user = await userManager.FindByIdAsync(userId);
+
+                //var oldPasswordHashed = userManager.PasswordHasher.HashPassword(user, model.OldPass);
+
+                if (userManager.PasswordHasher.VerifyHashedPassword(user,user.PasswordHash, model.OldPass)
+    != PasswordVerificationResult.Failed)
+                {
+                    var result =await userManager.ChangePasswordAsync(user, model.OldPass, model.NewPass);
+
+                    if (!result.Succeeded)
+                    {
+                        return Json(new
+                        {
+                            error = true,
+                            message = "Error,Your password could not be changed, Please try again!"
+                        });
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            error = false,
+                            message = "Successfully, Your password is updated!"
+                        });
+                    }
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Error,Your password could not be changed, Please try again!"
+                    });
+                }  
+
+            }
+            return Json(new
+            {
+                error = true,
+                message = "Incomplete data"
+            });
+
         }
 
         public IActionResult SignIn()

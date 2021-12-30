@@ -1,0 +1,316 @@
+﻿@model MediClinicUser
+@{
+    ViewData["Title"] = "Setting";
+}
+
+<section class="setting__main">
+    <div class="custom-container-fluid p-0 main__img">
+        <div class="main__wrapper">
+            <h1 class="main__title">Profile Setting</h1>
+            <span class="main__subtitle">Home  /   Profile Setting</span>
+        </div>
+    </div>
+</section>
+<section class="setting">
+    <div class="custom-container">
+        <div class="setting__wrapper">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-4 col-sm-12 col-xl-3">
+                    <aside class="aside-form">
+                        <form id="changeImgFrm" method="post" enctype="multipart/form-data">
+                            <div class="aside-form__img">
+                                <span>
+                                    <img src="~/uploads/images/@Model.ImgUrl" alt="user" id="photo" style="width: 120px; height: 120px;">
+                                    <span class="aside-form__pen">
+                                        <input type="file" style="display:none" id="form-file" name="file">
+                                        <label for="form-file" style="cursor: pointer;">
+                                            <?xml version="1.0" encoding="utf-8" ?>
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 117.74 122.88" style="enable-background:new 0 0 117.74 122.88" xml:space="preserve"><style type="text/css">
+                                                                                                                                                                                                                                                                               .st0 {
+                                                                                                                                                                                                                                                                                   fill-rule: evenodd;
+                                                                                                                                                                                                                                                                                   clip-rule: evenodd;
+                                                                                                                                                                                                                                                                               }
+</style><g><path class="st0" d="M94.62,2c-1.46-1.36-3.14-2.09-5.02-1.99c-1.88,0-3.56,0.73-4.92,2.2L73.59,13.72l31.07,30.03l11.19-11.72 c1.36-1.36,1.88-3.14,1.88-5.02s-0.73-3.66-2.09-4.92L94.62,2L94.62,2L94.62,2z M41.44,109.58c-4.08,1.36-8.26,2.62-12.35,3.98 c-4.08,1.36-8.16,2.72-12.35,4.08c-9.73,3.14-15.07,4.92-16.22,5.23c-1.15,0.31-0.42-4.18,1.99-13.6l7.74-29.61l0.64-0.66 l30.56,30.56L41.44,109.58L41.44,109.58L41.44,109.58z M22.2,67.25l42.99-44.82l31.07,29.92L52.75,97.8L22.2,67.25L22.2,67.25z" /></g></svg>
+                                        </label>
+                                    </span>
+                                </span>
+                                <h2 id="settingTitle">@($"{Model.Name} {Model.Surname}")</h2>
+                            </div>
+                        </form>
+                        <ul class="aside-form__list">
+                            <li>
+                                <a href="#" data-value="account" class="profile-btn">
+                                    <i class="flaticon-mail-box"></i>
+                                    Account
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-value="password" class="profile-btn">
+                                    <i class="flaticon-tools-1"></i>
+                                    Password
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-12 col-md-12 col-lg-8 col-sm-12 col-xl-9 form__wrapper">
+                    <form method="POST" class="form" data-target="account" id="accountsettingfrm">
+                        <div class="heading heading--center">
+                            <h2 class="heading__title">Account Settings</h2>
+                            <p class="heading__text">You can change your account's properties...</p>
+                        </div>
+                        <div class="form__content">
+                            <div class="row order__item-1">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">Name</span>
+                                    <div class="form__item">
+                                        <input type="text" name="Name" id="form-item" class="form__input" value="@Model.Name">
+                                        <label class="form__placeholder" for="form-item" tabindex="0">Name</label>
+                                        @*<div class="form__helper d-none">Ad boş qoyula bilməz.</div>*@
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">Surname</span>
+                                    <div class="form__item">
+                                        <input type="text" name="Surname" id="form-item-2" class="form__input" value="@Model.Surname">
+                                        <label class="form__placeholder" for="form-item-2" tabindex="1">Surname</label>
+                                        @*<div class="form__helper d-none">Soyad boş qoyula bilməz.</div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row order__item-2">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">Email</span>
+                                    <div class="form__item">
+                                        <input type="email" name="Email" id="form-item-3" class="form__input" value="@Model.Email"
+                                               data-rule-required="true"
+                                               data-rule-email="true"
+                                               data-msg-required="Please, enter email"
+                                               data-msg-email="Invalid E-mail! Please, enter your email" >
+                                        <label class="form__placeholder" for="form-item-3" tabindex="0">Email</label>
+                                        @*<div class="form__helper d-none">Email boş qoyula bilməz.</div>*@
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">UserName</span>
+                                    <div class="form__item">
+                                        <input type="text" name="UserName" id="form-item-4" class="form__input" value="@Model.UserName"
+                                               data-rule-required="true" data-msg-required="Please, enter your username">
+                                        <label class="form__placeholder" for="form-item-4" tabindex="0">UserName</label>
+                                        @*<div class="form__helper d-none">Mobil nömrə boş qoyula bilməz.</div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row order__item-3">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">Phone Number</span>
+                                    <div class="form__item">
+                                        <input type="tel" name="PhoneNumber" id="form-item-4" class="form__input" value="@Model.PhoneNumber">
+                                        <label class="form__placeholder" for="form-item-4" tabindex="0">Phone Number</label>
+                                        @*<div class="form__helper d-none">Mobil nömrə boş qoyula bilməz.</div>*@
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    
+                                </div>
+                            </div>
+                            <div class="row order__item-5">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                    <button class="btn btn--blue mt-40" type="submit" style="border:none;">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form action="" method="POST" class="form form--password" id="passwordsettingfrm" data-target="password">
+                        <div class="heading heading--center">
+                            <h2 class="heading__title">Password Settings</h2>
+                            <p class="heading__text">You can change your account's password...</p>
+                        </div>
+                        <div class="form__content">
+                            <div class="row order__item-1">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">Old Password</span>
+                                    <div class="form__item">
+                                        <div class="form__icon-box">
+                                            <i class="icon-eye_two_tone form__icon" id="togglePassword"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        </div>
+                                        <input type="password" name="OldPass" id="form-item-5" class="form__input">
+                                        <label class="form__placeholder" for="form-item-5" tabindex="0">Old Password</label>
+                                        <div class="form__helper d-none">Şifrə boş qoyula bilməz.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row order__item-2">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">New Password</span>
+                                    <div class="form__item">
+                                        <div class="form__icon-box">
+                                            <i class="icon-eye_two_tone form__icon" id="togglePassword"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        </div>
+                                        <input type="password" name="NewPass" id="form-item-5" class="form__input">
+                                        <label class="form__placeholder" for="form-item-5" tabindex="0">New Password</label>
+                                        <div class="form__helper d-none">Şifrə boş qoyula bilməz.</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-32">
+                                    <span class="form__item-title">Confirm Password</span>
+                                    <div class="form__item">
+                                        <div class="form__icon-box">
+                                            <i class="icon-eye_two_tone form__icon" id="togglePassword"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        </div>
+                                        <input type="password" name="NewPassAgain" id="form-item-6" class="form__input">
+                                        <label class="form__placeholder" for="form-item-6" tabindex="1">Confirm Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row order__item-3">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                    <button class="btn btn--blue mt-40" type="submit" style="border:none;">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section addjs{
+    <script>
+         $(document).ready(function () {
+         $("#accountsettingfrm").submit(function (e) {
+                e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("Setting", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+                            $("#settingTitle").text($("#form-item").val() + " " + $("#form-item-2").val());
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorElement: 'div',
+                errorClass: "form__helper",
+                validClass: "valid"
+            });
+         })
+
+        $(document).ready(function () {
+            $("#form-file").change(function () {
+                $("#changeImgFrm").submit();
+            })
+             $("#changeImgFrm").submit(function (e) {
+                 e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("ChangeImage", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorElement: 'div',
+                errorClass: "form__helper",
+                validClass: "valid"
+            });
+        })
+
+        $(document).ready(function () {
+         $("#passwordsettingfrm").submit(function (e) {
+                e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("ChangePassword", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+                            e.currentTarget.reset();
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorElement: 'div',
+                errorClass: "form__helper",
+                validClass: "valid"
+            });
+         })
+    </script>
+}

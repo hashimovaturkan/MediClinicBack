@@ -1,0 +1,53 @@
+﻿@model MediClinicUser
+@{
+    ViewData["Title"] = "Profile";
+}
+
+
+<section class="profile__main">
+    <div class="custom-container-fluid p-0 main__img">
+        <div class="main__wrapper">
+            <h1 class="main__title">Profile</h1>
+            <span class="main__subtitle">Home  /   Profile</span>
+        </div>
+    </div>
+</section>
+<section class="profile">
+    <div class="custom-container d-flex justify-content-center">
+        <div class="profile__wrapper">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12">
+                    <div class="profile__title">
+                        <h2>@Model.UserName</h2>
+                    </div>
+                    <div class="profile__info">
+                        <div class="profile__img">
+                            <img src="~/assets/images/@Model.ImgUrl" alt="user">
+                        </div>
+                        <div class="profile__details">
+                            <h3>Profile details</h3>
+                            <ul>
+                                <li>
+                                    <span>FullName</span>
+                                    <span>@(Model.Name == null || Model.Surname == null ? "----" : $"{Model.Name} {Model.Surname}")</span>
+                                </li>
+                                <li>
+                                    <span>UserName</span>
+                                    <span>@(Model.UserName == null ? "----" : Model.UserName)</span>
+                                </li>
+                                <li>
+                                    <span>Email:</span>
+                                    <span>@Model.Email</span>
+                                </li>
+                                <li>
+                                    <span>Phone:</span>
+                                    <span>@(Model.PhoneNumber == null ? "----" : Model.PhoneNumber)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

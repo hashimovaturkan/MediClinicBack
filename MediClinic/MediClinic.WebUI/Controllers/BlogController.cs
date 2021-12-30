@@ -5,6 +5,7 @@ using MediClinic.Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MediClinic.WebUI.Controllers
@@ -52,7 +53,7 @@ namespace MediClinic.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostComment(BlogPostCommentCommand query)
         {
-
+            query.id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var response = await mediator.Send(query);
             if (response.BlogPostComment == null && response.CommandJsonResponse.Error == true)
             {
