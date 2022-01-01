@@ -8573,6 +8573,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
       "MediClinic.Application >= 1.0.0",
       "MediClinic.Domain >= 1.0.0",
+      "MediClinic.Resources >= 1.0.0",
       "MediatR >= 9.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 9.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.9",
@@ -8617,6 +8618,9 @@
             },
             "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj": {
               "projectPath": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj"
+            },
+            "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
+              "projectPath": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj"
             }
           }
         }

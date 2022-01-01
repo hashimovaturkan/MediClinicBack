@@ -359,3 +359,7 @@ E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\bi
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Account\AccessDeny.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Doctor\Index.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Doctor\Details.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\Timetable.cshtml.g.cs

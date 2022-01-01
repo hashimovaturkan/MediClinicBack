@@ -130,6 +130,10 @@
         .invalid{
             color:red;
         }
+        .validation-text {
+            font-size: 12px !important;
+            color: red !important;
+        }
     </style>
 
 </head>
@@ -235,13 +239,13 @@
             </div>
             <nav class="menu-side__navbar">
                 <ul class="menu-side__list">
-                    <li class="menu-side__list-item"><a href="./about.html" class="menu-side__list-link">Doctors</a></li>
-                    <li class="menu-side__list-item"><a href="./tariffs.html" class="menu-side__list-link">Timetable</a></li>
+                    <li class="menu-side__list-item"><a asp-controller="doctor" asp-action="index" class="menu-side__list-link">Doctors</a></li>
+                    <li class="menu-side__list-item"><a asp-controller="home" asp-action="timetable" class="menu-side__list-link">Timetable</a></li>
                     <li class="menu-side__list-item"><a href="./services.html" class="menu-side__list-link">Departments</a></li>
                     <li class="menu-side__list-item"><a asp-controller="Blog" asp-action="Index" class="menu-side__list-link">Blogs</a></li>
                     <li class="menu-side__list-item"><a href="./innovations.html" class="menu-side__list-link">FAQ</a></li>
                     <li class="menu-side__list-item"><a href="./contact.html" class="menu-side__list-link">About us</a></li>
-                    <li class="menu-side__list-item"><a href="./contact.html" class="menu-side__list-link">Contact us</a></li>
+                    <li class="menu-side__list-item"><a asp-controller="home" asp-action="contact" class="menu-side__list-link">Contact us</a></li>
                 </ul>
             </nav>
             <div class="menu-side__footer">
@@ -320,11 +324,11 @@
                                     <a href="./about.html" class="menu__list-link">Home</a>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a href="./tariffs.html" class="menu__list-link">Doctors</a>
+                                    <a class="menu__list-link">Doctors</a>
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our doctors</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Timetable</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="doctor" asp-action="index" class="menu__dropdown-link">Our doctors</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="timetable" class="menu__dropdown-link">Timetable</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -371,7 +375,7 @@
                                     </div>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a href="./tariffs.html" class="menu__list-link">Contact us</a>
+                                    <a asp-controller="home" asp-action="contact" class="menu__list-link">Contact us</a>
                                 </li>
                                 <li class="menu__list-elem"></li>
                             </ul>

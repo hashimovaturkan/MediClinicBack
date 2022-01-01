@@ -1,0 +1,150 @@
+﻿@model Doctor
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section class="doctor-details-main">
+    <div class="custom-container-fluid p-0 main__img">
+        <div class="main__wrapper">
+            <h1 class="main__title">Jordan Kelley</h1>
+            <span class="main__subtitle">Home  /  @Model.Name</span>
+        </div>
+    </div>
+</section>
+<section class="doctor-details">
+    <div class="custom-container">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-4 col-sm-12 col-xl-4">
+                <div class="doctor-details__info">
+                    <img src="~/uploads/images/team-member-2.jpg" class="doctor-details__img" alt="doctor">
+                    <h3 class="doctor-details__name">@Model.Name</h3>
+                    @foreach (var item in Model.DoctorDepartmentRelation)
+                    {
+                        <span class="doctor-details__position">@item.Department.Title</span>
+                    }
+                    <div class="doctor-details__bio">
+                        <div class="doctor-details__contact">
+                            <i class="fa fa-phone doctor-details__icon"></i>
+                            <a target="_self" class="doctor-details__link" href="tel:@Model.Phone">
+                                @Model.Phone
+                            </a>
+                        </div>
+                        <div class="doctor-details__contact">
+                            <i class="fa fa-envelope doctor-details__icon"></i>
+                            <a target="_self" class="doctor-details__link" href="mailto:clinic@qodeinteractive.com">
+                                @Model.Email
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="doctor-details__social">
+                        @foreach (var item in Model.SocialMedia)
+                        {
+                            @if (item.Name != "mail")
+                            {
+                                <li><a href="@item?.Url"><i class="fa fa-@item?.Name"></i></a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-8 col-sm-12 col-xl-8">
+                <div class="doctor-details__desc">
+                    <div>
+                        @Html.Raw(Model.AboutContent)
+                    </div>
+                    <div>
+                        <div class="doctor-details__row">
+                            <span class="doctor-details__info-title">Specialty</span>
+                            <span class="doctor-details__info-desc">@Model.Specialty</span>
+                        </div>
+                        <div class="doctor-details__row">
+                            <span class="doctor-details__info-title">Education</span>
+                            <span class="doctor-details__info-desc">
+                                @Html.Raw(Model.Education)
+                            </span>
+                        </div>
+                        <div class="doctor-details__row">
+                            <span class="doctor-details__info-title">Experience</span>
+                            <span class="doctor-details__info-desc">
+                                @Html.Raw(Model.Experience)
+                            </span>
+                        </div>
+                        <div class="doctor-details__row">
+                            <span class="doctor-details__info-title">
+                                Work Days
+                            </span>
+                            <span class="doctor-details__info-desc">
+                                @foreach (var item in Model.WorkTime.WorkTimeWeekDayRelation)
+                                {
+                                    <div>@item.WeekDay  @Model.WorkTime.StartedTime.ToString("HH:mm") - @Model.WorkTime.EndedTime.ToString("HH:mm")</div>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <div class="doctor-details__appointment">
+                        <h3 class="subtitle">Online Appoinment</h3>
+                        <h2 class="title">
+                            Make An Appointment
+                        </h2>
+                        <span>
+                            <svg viewBox="0 0 300.08 300.08" width="70px"><path fill="#16426d" d="m293.26 184.14h-82.877l-12.692-76.138c-.546-3.287-3.396-5.701-6.718-5.701-.034 0-.061 0-.089 0-3.369.027-6.199 2.523-6.677 5.845l-12.507 87.602-14.874-148.69c-.355-3.43-3.205-6.056-6.643-6.138-.048 0-.096 0-.143 0-3.39 0-6.274 2.489-6.752 5.852l-19.621 137.368h-9.405l-12.221-42.782c-.866-3.028-3.812-5.149-6.8-4.944-3.13.109-5.777 2.332-6.431 5.395l-8.941 42.332h-73.049c-3.771 0-6.82 3.049-6.82 6.82 0 3.778 3.049 6.82 6.82 6.82h78.566c3.219 0 6.002-2.251 6.67-5.408l4.406-20.856 6.09 21.313c.839 2.939 3.526 4.951 6.568 4.951h20.46c3.396 0 6.274-2.489 6.752-5.845l12.508-87.596 14.874 148.683c.355 3.437 3.205 6.056 6.643 6.138h.143c3.39 0 6.274-2.489 6.752-5.845l14.227-99.599 6.397 38.362c.546 3.287 3.396 5.702 6.725 5.702h88.66c3.771 0 6.82-3.049 6.82-6.82-.001-3.772-3.05-6.821-6.821-6.821z"></path></svg>
+                        </span>
+                        <form method="post" id="appointmentdoctorfrm">
+                            <input class="doctor-details__input" type="text" name="Name" placeholder="Your Name">
+                            <input class="doctor-details__input" type="text" name="Phone" placeholder="Your Phone">
+                            <input class="doctor-details__input" type="email" name="Email" placeholder="Your E-mail">
+                            <textarea class="doctor-details__input doctor-details__input--textbox" name="Message" id="" cols="30" rows="10" placeholder="Tell us about Pasent"></textarea>
+                            <input type="hidden" value="@Model.Id" name="DoctorId">
+                            <button class="btn btn--black" style="border:none;">Submit Query</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section addjs{
+    <script>
+        $(document).ready(function () {
+            
+             $("#appointmentdoctorfrm").submit(function (e) {
+                 e.preventDefault();
+                    if (!$(e.currentTarget).valid())
+                    return;
+
+                    const formData = new FormData(e.currentTarget);
+                    $.ajax({
+                        url: '@Url.Action("DoctorAppointment", "Doctor")',
+                        type: 'POST',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        dataType: 'json',
+                        beforeSend: function () {
+                            console.log("before sending")
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            if (data.error == false) {
+                                toastr.success(data.message, 'Successfully!');
+                                e.currentTarget.reset();
+                            }
+                            else {
+                                toastr.error(data.message, 'Error!');
+                            }
+
+                        },
+                        error: function (data) {
+                            toastr.error("Something is wrong. Please try again..", 'Error!');
+                        }
+                    }).always(function () {
+                        console.log("after sending")
+
+
+                    });
+                });
+
+            })
+    </script>
+}

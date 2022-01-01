@@ -118,8 +118,8 @@ timetableTarget?.addEventListener("click",function(e){
 
 timetableLink?.forEach(function(item){
   item.addEventListener("click",function(e){
-    e.preventDefault();
-    e.stopPropagation();
+    //e.preventDefault();
+    //e.stopPropagation();
     timetableTarget.textContent = item.textContent;
     timetableDropdown.classList.add("d-none");
   })
@@ -489,58 +489,58 @@ mediaQueryMd.addEventListener( "change", (e) => {
 
 
 //contact
-const nameInput = document.getElementById("name");
-const mailInput = document.getElementById("mail");
-const nameError = document.getElementById("name-label");
-const mailError = document.getElementById("mail-label");
+//const nameInput = document.getElementById("name");
+//const mailInput = document.getElementById("mail");
+//const nameError = document.getElementById("name-label");
+//const mailError = document.getElementById("mail-label");
 
-const submitButton = document.getElementById("contact-us-button");
+//const submitButton = document.getElementById("contact-us-button");
 
-submitButton?.addEventListener('click', (e) => {
-    e.preventDefault();
+//submitButton?.addEventListener('click', (e) => {
+//    e.preventDefault();
 
-    const valueLengthName = nameInput.value.length;
-    const valueLengthMail = mailInput.value.length;
+//    const valueLengthName = nameInput.value.length;
+//    const valueLengthMail = mailInput.value.length;
 
-    console.log('maz');
+//    console.log('maz');
 
 
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
-    if(re.test(mailInput.value.trim())){
-        mailInput.classList.add("success-input");
-        mailError.classList.remove("error");
-    }
-    else if (valueLengthMail == 0) {
-        mailError.innerText = "Email cannot be left blank";
-        mailError.classList.add("error");
-        mailInput.classList.add("error-input");
-    }
-    else{
-        mailError.innerText = "Email is not spelled correctly";
-        mailInput.classList.remove("success");
-        mailInput.classList.add("error");
-    }
+//    if(re.test(mailInput.value.trim())){
+//        mailInput.classList.add("success-input");
+//        mailError.classList.remove("error");
+//    }
+//    else if (valueLengthMail == 0) {
+//        mailError.innerText = "Email cannot be left blank";
+//        mailError.classList.add("error");
+//        mailInput.classList.add("error-input");
+//    }
+//    else{
+//        mailError.innerText = "Email is not spelled correctly";
+//        mailInput.classList.remove("success");
+//        mailInput.classList.add("error");
+//    }
 
 
-    if (valueLengthName == 0) {
-        nameError.classList.add("error");
-        nameInput.classList.add("error-input");
-    }
-    else{
-        nameError.classList.remove("error");
-        nameInput.classList.add("success-input");
-    }
+//    if (valueLengthName == 0) {
+//        nameError.classList.add("error");
+//        nameInput.classList.add("error-input");
+//    }
+//    else{
+//        nameError.classList.remove("error");
+//        nameInput.classList.add("success-input");
+//    }
 
-    // if (valueLengthMail == 0) {
-    //     mailError.classList.add("error");
-    //     mailInput.classList.add("error-input");
-    // }
-    // else{
-    //     mailError.classList.remove("error");
-    //     mailInput.classList.add("success-input");
-    // }
-})
+//    // if (valueLengthMail == 0) {
+//    //     mailError.classList.add("error");
+//    //     mailInput.classList.add("error-input");
+//    // }
+//    // else{
+//    //     mailError.classList.remove("error");
+//    //     mailInput.classList.add("success-input");
+//    // }
+//})
 
 
 

@@ -1,19 +1,17 @@
-﻿using MediClinic.Domain.Models.FormModels;
-using MediClinic.Application.Core.Extensions;
+﻿using MediClinic.Application.Core.Extensions;
 using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities.Membership;
+using MediClinic.Domain.Models.FormModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
-using System.IO;
 using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using System.IO;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MediClinic.WebUI.Controllers
 {

@@ -12,10 +12,11 @@ namespace MediClinic.Domain.Models.Entities
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
-        public int? DepartmentId { get; set; }
+        public bool IsAccepted { get; set; }
+        //public int? DepartmentId { get; set; }
         public int? DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
-        public virtual Department Department { get; set; }
+        //public virtual Department Department { get; set; }
         public DateTime? Date { get; set; }
 
     }

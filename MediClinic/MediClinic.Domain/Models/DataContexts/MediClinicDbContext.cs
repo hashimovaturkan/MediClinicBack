@@ -35,7 +35,7 @@ namespace MediClinic.Domain.Models.DataContexts
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<DoctorDepartmentRelation> DoctorDepartmentRelations { get; set; }
         public DbSet<WorkTimeWeekDayRelation> WorkTimeWeekDayRelations { get; set; }
-        public DbSet<DoctorSocialMediaRelation> DoctorSocialMediaRelations { get; set; }
+        //public DbSet<DoctorSocialMediaRelation> DoctorSocialMediaRelations { get; set; }
         public DbSet<ContactPost> ContactPosts { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
         public DbSet<Faq> Faqs { get; set; }

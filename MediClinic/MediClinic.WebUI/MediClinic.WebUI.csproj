@@ -34,6 +34,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MediClinic.Application\MediClinic.Application.csproj" />
     <ProjectReference Include="..\MediClinic.Domain\MediClinic.Domain.csproj" />
+    <ProjectReference Include="..\MediClinic.Resources\MediClinic.Resources.csproj" />
   </ItemGroup>
 
 </Project>

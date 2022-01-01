@@ -41,14 +41,14 @@ namespace MediClinic.Domain.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("DoctorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAccepted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
@@ -60,8 +60,6 @@ namespace MediClinic.Domain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("DoctorId");
 
@@ -346,6 +344,9 @@ namespace MediClinic.Domain.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Education")
                         .HasColumnType("nvarchar(max)");
 
@@ -412,40 +413,6 @@ namespace MediClinic.Domain.Migrations
                     b.HasIndex("DoctorId");
 
                     b.ToTable("DoctorDepartmentRelations");
-                });
-
-            modelBuilder.Entity("MediClinic.Domain.Models.Entities.DoctorSocialMediaRelation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SocialMediaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("SocialMediaId");
-
-                    b.ToTable("DoctorSocialMediaRelations");
                 });
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.Faq", b =>
@@ -703,6 +670,9 @@ namespace MediClinic.Domain.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -710,6 +680,8 @@ namespace MediClinic.Domain.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("SocialMedia");
                 });
@@ -811,15 +783,9 @@ namespace MediClinic.Domain.Migrations
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.Appointment", b =>
                 {
-                    b.HasOne("MediClinic.Domain.Models.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
-
                     b.HasOne("MediClinic.Domain.Models.Entities.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId");
-
-                    b.Navigation("Department");
 
                     b.Navigation("Doctor");
                 });
@@ -898,25 +864,6 @@ namespace MediClinic.Domain.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("MediClinic.Domain.Models.Entities.DoctorSocialMediaRelation", b =>
-                {
-                    b.HasOne("MediClinic.Domain.Models.Entities.Doctor", "Doctor")
-                        .WithMany("DoctorSocialMediaRelations")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MediClinic.Domain.Models.Entities.SocialMedia", "SocialMedia")
-                        .WithMany("DoctorSocialMediaRelations")
-                        .HasForeignKey("SocialMediaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("SocialMedia");
-                });
-
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.Membership.MediClinicRoleClaim", b =>
                 {
                     b.HasOne("MediClinic.Domain.Models.Entities.Membership.MediClinicRole", null)
@@ -968,6 +915,17 @@ namespace MediClinic.Domain.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MediClinic.Domain.Models.Entities.SocialMedia", b =>
+                {
+                    b.HasOne("MediClinic.Domain.Models.Entities.Doctor", "Doctor")
+                        .WithMany("SocialMedia")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.WorkTimeWeekDayRelation", b =>
                 {
                     b.HasOne("MediClinic.Domain.Models.Entities.WorkTime", "WorkTime")
@@ -1007,12 +965,7 @@ namespace MediClinic.Domain.Migrations
 
                     b.Navigation("DoctorDepartmentRelation");
 
-                    b.Navigation("DoctorSocialMediaRelations");
-                });
-
-            modelBuilder.Entity("MediClinic.Domain.Models.Entities.SocialMedia", b =>
-                {
-                    b.Navigation("DoctorSocialMediaRelations");
+                    b.Navigation("SocialMedia");
                 });
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.WorkTime", b =>

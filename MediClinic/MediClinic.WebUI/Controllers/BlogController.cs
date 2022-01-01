@@ -4,13 +4,12 @@ using MediClinic.Application.Modules.Client.BlogPostModule;
 using MediClinic.Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MediClinic.WebUI.Controllers
 {
-    [AllowAnonymous]
+    
     public class BlogController : Controller
     {
         readonly IMediator mediator;
@@ -19,7 +18,7 @@ namespace MediClinic.WebUI.Controllers
         {
             this.mediator = mediator;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index(BlogPostListQuery query)
         {
 
@@ -33,7 +32,7 @@ namespace MediClinic.WebUI.Controllers
             vm.BlogPosts = response;
             return View(vm);
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details(BlogPostDetailsQuery query)
         {
             var response = await mediator.Send(query);
@@ -53,17 +52,29 @@ namespace MediClinic.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostComment(BlogPostCommentCommand query)
         {
-            query.id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var response = await mediator.Send(query);
-            if (response.BlogPostComment == null && response.CommandJsonResponse.Error == true)
+            if (User.Identity.IsAuthenticated)
             {
-                return Json(response.CommandJsonResponse);
+                query.id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var response = await mediator.Send(query);
+                if (response.BlogPostComment == null && response.CommandJsonResponse.Error == true)
+                {
+                    return Json(response.CommandJsonResponse);
+                }
+                else
+                {
+                    return PartialView("_Comment", response.BlogPostComment);
+                }
             }
             else
             {
-                return PartialView("_Comment", response.BlogPostComment);
+                return Json(new
+                {
+                    error = true,
+                    message = "You can't post a comment without login!"
+                });
             }
             
+
         }
     }
 }

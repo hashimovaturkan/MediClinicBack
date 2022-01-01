@@ -13,6 +13,7 @@ namespace MediClinic.Domain.Models.Entities
         public string Education { get; set; }
         public string Experience { get; set; }
         public string AboutContent { get; set; }
+        public string Description { get; set; }
         public string Room { get; set; }
         //public int DoctorDepartmentRelationId { get; set; }
         public virtual ICollection<DoctorDepartmentRelation> DoctorDepartmentRelation { get; set; }
@@ -20,7 +21,8 @@ namespace MediClinic.Domain.Models.Entities
         public virtual ICollection<BlogPost> BlogPosts { get; set; }
         public int WorkTimeId { get; set; }
         public virtual WorkTime WorkTime { get; set; }
-        public virtual ICollection<DoctorSocialMediaRelation> DoctorSocialMediaRelations { get; set; }
+        public virtual ICollection<SocialMedia> SocialMedia { get; set; }
+        //public virtual ICollection<DoctorSocialMediaRelation> DoctorSocialMediaRelations { get; set; }
 
     }
 }
