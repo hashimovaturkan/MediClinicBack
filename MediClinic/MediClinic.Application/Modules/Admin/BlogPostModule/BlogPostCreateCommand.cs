@@ -1,6 +1,6 @@
-﻿using CvTemplate.Application.Core.Extensions;
-using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
+﻿using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogPostModule
+namespace MediClinic.Application.Modules.Admin.BlogPostModule
 {
     public class BlogPostCreateCommand : IRequest<int>
     {
@@ -23,13 +23,14 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
         public DateTime? PublishedDate { get; set; }
         public string ImgUrl { get; set; }
         public int BlogCategoryId { get; set; }
+        public int DoctorId { get; set; }
         public IFormFile file { get; set; }
         public class BlogPostCreateCommandHandler : IRequestHandler<BlogPostCreateCommand, int>
         {
-            readonly CvTemplateDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
             readonly IWebHostEnvironment env;
-            public BlogPostCreateCommandHandler(CvTemplateDbContext db, IActionContextAccessor ctx, IWebHostEnvironment env)
+            public BlogPostCreateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx, IWebHostEnvironment env)
             {
                 this.ctx = ctx;
                 this.db = db;
@@ -49,6 +50,7 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
                     model.Content = request.Content;
                     model.PublishedDate = request.PublishedDate;
                     model.BlogCategoryId = request.BlogCategoryId;
+                    model.DoctorId = request.DoctorId;
 
                     string extension = Path.GetExtension(request.file.FileName);
                     model.ImgUrl = $"{Guid.NewGuid()}{extension}";

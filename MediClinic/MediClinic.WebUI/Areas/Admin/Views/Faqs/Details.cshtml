@@ -1,0 +1,44 @@
+﻿@model Faq
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="text-center">FAQ <b>Details</b></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+
+            <tbody>
+                <tr>
+                    <th>Question</th>
+                    <td>@Model?.Question</td>
+                </tr>
+                <tr>
+                    <th>Answer</th>
+                    <td>@Model?.Answer</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+            |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+

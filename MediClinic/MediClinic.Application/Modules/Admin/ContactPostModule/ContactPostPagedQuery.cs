@@ -1,6 +1,6 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
-using CvTemplate.Domain.Models.ViewModels;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
+using MediClinic.Domain.Models.ViewModels;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.ContactPostModule
+namespace MediClinic.Application.Modules.Admin.ContactPostModule
 {
     public class ContactPostPagedQuery : IRequest<ContactPostViewModel>
     {
@@ -19,8 +19,8 @@ namespace CvTemplate.Application.Modules.Admin.ContactPostModule
 
         public class ContactPostPagedQueryHandler : IRequestHandler<ContactPostPagedQuery, ContactPostViewModel>
         {
-            readonly CvTemplateDbContext db;
-            public ContactPostPagedQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public ContactPostPagedQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

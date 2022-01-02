@@ -1,15 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Riode.Application.Core.Extensions;
-using Riode.Domain.Models.DataContexts;
-using Riode.Domain.Models.Entities;
+using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.FaqsModule
+namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqCreateCommand:IRequest<long>
     {
@@ -18,9 +18,9 @@ namespace Riode.Application.Modules.FaqsModule
 
         public class FaqCreateCommandHandler : IRequestHandler<FaqCreateCommand, long>
         {
-            readonly RiodeDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
-            public FaqCreateCommandHandler(RiodeDbContext db, IActionContextAccessor ctx)
+            public FaqCreateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx)
             {
                 this.db = db;
             }

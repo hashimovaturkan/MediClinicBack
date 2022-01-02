@@ -1,5 +1,5 @@
-﻿using CvTemplate.Application.Core.Infrastructure;
-using CvTemplate.Domain.Models.DataContexts;
+﻿using MediClinic.Application.Core.Infrastructure;
+using MediClinic.Domain.Models.DataContexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.UsersModule
+namespace MediClinic.Application.Modules.Admin.UsersModule
 {
     public class UserDeleteCommand : IRequest<CommandJsonResponse>
     {
@@ -17,8 +17,8 @@ namespace CvTemplate.Application.Modules.Admin.UsersModule
 
         public class UserDeleteCommandHandler : IRequestHandler<UserDeleteCommand, CommandJsonResponse>
         {
-            readonly CvTemplateDbContext db;
-            public UserDeleteCommandHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public UserDeleteCommandHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

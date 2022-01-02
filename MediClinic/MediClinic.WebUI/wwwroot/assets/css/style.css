@@ -8751,11 +8751,12 @@ i.icon-lg {
       background-color: #C9FFC7; }
 
 .heading__title {
-  font-weight: 700;
-  color: #3e454f;
-  margin-bottom: 0.8rem;
-  font-size: 4rem;
-  line-height: 5.6rem; }
+    font-weight: 700;
+    color: #506481;
+    margin-bottom: 0.8rem;
+    font-size: 4rem;
+    line-height: 5.6rem;
+}
   .heading__title--dark {
     color: #000; }
   .heading__title--footer {
@@ -12056,3 +12057,63 @@ footer {
     width: 100%; }
   .contact-us .contact-wrapper .country-locations .country {
     width: 100%; } }
+
+.mt-11 {
+    margin-top: 11rem;
+}
+
+
+.accordion__item {
+    margin-bottom: 0.8rem;
+}
+
+.accordion__btn {
+    padding: 2rem 2.4rem;
+    background-color: #939393;
+    color: #fff;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, border-radius .15s ease, height .15s ease;
+}
+
+    .accordion__btn:hover {
+        color: #fff;
+    }
+
+.accordion__txt {
+    font-size: 1.6rem;
+}
+
+.accordion__collapse {
+    overflow: hidden;
+    transition: height 1s;
+}
+
+.accordion__body {
+    color: #fff;
+    transition: 1s all;
+    overflow: hidden;
+    outline-color: #fff;
+    padding: 2rem 2.4rem 5.8rem;
+    line-height: 2.6rem;
+    margin-top: 0.8rem;
+    background-color: #777;
+    border-radius: 0.8rem;
+    border: 1px solid #696969;
+}
+
+.accordion__body__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion__body__txt {
+    color: #e8ecec;
+    margin-bottom: 4.4rem;
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+}

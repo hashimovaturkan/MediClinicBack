@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.FaqsModule
+namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqViewModel
     {

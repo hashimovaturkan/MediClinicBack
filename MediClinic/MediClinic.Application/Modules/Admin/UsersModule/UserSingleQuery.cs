@@ -1,5 +1,5 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities.Membership;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities.Membership;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,20 +9,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.UsersModule
+namespace MediClinic.Application.Modules.Admin.UsersModule
 {
-    public class UserSingleQuery : IRequest<CvTemplateUser>
+    public class UserSingleQuery : IRequest<MediClinicUser>
     {
         public long? Id { get; set; }
 
-        public class UserSingleQueryHandler : IRequestHandler<UserSingleQuery, CvTemplateUser>
+        public class UserSingleQueryHandler : IRequestHandler<UserSingleQuery, MediClinicUser>
         {
-            readonly CvTemplateDbContext db;
-            public UserSingleQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public UserSingleQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }
-            public async Task<CvTemplateUser> Handle(UserSingleQuery request, CancellationToken cancellationToken)
+            public async Task<MediClinicUser> Handle(UserSingleQuery request, CancellationToken cancellationToken)
             {
                 if (request.Id == null && request.Id <= 0)
                     return null;

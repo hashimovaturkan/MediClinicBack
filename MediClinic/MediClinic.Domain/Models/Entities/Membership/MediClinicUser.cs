@@ -12,5 +12,9 @@ namespace MediClinic.Domain.Models.Entities.Membership
         public string Name { get; set; }
         public string Surname { get; set; }
         public string ImgUrl { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public int? DeletedByUserId { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }

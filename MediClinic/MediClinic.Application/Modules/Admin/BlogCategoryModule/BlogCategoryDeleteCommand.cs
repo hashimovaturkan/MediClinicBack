@@ -1,5 +1,5 @@
-﻿using CvTemplate.Application.Core.Infrastructure;
-using CvTemplate.Domain.Models.DataContexts;
+﻿using MediClinic.Application.Core.Infrastructure;
+using MediClinic.Domain.Models.DataContexts;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
+namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
 {
     public class BlogCategoryDeleteCommand : IRequest<CommandJsonResponse>
     {
@@ -16,8 +16,8 @@ namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
 
         public class BlogCategoryDeleteCommandHandler : IRequestHandler<BlogCategoryDeleteCommand, CommandJsonResponse>
         {
-            readonly CvTemplateDbContext db;
-            public BlogCategoryDeleteCommandHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public BlogCategoryDeleteCommandHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

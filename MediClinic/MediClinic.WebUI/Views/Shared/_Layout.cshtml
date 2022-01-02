@@ -150,55 +150,40 @@
                             oportunity to receive qualitative medical help.
                         </div>
                     </div>
-                    <form action="" class="appointment-modal__form">
+                    <form method="post" class="appointment-modal__form" id="appointmentfrm">
                         <div class="row">
                             <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 appointment-modal__row">
-                                <input type="text" class="appointment-modal__input" placeholder="Your Name">
+                                <input type="text" class="appointment-modal__input" name="Name" placeholder="Your Name"
+                                       data-rule-required="true" data-msg-required="Please, enter your name">
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 appointment-modal__row">
-                                <input type="tel" class="appointment-modal__input" placeholder="Your Phone">
+                                <input type="tel" class="appointment-modal__input" name="Phone" placeholder="Your Phone"
+                                       data-rule-required="true" data-msg-required="Please, enter your phone">
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 appointment-modal__row">
-                                <input type="email" class="appointment-modal__input" placeholder="Your E-mail">
+                                <input type="email" class="appointment-modal__input" name="Email" placeholder="Your E-mail"
+                                       data-rule-required="true" data-msg-required="Please, enter your username">
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 appointment-modal__row">
-                                <select class="appointment-modal__input appointment-modal__input--select">
-                                    <option value="default" selected="" disabled="">Select Departments</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Neurology">Neurology</option>
-                                    <option value="Urology">Urology</option>
-                                    <option value="Gynecological">Gynecological</option>
-                                    <option value="Pediatrical">Pediatrical</option>
-                                    <option value="Laboratory">Laboratory</option>
+                                <select class="appointment-modal__input appointment-modal__input--select" id="selectedDepartment">
+                                    <option value="default">Select Departments</option>
+                                    @await Component.InvokeAsync("SelectedDepartment")
                                 </select>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 appointment-modal__row">
-                                <input type="date" class="appointment-modal__input" placeholder="Select Date">
+                                <input type="date" id="selectedDateApp" class="appointment-modal__input" placeholder="Select Date">
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 appointment-modal__row">
-                                <select class="appointment-modal__input appointment-modal__input--select">
-                                    <option value="" selected="" disabled="" style="display: none;">Select Time</option>
-                                    <option value="" data-value="default" disabled="" style="display: none;">Please select a department</option>
-                                    <option value="10:00AM - 12:00AM" data-value="Cardiology" style="display: block;">10:00AM - 12:00AM</option>
-                                    <option value="12:00AM - 02:00AM" data-value="Cardiology" style="display: block;">12:00AM - 02:00AM</option>
-                                    <option value="02:00PM - 04:00PM" data-value="Neurology" style="display: none;">02:00PM - 04:00PM</option>
-                                    <option value="04:00PM - 06:00PM" data-value="Neurology" style="display: none;">04:00PM - 06:00PM</option>
-                                    <option value="06:00PM - 08:00PM" data-value="Urology" style="display: none;">06:00PM - 08:00PM</option>
-                                    <option value="10:00AM - 12:00AM" data-value="Urology" style="display: none;">10:00AM - 12:00AM</option>
-                                    <option value="12:00AM - 02:00AM" data-value="Gynecological" style="display: none;">12:00AM - 02:00AM</option>
-                                    <option value="02:00PM - 04:00PM" data-value="Gynecological" style="display: none;">02:00PM - 04:00PM</option>
-                                    <option value="04:00PM - 06:00PM" data-value="Pediatrical" style="display: none;">04:00PM - 06:00PM</option>
-                                    <option value="06:00PM - 08:00PM" data-value="Pediatrical" style="display: none;">06:00PM - 08:00PM</option>
-                                    <option value="10:00AM - 12:00AM" data-value="Laboratory" style="display: none;">10:00AM - 12:00AM</option>
-                                    <option value="12:00AM - 02:00AM" data-value="Laboratory" style="display: none;">12:00AM - 02:00AM</option>
-
+                                <select class="appointment-modal__input appointment-modal__input--select" id="selectedTime">
+                                    @*<option value="default" style="display: none;">Select Time</option>*@
+                                    @*<option value="10:00" data-value="Cardiology" style="display: block;">10:00AM - 12:00AM</option>*@
                                 </select>
                             </div>
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
-                                <textarea type="date" class="appointment-modal__input appointment-modal__input--textarea" placeholder="Message"></textarea>
+                                <textarea type="text" name="Message" class="appointment-modal__input appointment-modal__input--textarea" placeholder="Message"></textarea>
                             </div>
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
-                                <a href="#" class="btn btn--black">Submit now</a>
+                                <button class="btn btn--black" style="border:none;">Submit now</button>
                             </div>
                         </div>
                     </form>
@@ -241,9 +226,9 @@
                 <ul class="menu-side__list">
                     <li class="menu-side__list-item"><a asp-controller="doctor" asp-action="index" class="menu-side__list-link">Doctors</a></li>
                     <li class="menu-side__list-item"><a asp-controller="home" asp-action="timetable" class="menu-side__list-link">Timetable</a></li>
-                    <li class="menu-side__list-item"><a href="./services.html" class="menu-side__list-link">Departments</a></li>
+                    <li class="menu-side__list-item"><a asp-controller="department" asp-action="index" class="menu-side__list-link">Departments</a></li>
                     <li class="menu-side__list-item"><a asp-controller="Blog" asp-action="Index" class="menu-side__list-link">Blogs</a></li>
-                    <li class="menu-side__list-item"><a href="./innovations.html" class="menu-side__list-link">FAQ</a></li>
+                    <li class="menu-side__list-item"><a asp-controller="home" asp-action="faq" class="menu-side__list-link">FAQ</a></li>
                     <li class="menu-side__list-item"><a href="./contact.html" class="menu-side__list-link">About us</a></li>
                     <li class="menu-side__list-item"><a asp-controller="home" asp-action="contact" class="menu-side__list-link">Contact us</a></li>
                 </ul>
@@ -264,7 +249,7 @@
             <div class="header__top">
                 <div class="custom-container">
                     <div class="header__top-inner">
-                        <a href="./index.html" class="header__top-logo">
+                        <a asp-controller="home" asp-action="index" class="header__top-logo">
                             <img src="/uploads/images/logo-dark.png" width="173" height="36" alt="logo">
                         </a>
                         <div class="header__top-main">
@@ -333,16 +318,11 @@
                                     </div>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a href="./tariffs.html" class="menu__list-link">Departments</a>
+                                    <a class="menu__list-link">Departments</a>
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">All Departments</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Cardiology</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Neurology</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Urology</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Gynecological</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Pediatrical</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Laboratory</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="department" asp-action="index" class="menu__dropdown-link">All Departments</a></li>
+                                            @await Component.InvokeAsync("Department")
                                         </ul>
                                     </div>
                                 </li>
@@ -350,7 +330,7 @@
                                     <a asp-controller="Blog" asp-action="Index" class="menu__list-link">Blogs</a>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a href="./tariffs.html" class="menu__list-link">FAQ</a>
+                                    <a asp-controller="home" asp-action="faq" class="menu__list-link">FAQ</a>
                                 </li>
                                 <!-- <li class="menu__list-item">
                                     <a href="./tariffs.html" class="menu__list-link">My Account</a>
@@ -396,8 +376,8 @@
                                         <li>
                                             <a asp-controller="account" asp-action="profile">
                                                 <svg fill="#646464" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                        width="24px" height="45.532px" viewBox="0 0 45.532 45.532" style="enable-background:new 0 0 45.532 45.532;"
-                                                        xml:space="preserve">
+                                                     width="24px" height="45.532px" viewBox="0 0 45.532 45.532" style="enable-background:new 0 0 45.532 45.532;"
+                                                     xml:space="preserve">
                                                 <g>
                                                 <path d="M22.766,0.001C10.194,0.001,0,10.193,0,22.766s10.193,22.765,22.766,22.765c12.574,0,22.766-10.192,22.766-22.765
                                                         S35.34,0.001,22.766,0.001z M22.766,6.808c4.16,0,7.531,3.372,7.531,7.53c0,4.159-3.371,7.53-7.531,7.53
@@ -428,13 +408,13 @@
                             }
                             else
                             {
-                               <a class="header__user-account makeLoginModal">
+                                <a class="header__user-account makeLoginModal">
                                     <i class="icon-user_two_tone"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
                                     <span class="header__user-account__text">Account</span>
-                               </a>
+                                </a>
                             }
-                                
-                            
+
+
                             <a href="#" class="btn btn--primary makeAppointmentModal">
                                 Make an Appointment
                             </a>
@@ -446,19 +426,19 @@
                                 </ul>
                             </div>
                             <!-- <a href="#" class="header__user-side-icon">
-        <i class="fa fa-shopping-cart"></i>
-        <span class="header__user-side-circle">
-            <span class="header__user-side-count">2</span>
-        </span>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span class="header__user-side-circle">
+                                        <span class="header__user-side-count">2</span>
+                                    </span>
 
-    </a> -->
+                                </a> -->
 
                             <a href="#" class="header__user-side-icon header__search header__search-1">
                                 <i class="fa fa-search"></i>
                             </a>
                             <!-- <a href="#" class="header__user-side-icon">
-        <i class="fa fa-bars"></i>
-    </a> -->
+                                        <i class="fa fa-bars"></i>
+                                    </a> -->
                         </div>
                     </div>
                 </div>
@@ -672,9 +652,10 @@
     <script src="~/libs/toastr.js/toastr.min.js"></script>
     <script src="~/libs/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <script src="~/assets/js/main.js"></script>
     @RenderSection("addjs", required: false)
-<script>
+    <script>
         //Toastr
         toastr.options = {
             "closeButton": true,
@@ -740,7 +721,7 @@
             })
         }
     })
-</script>
+    </script>
     <script>
     $(document).ready(function () {
             $("#registerfrm").submit(function (e) {
@@ -828,7 +809,108 @@
                 errorClass: "invalid",
                 validClass: "valid"
             });
-        })
+     })
+    $(document).ready(function () {
+
+            $("#selectedDepartment").change(function (e) {
+                e.preventDefault();
+
+                var frm = new FormData();
+                frm.append("DepartmentId", $("#selectedDepartment option:selected").val());
+                $.ajax({
+                    url: '@Url.Action("FilterTime", "Home")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            var html="";
+                            for (var i = response.dateMin; i < response.dateMax; i++) {
+                                html = html + "<option value=\"" + i +"\">" + i + ":00 - " + (parseInt(i)+1) + ":00 </option>";
+                            }
+                            $("#selectedTime").html("");
+                            $("#selectedTime").append("<option value='default'>Select Departments</option>");
+                            $("#selectedTime").append(html);
+                            e.currentTarget.reset();
+
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorClass: "invalid",
+                validClass: "valid"
+            });
+    })
+    $(document).ready(function () {
+            $("#appointmentfrm").submit(function (e) {
+                e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+                var time = $("#selectedTime option:selected").val();
+                var date = $("#selectedDateApp").val();
+                var newDateTime = moment(date, "YYYY-MM-DD HH:mm:ss")
+                    .add(time, 'hours')
+                    .format("YYYY-MM-DD HH:mm:ss");
+
+                frm.append('Date', newDateTime);
+
+
+                $.ajax({
+                    url: '@Url.Action("DoctorAppointment", "Doctor")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+                            e.currentTarget.reset();
+                            $("#selectedTime").html("");
+                            $("#selectedTime").append("<option value='default'>Select Departments</option>");
+                            $("#selectedTime").append(html);
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorClass: "invalid",
+                validClass: "valid"
+            });
+    })
     </script>
 </body>
 </html>

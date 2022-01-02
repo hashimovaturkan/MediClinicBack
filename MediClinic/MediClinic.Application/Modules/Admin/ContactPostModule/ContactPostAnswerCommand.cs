@@ -1,5 +1,5 @@
-﻿using CvTemplate.Application.Core.Extensions;
-using CvTemplate.Domain.Models.DataContexts;
+﻿using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.ContactPostModule
+namespace MediClinic.Application.Modules.Admin.ContactPostModule
 {
     public class ContactPostAnswerCommand:IRequest<int?>
     {
@@ -19,10 +19,10 @@ namespace CvTemplate.Application.Modules.Admin.ContactPostModule
         public string Answer { get; set; }
         public class ContactPostAnswerCommandHandler : IRequestHandler<ContactPostAnswerCommand, int?>
         {
-            readonly CvTemplateDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
             readonly IConfiguration configuration;
-            public ContactPostAnswerCommandHandler(CvTemplateDbContext db, IActionContextAccessor ctx, IConfiguration configuration)
+            public ContactPostAnswerCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx, IConfiguration configuration)
             {
                 this.ctx = ctx;
                 this.configuration = configuration;
@@ -50,7 +50,7 @@ namespace CvTemplate.Application.Modules.Admin.ContactPostModule
                 contactPost.AnswerByUserId = 1;
                 await db.SaveChangesAsync();
                 
-                var mailSend = configuration.SendEmail(contactPost.Email, "CvTemplate Answer", $"{request.Answer}");
+                var mailSend = configuration.SendEmail(contactPost.Email, "MediClinic Answer", $"{request.Answer}");
                 
                 if (mailSend == false)
                 {

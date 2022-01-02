@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogPostModule
+namespace MediClinic.Application.Modules.Admin.BlogPostModule
 {
     public class BlogPostViewModel
     { 
@@ -16,6 +16,7 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
         public DateTime? PublishedDate { get; set; }
         public string ImgUrl { get; set; }
         public int BlogCategoryId { get; set; }
+        public int DoctorId { get; set; }
         public IFormFile file { get; set; }
         public string fileTemp { get; set; }
     }

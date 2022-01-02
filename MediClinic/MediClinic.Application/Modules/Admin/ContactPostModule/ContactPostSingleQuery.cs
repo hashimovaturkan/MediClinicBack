@@ -1,5 +1,5 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.ContactPostModule
+namespace MediClinic.Application.Modules.Admin.ContactPostModule
 {
     public class ContactPostSingleQuery : IRequest<ContactPost>
     {
@@ -17,8 +17,8 @@ namespace CvTemplate.Application.Modules.Admin.ContactPostModule
 
         public class ContactPostSingleQueryHandler : IRequestHandler<ContactPostSingleQuery, ContactPost>
         {
-            readonly CvTemplateDbContext db;
-            public ContactPostSingleQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public ContactPostSingleQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

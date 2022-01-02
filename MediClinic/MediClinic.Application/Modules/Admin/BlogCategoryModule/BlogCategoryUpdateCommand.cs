@@ -1,5 +1,5 @@
-﻿using CvTemplate.Application.Core.Extensions;
-using CvTemplate.Domain.Models.DataContexts;
+﻿using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
@@ -9,15 +9,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
+namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
 {
     public class BlogCategoryUpdateCommand : BlogCategoryViewModel, IRequest<int>
     {
         public class BlogCategoryUpdateCommandHandler : IRequestHandler<BlogCategoryUpdateCommand, int>
         {
-            readonly CvTemplateDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
-            public BlogCategoryUpdateCommandHandler(CvTemplateDbContext db, IActionContextAccessor ctx)
+            public BlogCategoryUpdateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx)
             {
                 this.ctx = ctx;
                 this.db = db;

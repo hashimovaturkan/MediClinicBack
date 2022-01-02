@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "Default";
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <option value="@item.Id" class="selectedDepartment-text">@item.Title</option>
+}

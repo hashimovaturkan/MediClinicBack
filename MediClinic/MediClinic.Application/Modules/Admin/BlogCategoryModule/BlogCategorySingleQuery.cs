@@ -1,5 +1,5 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
+namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
 {
     public class BlogCategorySingleQuery : IRequest<BlogCategory>
     {
@@ -17,8 +17,8 @@ namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
 
         public class BlogCategorySingleQueryHandler : IRequestHandler<BlogCategorySingleQuery, BlogCategory>
         {
-            readonly CvTemplateDbContext db;
-            public BlogCategorySingleQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public BlogCategorySingleQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

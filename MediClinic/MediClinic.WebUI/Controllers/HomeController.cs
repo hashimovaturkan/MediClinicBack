@@ -27,6 +27,12 @@ namespace MediClinic.WebUI.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Faq()
+        {
+            var model =await db.Faqs.Where(e => e.DeletedByUserId == null).ToListAsync();
+            return View(model);
+        }
+
         public async Task<IActionResult> Timetable(string department = "all")
         {
             var departments = await db.Departments.Where(e => e.DeletedByUserId == null).ToListAsync();
@@ -95,6 +101,21 @@ namespace MediClinic.WebUI.Controllers
             {
                 error = true,
                 message = "Please try again.."
+
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FilterTime(int DepartmentId)
+        {
+            var dateMin = await db.Departments.Where(e => e.Id == DepartmentId).Select(e => e.DoctorDepartmentRelation.Select(k => k.Doctor.WorkTime.StartedTime).Min()).FirstOrDefaultAsync();
+            var dateMax = await db.Departments.Where(e => e.Id == DepartmentId).Select(e => e.DoctorDepartmentRelation.Select(k => k.Doctor.WorkTime.EndedTime).Max()).FirstOrDefaultAsync();
+            
+            return Json(new
+            {
+                error = false,
+                dateMin = dateMin.Hour,
+                dateMax = dateMax.Hour
 
             });
         }

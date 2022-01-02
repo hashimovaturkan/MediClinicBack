@@ -1,5 +1,5 @@
-﻿using CvTemplate.Application.Core.Extensions;
-using CvTemplate.Domain.Models.DataContexts;
+﻿using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -12,16 +12,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogPostModule
+namespace MediClinic.Application.Modules.Admin.BlogPostModule
 {
     public class BlogPostUpdateCommand : BlogPostViewModel, IRequest<int>
     {
         public class BlogPostUpdateCommandHandler : IRequestHandler<BlogPostUpdateCommand, int>
         {
-            readonly CvTemplateDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
             readonly IWebHostEnvironment env;
-            public BlogPostUpdateCommandHandler(CvTemplateDbContext db, IActionContextAccessor ctx, IWebHostEnvironment env)
+            public BlogPostUpdateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx, IWebHostEnvironment env)
             {
                 this.ctx = ctx;
                 this.db = db;
@@ -50,6 +50,7 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
                     entity.Content = request.Content;
                     entity.PublishedDate = request.PublishedDate;
                     entity.BlogCategoryId = request.BlogCategoryId;
+                    entity.DoctorId = request.DoctorId;
 
                     if (request.file != null)
                     {

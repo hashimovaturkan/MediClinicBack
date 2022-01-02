@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "Default";
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li class="menu__dropdown-item"><a asp-controller="department" asp-action="details" asp-route-id="@item.Id" class="menu__dropdown-link">@item.Title</a></li>
+}

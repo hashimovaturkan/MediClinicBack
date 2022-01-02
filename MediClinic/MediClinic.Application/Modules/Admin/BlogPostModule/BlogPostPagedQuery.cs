@@ -1,6 +1,6 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
-using CvTemplate.Domain.Models.ViewModels;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
+using MediClinic.Domain.Models.ViewModels;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogPostModule
+namespace MediClinic.Application.Modules.Admin.BlogPostModule
 {
     public class BlogPostPagedQuery : IRequest<PagedViewModel<BlogPost>>
     {
@@ -18,8 +18,8 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
 
         public class BlogPostPagedQueryHandler : IRequestHandler<BlogPostPagedQuery, PagedViewModel<BlogPost>>
         {
-            readonly CvTemplateDbContext db;
-            public BlogPostPagedQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public BlogPostPagedQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

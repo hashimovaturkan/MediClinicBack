@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using Riode.Application.Core.Infrastructure;
-using Riode.Domain.Models.DataContexts;
+using MediClinic.Application.Core.Infrastructure;
+using MediClinic.Domain.Models.DataContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.FaqsModule
+namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqDeleteCommand:IRequest<CommandJsonResponse>
     {
@@ -15,8 +15,8 @@ namespace Riode.Application.Modules.FaqsModule
 
         public class FaqDeleteCommandHandler : IRequestHandler<FaqDeleteCommand, CommandJsonResponse>
         {
-            readonly RiodeDbContext db;
-            public FaqDeleteCommandHandler(RiodeDbContext db)
+            readonly MediClinicDbContext db;
+            public FaqDeleteCommandHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

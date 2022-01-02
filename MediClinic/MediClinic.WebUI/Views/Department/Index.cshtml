@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="doctor-details-main">
+    <div class="custom-container-fluid p-0 main__img">
+        <div class="all-departments__wrapper">
+            <h1 class="main__title">All Departments</h1>
+            <span class="main__subtitle">Home  /  All Departments</span>
+        </div>
+    </div>
+</section>
+<section class="all-departments">
+    <div class="custom-container">
+        <div class="carousel__wrapper">
+            <div class="carousel" data-flickity='{ "autoPlay": 4000, "wrapAround": true,  "selectedAttraction": 0.2,"friction": 0.8, "pauseAutoPlayOnHover": true, "groupCells": true}'>
+                @foreach (var item in Model)
+                {
+                    <div class="carousel__cell carousel__cell--department">
+                        <div class="department-cart">
+                            <a asp-controller="department" asp-action="details" asp-route-id="@item.Id">
+                                <img class="department-cart__img" src="./assets/images/@item.ImgUrl" alt="photo">
+                            </a>
+                            <div class="department-cart__body">
+                                <a asp-controller="department" asp-action="details" asp-route-id="@item.Id">
+                                    <h2 class="department-cart__title">
+                                        <span class="icon flaticon-heart-2"></span>
+                                        @item.Title Department
+                                    </h2>
+                                </a>
+                                <p class="department-cart__text">
+                                    @item.Description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="all-departments__advertisement">
+    <div class="carousel__wrapper">
+        <div class="carousel--none" data-flickity='{ "wrapAround": true, "prevNextButtons": false, "groupCells": 1, "pageDots": false}'>
+            <div class="carousel__cell carousel__cell--store">
+                <a href="" class="carousel__store-link">
+                    <img src="./assets/images/1.png" alt="" class="carousel__store-img">
+                </a>
+            </div>
+            <div class="carousel__cell carousel__cell--store">
+                <a href="" class="carousel__store-link">
+                    <img src="./assets/images/2.png" alt="" class="carousel__store-img">
+                </a>
+            </div>
+            <div class="carousel__cell carousel__cell--store">
+                <a href="" class="carousel__store-link">
+                    <img src="./assets/images/3.png" alt="" class="carousel__store-img">
+                </a>
+            </div>
+            <div class="carousel__cell carousel__cell--store">
+                <a href="" class="carousel__store-link">
+                    <img src="./assets/images/4.png" alt="" class="carousel__store-img">
+                </a>
+            </div>
+            <div class="carousel__cell carousel__cell--store">
+                <a href="" class="carousel__store-link">
+                    <img src="./assets/images/5.png" alt="" class="carousel__store-img">
+                </a>
+            </div>
+            <div class="carousel__cell carousel__cell--store">
+                <a href="" class="carousel__store-link">
+                    <img src="./assets/images/3.png" alt="" class="carousel__store-img">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

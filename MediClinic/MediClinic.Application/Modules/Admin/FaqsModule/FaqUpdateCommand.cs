@@ -1,22 +1,22 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Riode.Application.Core.Extensions;
-using Riode.Domain.Models.DataContexts;
+using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.FaqsModule
+namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqUpdateCommand:FaqViewModel,IRequest<long>
     {
         public class FaqUpdateCommandHandler : IRequestHandler<FaqUpdateCommand, long>
         {
-            readonly RiodeDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
-            public FaqUpdateCommandHandler(RiodeDbContext db, IActionContextAccessor ctx)
+            public FaqUpdateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx)
             {
                 this.ctx = ctx;
                 this.db = db;

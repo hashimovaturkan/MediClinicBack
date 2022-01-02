@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
+namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
 {
     public class BlogCategoryViewModel
     {

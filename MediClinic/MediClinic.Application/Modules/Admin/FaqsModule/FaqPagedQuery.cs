@@ -1,14 +1,14 @@
 ﻿using MediatR;
-using Riode.Domain.Models.DataContexts;
-using Riode.Domain.Models.Entities;
-using Riode.Domain.Models.ViewModels;
+using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
+using MediClinic.Domain.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.FaqsModule
+namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqPagedQuery:IRequest<PagedViewModel<Faq>>
     {
@@ -17,8 +17,8 @@ namespace Riode.Application.Modules.FaqsModule
 
         public class FaqPagedQueryHandler : IRequestHandler<FaqPagedQuery, PagedViewModel<Faq>>
         {
-            readonly RiodeDbContext db;
-            public FaqPagedQueryHandler(RiodeDbContext db)
+            readonly MediClinicDbContext db;
+            public FaqPagedQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

@@ -1,5 +1,5 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities.Membership;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities.Membership;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,19 +9,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.UsersModule
+namespace MediClinic.Application.Modules.Admin.UsersModule
 {
-    public class UserChooseQuery : IRequest<List<CvTemplateUser>>
+    public class UserChooseQuery : IRequest<List<MediClinicUser>>
     {
-        public class UserChooseQueryHandler : IRequestHandler<UserChooseQuery, List<CvTemplateUser>>
+        public class UserChooseQueryHandler : IRequestHandler<UserChooseQuery, List<MediClinicUser>>
         {
-            readonly CvTemplateDbContext db;
-            public UserChooseQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public UserChooseQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }
 
-            public async Task<List<CvTemplateUser>> Handle(UserChooseQuery request, CancellationToken cancellationToken)
+            public async Task<List<MediClinicUser>> Handle(UserChooseQuery request, CancellationToken cancellationToken)
             {
                 var categories = await db.Users
                                     .Where(c => c.DeletedByUserId == null).ToListAsync();

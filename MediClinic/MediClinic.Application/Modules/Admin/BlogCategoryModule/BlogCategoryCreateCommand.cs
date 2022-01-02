@@ -1,6 +1,6 @@
-﻿using CvTemplate.Application.Core.Extensions;
-using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
+﻿using MediClinic.Application.Core.Extensions;
+using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
+namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
 {
     public class BlogCategoryCreateCommand : IRequest<int>
     {
@@ -18,9 +18,9 @@ namespace CvTemplate.Application.Modules.Admin.BlogCategoryModule
        
         public class BlogCategoryCreateCommandHandler : IRequestHandler<BlogCategoryCreateCommand, int>
         {
-            readonly CvTemplateDbContext db;
+            readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
-            public BlogCategoryCreateCommandHandler(CvTemplateDbContext db, IActionContextAccessor ctx)
+            public BlogCategoryCreateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx)
             {
                 this.ctx = ctx;
                 this.db = db;

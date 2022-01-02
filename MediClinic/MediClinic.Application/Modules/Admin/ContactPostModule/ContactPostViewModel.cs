@@ -1,12 +1,12 @@
-﻿using CvTemplate.Domain.Models.Entities;
-using CvTemplate.Domain.Models.ViewModels;
+﻿using MediClinic.Domain.Models.Entities;
+using MediClinic.Domain.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.ContactPostModule
+namespace MediClinic.Application.Modules.Admin.ContactPostModule
 {
     public class ContactPostViewModel
     {

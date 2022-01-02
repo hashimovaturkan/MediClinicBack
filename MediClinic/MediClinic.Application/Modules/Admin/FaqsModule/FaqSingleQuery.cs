@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Riode.Domain.Models.DataContexts;
-using Riode.Domain.Models.Entities;
+using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.FaqsModule
+namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqSingleQuery:IRequest<Faq>
     {
@@ -16,8 +16,8 @@ namespace Riode.Application.Modules.FaqsModule
 
         public class FaqSingleQueryHandler : IRequestHandler<FaqSingleQuery, Faq>
         {
-            readonly RiodeDbContext db;
-            public FaqSingleQueryHandler(RiodeDbContext db)
+            readonly MediClinicDbContext db;
+            public FaqSingleQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }

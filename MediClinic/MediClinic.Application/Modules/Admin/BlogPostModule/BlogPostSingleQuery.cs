@@ -1,5 +1,5 @@
-﻿using CvTemplate.Domain.Models.DataContexts;
-using CvTemplate.Domain.Models.Entities;
+﻿using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CvTemplate.Application.Modules.Admin.BlogPostModule
+namespace MediClinic.Application.Modules.Admin.BlogPostModule
 {
     public class BlogPostSingleQuery : IRequest<BlogPost>
     {
@@ -17,8 +17,8 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
 
         public class BlogPostSingleQueryHandler : IRequestHandler<BlogPostSingleQuery, BlogPost>
         {
-            readonly CvTemplateDbContext db;
-            public BlogPostSingleQueryHandler(CvTemplateDbContext db)
+            readonly MediClinicDbContext db;
+            public BlogPostSingleQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }
@@ -27,7 +27,9 @@ namespace CvTemplate.Application.Modules.Admin.BlogPostModule
                 if (request.Id == null && request.Id <= 0)
                     return null;
 
-                var model = await db.BlogPosts.FirstOrDefaultAsync(s => s.Id == request.Id && s.DeletedDate == null);
+                var model = await db.BlogPosts
+                    .Include(e => e.Doctor)
+                    .FirstOrDefaultAsync(s => s.Id == request.Id && s.DeletedDate == null);
 
                 return model;
             }
