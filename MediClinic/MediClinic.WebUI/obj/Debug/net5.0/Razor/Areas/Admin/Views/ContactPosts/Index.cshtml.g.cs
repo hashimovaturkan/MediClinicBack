@@ -89,8 +89,36 @@ using MediClinic.Application.Modules.Admin.FaqsModule;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using MediClinic.Application.Modules.Admin.AppointmentModule;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using MediClinic.Application.Modules.Admin.BlogCommentModule;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using MediClinic.Application.Modules.Admin.DoctorModule;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 21 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using MediClinic.Application.Modules.Admin.DepartmentModule;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5279867e464580f6af0ed4e616b2b73ca05cb6d2", @"/Areas/Admin/Views/ContactPosts/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"de6f7a6ece7dd5a0ebefc3e47b49da2abc5d9184", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d635f936e2c23cf36b09870979634bba7f626fd6", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_ContactPosts_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ContactPostViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("list-group-item active"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -158,7 +186,7 @@ using MediClinic.Application.Modules.Admin.FaqsModule;
                             <div class=""p-0"">
                           ");
             WriteLiteral("      <a href=\"email-compose.html\" class=\"btn btn-primary btn-block\">Compose</a>\r\n                            </div>\r\n                            <div class=\"mail-list mt-4\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d29062", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d210096", async() => {
                 WriteLiteral("\r\n                                    <i class=\"fa fa-inbox font-18 align-middle mr-2\"></i> Inbox <span class=\"badge badge-primary badge-sm float-right\">");
 #nullable restore
 #line 34 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\ContactPosts\Index.cshtml"
@@ -183,7 +211,7 @@ using MediClinic.Application.Modules.Admin.FaqsModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d210938", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d211973", async() => {
                 WriteLiteral("\r\n                                    <i class=\"fa fa-paper-plane font-18 align-middle mr-2\"></i>Sent <span class=\"badge badge-primary badge-sm float-right\">");
 #nullable restore
 #line 37 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\ContactPosts\Index.cshtml"
@@ -212,7 +240,7 @@ using MediClinic.Application.Modules.Admin.FaqsModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d213138", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d214173", async() => {
                 WriteLiteral("\r\n                                    <i class=\"fa fa-star font-18 align-middle mr-2\"></i>Unread <span class=\"badge badge-danger text-white badge-sm float-right\">");
 #nullable restore
 #line 40 "E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\Areas\Admin\Views\ContactPosts\Index.cshtml"
@@ -241,7 +269,7 @@ using MediClinic.Application.Modules.Admin.FaqsModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                <a href=\"javascript:void()\" class=\"list-group-item\">\r\n                                    <i class=\"mdi mdi-file-document-box font-18 align-middle mr-2\"></i>Draft\r\n                                </a>");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d215560", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5279867e464580f6af0ed4e616b2b73ca05cb6d216595", async() => {
                 WriteLiteral("\r\n                                    <i class=\"fa fa-trash font-18 align-middle mr-2\"></i>Trash\r\n                                ");
             }
             );

@@ -389,3 +389,16 @@ E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\ob
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Details.cshtml.g.cs
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Edit.cshtml.g.cs
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Index.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Appointments\Details.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Appointments\Edit.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Appointments\Index.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogComments\Details.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogComments\Index.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Departments\Create.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Departments\Details.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Departments\Edit.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Departments\Index.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Doctors\Create.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Doctors\Details.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Doctors\Edit.cshtml.g.cs
+E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Doctors\Index.cshtml.g.cs
