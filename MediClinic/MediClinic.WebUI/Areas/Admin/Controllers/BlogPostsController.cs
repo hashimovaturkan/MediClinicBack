@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MediClinic.Application.Modules.Admin.BlogCategoryModule;
 using MediClinic.Application.Modules.Admin.BlogPostModule;
+using MediClinic.Application.Modules.Admin.DoctorModule;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;

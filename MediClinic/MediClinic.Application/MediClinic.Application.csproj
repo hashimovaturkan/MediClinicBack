@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Core\MapperProfilers\" />
-    <Folder Include="Modules\Admin\DoctorModule\" />
   </ItemGroup>
 
   <ItemGroup>
