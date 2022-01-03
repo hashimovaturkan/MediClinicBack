@@ -11,7 +11,8 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqDeleteCommand:IRequest<CommandJsonResponse>
     {
-        public long? Id { get; set; }
+        public int? Id { get; set; }
+        public int? DeletedUserId { get; set; }
 
         public class FaqDeleteCommandHandler : IRequestHandler<FaqDeleteCommand, CommandJsonResponse>
         {
@@ -41,7 +42,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
                     };
                 }
 
-                faq.DeletedByUserId = 1;
+                faq.DeletedByUserId = request.DeletedUserId;
                 faq.DeletedDate = DateTime.Now;
                 await db.SaveChangesAsync(cancellationToken);
 

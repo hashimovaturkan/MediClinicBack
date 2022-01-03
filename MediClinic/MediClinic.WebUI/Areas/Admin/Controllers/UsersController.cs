@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
 {
@@ -95,6 +96,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             model.Email = response.Email;
             model.EmailConfirmed = response.EmailConfirmed;
             model.PhoneNumber = response.PhoneNumber;
+            model.CreatedUserId = response.CreatedByUserId;
             return View(model);
         }
 
@@ -116,6 +118,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         //[Authorize(Policy = "admin.users.delete")]
         public async Task<IActionResult> Delete(UserDeleteCommand command)
         {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             return Json(response);
         }

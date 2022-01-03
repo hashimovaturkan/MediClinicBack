@@ -13,6 +13,7 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
     public class BlogPostDeleteCommand : IRequest<CommandJsonResponse>
     {
         public int? Id { get; set; }
+        public int? DeletedUserId { get; set; }
 
         public class BlogPostDeleteCommandHandler : IRequestHandler<BlogPostDeleteCommand, CommandJsonResponse>
         {
@@ -40,7 +41,7 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
                     return response;
                 }
 
-                size.DeletedByUserId = 1;
+                size.DeletedByUserId = request.DeletedUserId;
                 size.DeletedDate = DateTime.Now;
                 response.Error = false;
                 response.Message = "Successfully operation!";

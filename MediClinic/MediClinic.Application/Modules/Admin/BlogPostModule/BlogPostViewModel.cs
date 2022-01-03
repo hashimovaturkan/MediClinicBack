@@ -19,5 +19,6 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
         public int DoctorId { get; set; }
         public IFormFile file { get; set; }
         public string fileTemp { get; set; }
+        public int? CreatedUserId { get; set; }
     }
 }

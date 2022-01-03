@@ -9,6 +9,7 @@ using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities;
 using MediatR;
 using MediClinic.Application.Modules.Admin.BlogCategoryModule;
+using System.Security.Claims;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
 {
@@ -57,6 +58,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         //[Authorize(Policy = "admin.personalsetting.create")]
         public async Task<IActionResult> Create(BlogCategoryCreateCommand command)
         {
+            command.CreatedUserId =Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             if (response > 0)
                 return RedirectToAction(nameof(Index));
@@ -76,6 +78,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             var model = new BlogCategoryViewModel();
             model.Id = response.Id;
             model.Name = response.Name;
+            model.CreatedUserId = response.CreatedByUserId;
             return View(model);
         }
 
@@ -97,6 +100,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         //[Authorize(Policy = "admin.personalsetting.delete")]
         public async Task<IActionResult> Delete(BlogCategoryDeleteCommand command)
         {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             return Json(response);
         }

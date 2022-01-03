@@ -13,7 +13,7 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
 {
     public class BlogPostSingleQuery : IRequest<BlogPost>
     {
-        public long? Id { get; set; }
+        public int? Id { get; set; }
 
         public class BlogPostSingleQueryHandler : IRequestHandler<BlogPostSingleQuery, BlogPost>
         {

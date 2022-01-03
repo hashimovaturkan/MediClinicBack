@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities;
 using MediClinic.Application.Modules.Admin.FaqsModule;
+using System.Security.Claims;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
 {
@@ -58,6 +59,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [Authorize(Policy = "admin.faqs.create")]
         public async Task<IActionResult> Create(FaqCreateCommand command)
         {
+            command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response =await mediator.Send(command);
             if(response > 0)
                 return RedirectToAction(nameof(Index));
@@ -77,6 +79,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             vm.Id = response.Id;
             vm.Answer = response.Answer;
             vm.Question = response.Question;
+            vm.CreatedUserId = response.CreatedByUserId;
             return View(vm);
         }
 
@@ -102,6 +105,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(FaqDeleteCommand command)
         {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             
             return Json(response);

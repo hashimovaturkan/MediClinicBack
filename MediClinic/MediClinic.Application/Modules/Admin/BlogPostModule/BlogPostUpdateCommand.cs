@@ -1,14 +1,11 @@
-﻿using MediClinic.Application.Core.Extensions;
+﻿using MediatR;
+using MediClinic.Application.Core.Extensions;
 using MediClinic.Domain.Models.DataContexts;
-using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

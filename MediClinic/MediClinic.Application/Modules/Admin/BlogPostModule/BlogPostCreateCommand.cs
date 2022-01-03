@@ -24,6 +24,7 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
         public string ImgUrl { get; set; }
         public int BlogCategoryId { get; set; }
         public int DoctorId { get; set; }
+        public int CreatedUserId { get; set; }
         public IFormFile file { get; set; }
         public class BlogPostCreateCommandHandler : IRequestHandler<BlogPostCreateCommand, int>
         {
@@ -51,6 +52,8 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
                     model.PublishedDate = request.PublishedDate;
                     model.BlogCategoryId = request.BlogCategoryId;
                     model.DoctorId = request.DoctorId;
+                    model.CreatedByUserId = request.CreatedUserId;
+                    model.CreatedDate = DateTime.Now;
 
                     string extension = Path.GetExtension(request.file.FileName);
                     model.ImgUrl = $"{Guid.NewGuid()}{extension}";

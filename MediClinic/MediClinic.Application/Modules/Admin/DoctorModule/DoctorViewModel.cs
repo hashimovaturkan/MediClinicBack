@@ -12,7 +12,7 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
     {
         public int? Id { get; set; }
         public int? WorkTimeId { get; set; }
-        public int CreatedUserId { get; set; }
+        public int? CreatedUserId { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
@@ -23,13 +23,13 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
         public string Description { get; set; }
         public string Room { get; set; }
         public string ImgUrl { get; set; }
-        public IEnumerable<int> DepartmentIds { get; set; }
+        public List<int> DepartmentIds { get; set; }
         public IFormFile file { get; set; }
         public string fileTemp { get; set; }
         public DateTime StartedTime { get; set; }
         public DateTime EndedTime { get; set; }
-        public IEnumerable<WeekDay> WeekDays { get; set; }
-        public IEnumerable<SocialMediaModel> SocialMediaModels { get; set; }
+        public List<WeekDay> WeekDays { get; set; }
+        public List<SocialMediaModel> SocialMediaModels { get; set; }
 
         public class SocialMediaModel
         {

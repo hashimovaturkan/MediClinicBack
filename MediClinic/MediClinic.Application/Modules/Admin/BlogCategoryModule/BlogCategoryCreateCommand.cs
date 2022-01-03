@@ -15,6 +15,7 @@ namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
     public class BlogCategoryCreateCommand : IRequest<int>
     {
         public string Name { get; set; }
+        public int? CreatedUserId { get; set; }
        
         public class BlogCategoryCreateCommandHandler : IRequestHandler<BlogCategoryCreateCommand, int>
         {
@@ -31,6 +32,8 @@ namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
                 {
                     var model = new BlogCategory();
                     model.Name = request.Name;
+                    model.CreatedByUserId = request.CreatedUserId;
+                    model.CreatedDate = DateTime.Now;
 
                     db.BlogCategories.Add(model);
                     await db.SaveChangesAsync();

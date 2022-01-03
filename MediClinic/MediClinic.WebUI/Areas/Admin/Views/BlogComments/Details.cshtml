@@ -1,0 +1,67 @@
+﻿@model BlogPostComment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="text-center">Blog Comment <b>Details</b></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+
+            <tbody>
+                <tr>
+                    <th>Comment</th>
+                    <td>@Model?.Comment</td>
+                </tr>
+                @if (Model.Parent != null)
+                {
+                    <tr>
+                        <th>Parent Comment</th>
+                        <td>@Model?.Parent?.Comment</td>
+                    </tr>
+                }
+                <tr>
+                    <th>Blog</th>
+                    <td>@Model?.BlogPost.Title</td>
+                </tr>
+                @if (Model.Children != null)
+                {
+                    <tr>
+                        <th>Children Comment</th>
+                        @foreach (var item in Model.Children)
+                        {
+                            <td>@item.Comment</td>
+                        })
+
+                    </tr>
+                }
+
+                <tr>
+                    <th>User</th>
+                    <td>@Model?.MediClinicUser.Name</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+            |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+

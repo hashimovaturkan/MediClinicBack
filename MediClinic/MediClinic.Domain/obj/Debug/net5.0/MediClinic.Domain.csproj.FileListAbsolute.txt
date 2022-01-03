@@ -34,4 +34,3 @@ E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Domain\o
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\ref\MediClinic.Domain.dll
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.pdb
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.genruntimeconfig.cache
-E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.csproj.CopyComplete

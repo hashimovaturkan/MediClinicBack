@@ -9,6 +9,7 @@ namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
     public class BlogCategoryViewModel
     {
         public int? Id { get; set; }
+        public int? CreatedUserId { get; set; }
         public string Name { get; set; }
     }
 }

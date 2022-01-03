@@ -1,0 +1,140 @@
+﻿@model DoctorCreateCommand
+
+@{
+    ViewData["Title"] = "Create";
+    var i = 0;
+}
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <h1>Create PersonalSetting</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <textarea asp-for="Phone" class="form-control"></textarea>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Education" class="control-label"></label>
+                        <input asp-for="Education" class="form-control" />
+                        <span asp-validation-for="Education" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Speciality" class="control-label"></label>
+                        <input asp-for="Speciality" class="form-control" />
+                        <span asp-validation-for="Speciality" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Education" class="control-label"></label>
+                        <input asp-for="Education" class="form-control" />
+                        <span asp-validation-for="Education" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Experience" class="control-label"></label>
+                        <input asp-for="Experience" class="form-control" />
+                        <span asp-validation-for="Experience" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AboutContent" class="control-label"></label>
+                        <input asp-for="AboutContent" id="Content" class="form-control" />
+                        <span asp-validation-for="AboutContent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Room" class="control-label"></label>
+                        <input asp-for="Room" class="form-control" />
+                        <span asp-validation-for="Room" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StartedTime" class="control-label"></label>
+                        <input asp-for="StartedTime" class="form-control" />
+                        <span asp-validation-for="StartedTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndedTime" class="control-label"></label>
+                        <input asp-for="EndedTime" class="form-control" />
+                        <span asp-validation-for="EndedTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">
+                            Image
+                        </label>
+                        <label for="file" class="image-input">
+                            <input name="fileTemp" value="" type="hidden" />
+                            <span>x</span>
+                        </label>
+                        <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
+                    </div>
+                    <div id="socialMediaBox">
+                        <div class="form-group socialMediaAdd">
+                            <label asp-for="WeekDays[i]" class="control-label"></label>
+                            <select asp-for="WeekDays[i]" class="form-control" asp-items="ViewBag.WeekDayId"></select>
+                            @(i = i + 1)
+                        </div>
+                        <button class="addMedia">Add Social Media</button>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="DoctorId" class="control-label"></label>
+                        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.BlogDoctorId"></select>
+                    </div>*@
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section addcss{
+
+    <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
+}
+
+@section addjs{
+    <script src="~/libs/ckeditor5/ckeditor.js"></script>
+    <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            ClassicEditor
+                .create(document.querySelector('#Content'))
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".addMedia").click(function (e) {
+                e.preventDefault();
+                $("#socialMediaBox").append($(".socialMediaAdd").text())
+            })
+        })
+    </script>
+}
+
+
+
+
+
+
+

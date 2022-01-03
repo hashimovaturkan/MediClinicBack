@@ -15,6 +15,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
     {
         public string Question { get; set; }
         public string Answer { get; set; }
+        public int? CreatedUserId { get; set; }
 
         public class FaqCreateCommandHandler : IRequestHandler<FaqCreateCommand, long>
         {
@@ -31,6 +32,8 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
                     var faq =new Faq();
                     faq.Answer = request.Answer;
                     faq.Question = request.Question;
+                    faq.CreatedByUserId = request.CreatedUserId;
+                    faq.CreatedDate = DateTime.Now;
 
                     await db.Faqs.AddAsync(faq);
                     await db.SaveChangesAsync(cancellationToken);

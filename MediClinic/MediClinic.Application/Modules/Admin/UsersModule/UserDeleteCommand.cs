@@ -14,6 +14,7 @@ namespace MediClinic.Application.Modules.Admin.UsersModule
     public class UserDeleteCommand : IRequest<CommandJsonResponse>
     {
         public int? Id { get; set; }
+        public int? DeletedUserId { get; set; }
 
         public class UserDeleteCommandHandler : IRequestHandler<UserDeleteCommand, CommandJsonResponse>
         {
@@ -41,7 +42,7 @@ namespace MediClinic.Application.Modules.Admin.UsersModule
                     return response;
                 }
 
-                size.DeletedByUserId = 1;
+                size.DeletedByUserId = request.DeletedUserId;
                 size.DeletedDate = DateTime.Now;
                 response.Error = false;
                 response.Message = "Successfully operation!";

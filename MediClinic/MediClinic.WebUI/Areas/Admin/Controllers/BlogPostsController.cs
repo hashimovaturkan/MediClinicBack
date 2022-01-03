@@ -4,7 +4,9 @@ using MediClinic.Application.Modules.Admin.BlogPostModule;
 using MediClinic.Application.Modules.Admin.DoctorModule;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
@@ -59,6 +61,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         //[Authorize(Policy = "admin.academicbackgrounds.create")]
         public async Task<IActionResult> Create(BlogPostCreateCommand command)
         {
+            command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             ViewData["BlogCategoryId"] = new SelectList(await mediator.Send(new BlogCategoryChooseQuery()), "Id", "Name", command.BlogCategoryId);
             ViewData["BlogDoctorId"] = new SelectList(await mediator.Send(new DoctorChooseQuery()), "Id", "Name", command.DoctorId);
@@ -89,6 +92,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             model.ImgUrl = response.ImgUrl;
             model.BlogCategoryId = response.BlogCategoryId;
             model.DoctorId = response.DoctorId;
+            model.CreatedUserId = response.CreatedByUserId;
             return View(model);
         }
 
@@ -110,6 +114,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         //[Authorize(Policy = "admin.academicbackgrounds.delete")]
         public async Task<IActionResult> Delete(BlogPostDeleteCommand command)
         {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             return Json(response);
         }

@@ -10,6 +10,7 @@ using MediClinic.Domain.Models.Entities;
 using MediatR;
 using MediClinic.Application.Modules.Admin.ContactPostModule;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
 {
@@ -50,6 +51,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [Authorize(Policy = "admin.contactposts.answer")]
         public async Task<IActionResult> Answer(ContactPostAnswerCommand model)
         {
+            model.AnswerUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(model);
 
             if (response == null)

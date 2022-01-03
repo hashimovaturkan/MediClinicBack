@@ -17,6 +17,7 @@ namespace MediClinic.Application.Modules.Admin.ContactPostModule
     {
         public int? Id { get; set; }
         public string Answer { get; set; }
+        public int? AnswerUserId { get; set; }
         public class ContactPostAnswerCommandHandler : IRequestHandler<ContactPostAnswerCommand, int?>
         {
             readonly MediClinicDbContext db;
@@ -47,7 +48,7 @@ namespace MediClinic.Application.Modules.Admin.ContactPostModule
                 }
                 contactPost.Answer = request.Answer;
                 contactPost.AnswerDate = DateTime.Now;
-                contactPost.AnswerByUserId = 1;
+                contactPost.AnswerByUserId = request.AnswerUserId;
                 await db.SaveChangesAsync();
                 
                 var mailSend = configuration.SendEmail(contactPost.Email, "MediClinic Answer", $"{request.Answer}");

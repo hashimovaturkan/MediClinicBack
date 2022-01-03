@@ -7,7 +7,8 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqViewModel
     {
-        public long? Id { get; set; }
+        public int? Id { get; set; }
+        public int? CreatedUserId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
     }

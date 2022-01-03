@@ -1,0 +1,86 @@
+﻿@model AppointmentViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <h1>PersonalSetting Edit</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <textarea asp-for="Phone" class="form-control"></textarea>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Message" class="control-label"></label>
+                        <input asp-for="Message" class="form-control" />
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DoctorId" class="control-label"></label>
+                        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
+                        <span asp-validation-for="DoctorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label"></label>
+                        <input asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsAccepted" class="control-label"></label>
+                        <input asp-for="IsAccepted" class="form-control" />
+                        <span asp-validation-for="IsAccepted" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+@section addcss{
+
+    <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
+}
+
+
+@section addjs{
+    <script src="~/libs/ckeditor5/ckeditor.js"></script>
+    <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            ClassicEditor
+                .create(document.querySelector('#Content'))
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
+}
+
+
+
