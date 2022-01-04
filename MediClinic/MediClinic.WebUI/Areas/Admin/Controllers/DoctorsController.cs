@@ -1,6 +1,9 @@
 ﻿using MediatR;
+using MediClinic.Application.Modules.Admin.DepartmentModule;
 using MediClinic.Application.Modules.Admin.DoctorModule;
+using MediClinic.Domain.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +49,8 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         //[Authorize(Policy = "admin.academicbackgrounds.create")]
         public async Task<IActionResult> Create()
         {
+            ViewData["WeekDayId"] = new SelectList(Enum.GetValues(typeof(WeekDay)));
+            ViewData["DepartmentId"] = new SelectList(await mediator.Send(new DepartmentChooseQuery()), "Id", "Title");
             return View();
         }
 
@@ -57,6 +62,9 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         {
             command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
+
+            ViewData["WeekDayId"] = new SelectList(Enum.GetValues(typeof(WeekDay)));
+            ViewData["DepartmentId"] = new SelectList(await mediator.Send(new DepartmentChooseQuery()), "Id", "Title");
 
             if (response > 0)
                 return RedirectToAction(nameof(Index));

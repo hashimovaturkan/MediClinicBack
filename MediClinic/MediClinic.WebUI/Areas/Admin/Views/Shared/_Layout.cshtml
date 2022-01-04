@@ -187,35 +187,27 @@
                             </a>
                         </li>
                     }
-                    @if (User.HasAccess("admin.personalsettings.index"))
+                    @if (User.HasAccess("admin.doctors.index"))
                     {
                         <li>
-                            <a aria-expanded="false" asp-controller="personalsettings" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Personal Settings</span>
+                            <a aria-expanded="false" asp-controller="doctors" asp-action="index">
+                                <i class="icon icon-globe-2"></i><span class="nav-text">Doctors</span>
                             </a>
                         </li>
                     }
-                    @if (User.HasAccess("admin.academicbackgrounds.index"))
+                    @if (User.HasAccess("admin.departments.index"))
                     {
                         <li>
-                            <a aria-expanded="false" asp-controller="academicbackgrounds" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">AcademicBackGrounds</span>
+                            <a aria-expanded="false" asp-controller="departments" asp-action="index">
+                                <i class="icon icon-globe-2"></i><span class="nav-text">Departments</span>
                             </a>
                         </li>
                     }
-                    @if (User.HasAccess("admin.attachments.index"))
+                    @if (User.HasAccess("admin.appointments.index"))
                     {
                         <li>
-                            <a aria-expanded="false" asp-controller="attachments" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Attachments</span>
-                            </a>
-                        </li>
-                    }
-                    @if (User.HasAccess("admin.bios.index"))
-                    {
-                        <li>
-                            <a aria-expanded="false" asp-controller="bios" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Bios</span>
+                            <a aria-expanded="false" asp-controller="appointments" asp-action="index">
+                                <i class="icon icon-globe-2"></i><span class="nav-text">Appointments</span>
                             </a>
                         </li>
                     }
@@ -243,43 +235,11 @@
                             </a>
                         </li>
                     }
-                    @if (User.HasAccess("admin.experiences.index"))
+                    @if (User.HasAccess("admin.blogcomments.index"))
                     {
                         <li>
-                            <a aria-expanded="false" asp-controller="experiences" asp-action="index">
+                            <a aria-expanded="false" asp-controller="blogcomments" asp-action="index">
                                 <i class="icon icon-globe-2"></i><span class="nav-text">Experiences</span>
-                            </a>
-                        </li>
-                    }
-                    @if (User.HasAccess("admin.jobcategories.index"))
-                    {
-                        <li>
-                            <a aria-expanded="false" asp-controller="jobcategories" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Job Categories</span>
-                            </a>
-                        </li>
-                    }
-                    @if (User.HasAccess("admin.projects.index"))
-                    {
-                        <li>
-                            <a aria-expanded="false" asp-controller="projects" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Projects</span>
-                            </a>
-                        </li>
-                    }
-                    @if (User.HasAccess("admin.services.index"))
-                    {
-                        <li>
-                            <a aria-expanded="false" asp-controller="services" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Services</span>
-                            </a>
-                        </li>
-                    }
-                    @if (User.HasAccess("admin.skills.index"))
-                    {
-                        <li>
-                            <a aria-expanded="false" asp-controller="skills" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Skills</span>
                             </a>
                         </li>
                     }
@@ -340,6 +300,7 @@
     <script src="~/admin/js/quixnav-init.js"></script>
     <script src="~/admin/js/custom.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
     <!-- Vectormap -->
     <script src="~/admin/vendor/raphael/raphael.min.js"></script>
@@ -367,6 +328,9 @@
     <script src="~/libs/toastr.js/toastr.min.js"></script>
     <script src="~/admin/js/dashboard/dashboard-1.js"></script>
 
+    <script src="~/libs/jquery/jquery.min.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script>
         toastr.options = {
             "closeButton": true,

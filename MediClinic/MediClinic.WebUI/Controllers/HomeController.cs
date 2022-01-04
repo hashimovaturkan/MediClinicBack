@@ -46,7 +46,6 @@ namespace MediClinic.WebUI.Controllers
                         .Include(e => e.SocialMedia)
                         .Include(c => c.WorkTime)
                         .ThenInclude(c => c.WorkTimeWeekDayRelation)
-                        .ThenInclude(c => c.WeekDay)
                         .Where(e => e.DeletedByUserId == null && e.DoctorDepartmentRelation.Select(e => e.Department.Title).Contains(department)).ToListAsync();
             }
             else
@@ -58,7 +57,6 @@ namespace MediClinic.WebUI.Controllers
                         .Include(e => e.SocialMedia)
                         .Include(c => c.WorkTime)
                         .ThenInclude(c => c.WorkTimeWeekDayRelation)
-                        .ThenInclude(c => c.WeekDay)
                         .Where(e => e.DeletedByUserId == null).ToListAsync();
             }
 

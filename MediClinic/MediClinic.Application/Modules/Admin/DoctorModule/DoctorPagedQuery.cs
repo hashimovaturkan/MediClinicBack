@@ -31,7 +31,6 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     .ThenInclude(e => e.Department)
                     .Include(e => e.WorkTime)
                     .ThenInclude(e => e.WorkTimeWeekDayRelation)
-                    .ThenInclude(e => e.WeekDay)
                     .Include(e => e.SocialMedia)
                     .Where(s => s.DeletedByUserId == null).AsQueryable();
 

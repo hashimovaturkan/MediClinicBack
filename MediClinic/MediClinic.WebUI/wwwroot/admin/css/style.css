@@ -210,35 +210,36 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-  --blue: #5e72e4;
-  --indigo: #6610f2;
-  --purple: #6f42c1;
-  --pink: #e83e8c;
-  --red: #EE3232;
-  --orange: #fd7e14;
-  --yellow: #FFFA6F;
-  --green: #297F00;
-  --teal: #20c997;
-  --cyan: #3065D0;
-  --white: #fff;
-  --gray: #6c757d;
-  --gray-dark: #343a40;
-  --primary: #593bdb;
-  --secondary: #673BB7;
-  --success: #7ED321;
-  --info: #50E3C2;
-  --warning: #FFAA16;
-  --danger: #FF1616;
-  --light: #f8f9fa;
-  --dark: #454545;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --breakpoint-xxl: 1440;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    --blue: #5e72e4;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #EE3232;
+    --orange: #fd7e14;
+    --yellow: #FFFA6F;
+    --green: #297F00;
+    --teal: #20c997;
+    --cyan: #3065D0;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #6486a9;
+    --secondary: #673BB7;
+    --success: #7ED321;
+    --info: #50E3C2;
+    --warning: #FFAA16;
+    --danger: #FF1616;
+    --light: #f8f9fa;
+    --dark: #454545;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1440;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
 
 *,
 *::before,
@@ -260,7 +261,7 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #BDBDC7;
+  color: black;
   text-align: left;
   background-color: rgba(88, 115, 254, 0.04); }
 
@@ -1340,7 +1341,7 @@ pre {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #BDBDC7; }
+  color: black; }
   .table th,
   .table td {
     padding: 0.75rem;
@@ -1375,7 +1376,7 @@ pre {
   background-color: rgba(0, 0, 0, 0.05); }
 
 .table-hover tbody tr:hover {
-  color: #BDBDC7;
+  color: black;
   background-color: rgba(0, 0, 0, 0.075); }
 
 .table-primary,
@@ -10349,9 +10350,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         top: -2px; }
       .quixnav .metismenu > li > a {
         color: #bdbdc7; }
-      .quixnav .metismenu > li:hover > a, .quixnav .metismenu > li:focus > a, .quixnav .metismenu > li.mm-active > a {
-        background-color: #6b51df;
-        color: #fff; }
+        .quixnav .metismenu > li:hover > a, .quixnav .metismenu > li:focus > a, .quixnav .metismenu > li.mm-active > a {
+            background-color: #6486a9;
+            color: #454545;
+        }
       .quixnav .metismenu > li.mm-active ul {
         background-color: rgba(88, 115, 254, 0.04); }
         .quixnav .metismenu > li.mm-active ul ul {
@@ -16720,8 +16722,9 @@ button {
   background-color: #593bdb;
   color: #fff;
   transition: all .1s ease; }
-  .table.primary-table-bg-hover tbody tr:hover {
-    background-color: #6b51df; }
+    .table.primary-table-bg-hover tbody tr:hover {
+        background-color: #6486a9;
+    }
   .table.primary-table-bg-hover tbody tr:not(:last-child) td, .table.primary-table-bg-hover tbody tr:not(:last-child) th {
     border-bottom: 1px solid #4827d5; }
 
@@ -19448,4 +19451,20 @@ td.table-row-select {
     min-width: 50px;
     max-width: 50px;
     text-align: center;
+}
+
+.quixnav {
+    background-color: #c3cdd3 !important;
+}
+.nav-label.first{
+    color:black !important;
+}
+.mm-active {
+    color: #2a2727 !important;
+}
+.mm-active:hover {
+    color: #2a2727 !important;
+}
+.metismenu a{
+    color:black !important;
 }

@@ -45,7 +45,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
             var doctor = await mediator.Send(new DoctorChooseQuery());
-            ViewData["DoctorId"] = doctor.Where(b => b.Id == response.DoctorId).FirstOrDefault(b => b.DeletedByUserId == null).Name;
+            ViewData["DoctorId"] = doctor.Where(b => b.Id == response.DoctorId).FirstOrDefault(b => b.DeletedByUserId == null)?.Name;
 
             return View(response);
         }

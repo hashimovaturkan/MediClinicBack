@@ -49,6 +49,7 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
                     var model = new BlogPost();
                     model.Title = request.Title;
                     model.Content = request.Content;
+                    model.Description = request.Description;
                     model.PublishedDate = request.PublishedDate;
                     model.BlogCategoryId = request.BlogCategoryId;
                     model.DoctorId = request.DoctorId;

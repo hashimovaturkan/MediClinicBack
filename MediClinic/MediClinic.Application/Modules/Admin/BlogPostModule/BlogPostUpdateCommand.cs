@@ -46,6 +46,7 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
                     entity.Title = request.Title;
                     entity.Content = request.Content;
                     entity.PublishedDate = request.PublishedDate;
+                    entity.Description = request.Description;
                     entity.BlogCategoryId = request.BlogCategoryId;
                     entity.DoctorId = request.DoctorId;
 
