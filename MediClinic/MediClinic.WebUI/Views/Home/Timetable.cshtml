@@ -47,74 +47,74 @@
                     <tbody>
                         @for (int i = 9; i <= 18; i++)
                         {
-                            <tr>
-                                <td class="align-middle">@i.00 - @(i+1) .00</td>
-                                <td class="timetable__data">
-                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
-                                    <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()</div>
-                                    @if ((Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()) != null)
-                                    {
-                                        <div class="timetable__dropdown d-none">
-                                            @Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Room).FirstOrDefault()
-                                        </div>
-                                    }
-                                </td>
-                                <td class="timetable__data">
-                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
-                                    <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()</div>
-                                    @if ((Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()) != null)
-                                    {
-                                        <div class="timetable__dropdown d-none">
-                                            @Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Room).FirstOrDefault()
-                                        </div>
-                                    }
+                        <tr>
+                            <td class="align-middle">@i.00 - @(i+1) .00</td>
+                            <td class="timetable__data">
+                                <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count()> 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department?.Title)).FirstOrDefault()</span>
+                                <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault()</div>
+                                @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault() != null)
+                                {
+                                    <div class="timetable__dropdown d-none">
+                                        @Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Monday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Room).FirstOrDefault()
+                                    </div>
+                                }
+                            </td>
+                            <td class="timetable__data">
+                                <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault()</div>
+                                @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault() != null)
+                                {
+                                    <div class="timetable__dropdown d-none">
+                                        @Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Tuesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Room).FirstOrDefault()
+                                    </div>
+                                }
 
-                                </td>
-                                <td class="timetable__data">
-                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
-                                    <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()</div>
-                                    @if ((Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()) != null)
-                                    {
-                                        <div class="timetable__dropdown d-none">
-                                            @Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Room).FirstOrDefault()
-                                        </div>
-                                    }
+                            </td>
+                            <td class="timetable__data">
+                                <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department?.Title)).FirstOrDefault()</span>
+                                <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault()</div>
+                                @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault() != null)
+                                {
+                                    <div class="timetable__dropdown d-none">
+                                        @Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Wednesday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime?.StartedTime.Hour <= @i && e.WorkTime?.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Room).FirstOrDefault()
+                                    </div>
+                                }
 
-                                </td>
-                                <td class="timetable__data">
-                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
-                                    <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()</div>
-                                    @if ((Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()) != null)
-                                    {
-                                        <div class="timetable__dropdown d-none">
-                                            @Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Room).FirstOrDefault()
-                                        </div>
-                                    }
+                            </td>
+                            <td class="timetable__data">
+                                <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault()</div>
+                                @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault() != null)
+                                {
+                                    <div class="timetable__dropdown d-none">
+                                        @Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Thursday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Room).FirstOrDefault()
+                                    </div>
+                                }
 
-                                </td>
-                                <td class="timetable__data">
-                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
-                                    <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()</div>
-                                    @if ((Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()) != null)
-                                    {
-                                        <div class="timetable__dropdown d-none">
-                                            @Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Room).FirstOrDefault()
-                                        </div>
-                                    }
+                            </td>
+                            <td class="timetable__data">
+                                <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault()</div>
+                                @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault() != null)
+                                {
+                                    <div class="timetable__dropdown d-none">
+                                        @Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Friday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Room).FirstOrDefault()
+                                    </div>
+                                }
 
-                                </td>
-                                <td class="timetable__data">
-                                    <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
-                                    <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()</div>
-                                    @if ((Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Name).FirstOrDefault()) != null)
-                                    {
-                                        <div class="timetable__dropdown d-none">
-                                            @Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Select(e => e.Room).FirstOrDefault()
-                                        </div>
-                                    }
+                            </td>
+                            <td class="timetable__data">
+                                <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <div class="margin-10px-top font-size14">@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault()</div>
+                                @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Name).FirstOrDefault() != null)
+                                {
+                                    <div class="timetable__dropdown d-none">
+                                        @Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime).Select(k => k.WeekDay).Where(k => k.ToString() == "Saturday").FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= @i && e.WorkTime.EndedTime.Hour >= @i + 1).Count() > 0).Select(e => e.Room).FirstOrDefault()
+                                    </div>
+                                }
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         }
 
                     </tbody>
@@ -126,75 +126,115 @@
                     var @hour = 9;
                     <h3>@item</h3>
                     <ul>
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
                         }
-                        @if (Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
+                        else
+                        {
+                            hour = hour + 1;
+                        }
+                        @if (Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault() != null)
                         {
                             <li>
-                                <span>@Model.Doctors.Where(e => e.WorkTime.WorkTimeWeekDayRelation.Select(k => k.WeekDay).Where(k => k.ToString() == item.ToString()).FirstOrDefault() != 0 && e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
+                                <span>@Model.Doctors.Where(e => e.DoctorWorkTimeRelation.Select(e => e.WorkTime.WeekDay).Where(k => k == item).FirstOrDefault() != 0 && e.DoctorWorkTimeRelation.Where(e => e.WorkTime.StartedTime.Hour <= hour && e.WorkTime.EndedTime.Hour >= hour + 1).Count() > 0).SelectMany(e => e.DoctorDepartmentRelation.Select(k => k.Department.Title)).FirstOrDefault()</span>
                                 <span>@hour.00 - @(hour=hour+1).00</span>
                             </li>
+                        }
+                        else
+                        {
+                            hour = hour + 1;
                         }
 
                     </ul>

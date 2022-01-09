@@ -29,8 +29,8 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                 var model = db.Doctors
                     .Include(e => e.DoctorDepartmentRelation)
                     .ThenInclude(e => e.Department)
-                    .Include(e => e.WorkTime)
-                    .ThenInclude(e => e.WorkTimeWeekDayRelation)
+                    .Include(e => e.DoctorWorkTimeRelation)
+                    .ThenInclude(e => e.WorkTime)
                     .Include(e => e.SocialMedia)
                     .Where(s => s.DeletedByUserId == null).AsQueryable();
 

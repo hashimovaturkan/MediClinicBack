@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cl2TGdw9kXo1aUuvPQh9VYPTGYKLOguXvcqIkYdjBu8n+dWerNafPCgkGMjBnB+Q0TgAhK+m8/S+NEH+OcSmLg==",
+  "dgSpecHash": "vzvIdeOaHa+2ph2ivBB8s/RvqV6lW3ZDdwvXGnIxjuQO+7adRqRLdkFG9H6hNe6uWMjUslCN6ewQxhhzkfYUpw==",
   "success": true,
-  "projectFilePath": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Downloads\\mediclinic\\mediclinic\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

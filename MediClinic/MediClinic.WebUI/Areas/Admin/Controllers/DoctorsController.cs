@@ -92,15 +92,20 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             model.Phone = response.Phone;
             model.Room = response.Room;
             model.Speciality = response.Speciality;
-            model.StartedTime = response.WorkTime.StartedTime;
-            model.EndedTime = response.WorkTime.EndedTime;
+            //model.StartedTime = response.WorkTime.StartedTime;
+            //model.EndedTime = response.WorkTime.EndedTime;
             model.ImgUrl = response.ImgUrl;
-            model.WorkTimeId = response.WorkTimeId;
+            //model.WorkTimeId = response.WorkTimeId;
             model.CreatedUserId = response.CreatedByUserId;
 
-            foreach (var item in response.WorkTime.WorkTimeWeekDayRelation.Select(e => e.WeekDay))
+            foreach (var item in response.DoctorWorkTimeRelation.Select(e => e.WorkTime))
             {
-                model.WeekDays.Add(item);
+                var s = new WorkTimeModel();
+                s.Id = item.Id;
+                s.StartedTime = item.StartedTime;
+                s.EndedTime = item.EndedTime;
+                s.WeekDay = item.WeekDay.ToString();
+                model.WorkTimeModels.Add(s);
             }
             foreach (var item in response.SocialMedia)
             {

@@ -32,3 +32,37 @@ E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Resource
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\ref\MediClinic.Resources.dll
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.pdb
 E:\Lesson folder\MediClinicBackGit\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.deps.json
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.dll
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\ref\MediClinic.Resources.dll
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.pdb
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\en\MediClinic.Resources.resources.dll
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Contact.ContactResource.resources
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Contact.ContactResource.en.resources
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.AssemblyInfo.cs
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\en\MediClinic.Resources.resources.dll
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.dll
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\ref\MediClinic.Resources.dll
+C:\Users\Admin\Desktop\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.pdb
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.deps.json
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.dll
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\ref\MediClinic.Resources.dll
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\MediClinic.Resources.pdb
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\bin\Debug\net5.0\en\MediClinic.Resources.resources.dll
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.AssemblyReference.cache
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Contact.ContactResource.resources
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Contact.ContactResource.en.resources
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.GenerateResource.cache
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.AssemblyInfoInputs.cache
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.AssemblyInfo.cs
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.csproj.CoreCompileInputs.cache
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\en\MediClinic.Resources.resources.dll
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.dll
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\ref\MediClinic.Resources.dll
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.pdb

@@ -26,8 +26,8 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                 var model = await db.Doctors
                     .Include(e => e.DoctorDepartmentRelation)
                     .ThenInclude(e => e.Department)
-                    .Include(e => e.WorkTime)
-                    .ThenInclude(e => e.WorkTimeWeekDayRelation)
+                    .Include(e => e.DoctorWorkTimeRelation)
+                    .ThenInclude(e => e.WorkTime)
                     .Include(e => e.SocialMedia)
                     .FirstOrDefaultAsync(s => s.Id == request.Id && s.DeletedDate == null);
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {}
+    "C:\\Users\\HP\\Downloads\\mediclinic\\mediclinic\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {}
   },
   "projects": {
-    "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
+    "C:\\Users\\HP\\Downloads\\mediclinic\\mediclinic\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Downloads\\mediclinic\\mediclinic\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj",
         "projectName": "MediClinic.Resources",
-        "projectPath": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj",
+        "projectPath": "C:\\Users\\HP\\Downloads\\mediclinic\\mediclinic\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Lesson folder\\MediClinicBackGit\\MediClinicBack\\MediClinic\\MediClinic.Resources\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Downloads\\mediclinic\\mediclinic\\MediClinicBack\\MediClinic\\MediClinic.Resources\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

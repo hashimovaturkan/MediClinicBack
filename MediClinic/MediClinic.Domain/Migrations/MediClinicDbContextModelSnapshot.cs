@@ -371,12 +371,7 @@ namespace MediClinic.Domain.Migrations
                     b.Property<string>("Speciality")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WorkTimeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("WorkTimeId");
 
                     b.ToTable("Doctors");
                 });
@@ -413,6 +408,40 @@ namespace MediClinic.Domain.Migrations
                     b.HasIndex("DoctorId");
 
                     b.ToTable("DoctorDepartmentRelations");
+                });
+
+            modelBuilder.Entity("MediClinic.Domain.Models.Entities.DoctorWorkTimeRelation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CreatedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkTimeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("WorkTimeId");
+
+                    b.ToTable("DoctorWorkTimeRelations");
                 });
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.Faq", b =>
@@ -756,41 +785,12 @@ namespace MediClinic.Domain.Migrations
                     b.Property<DateTime>("StartedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkTimes");
-                });
-
-            modelBuilder.Entity("MediClinic.Domain.Models.Entities.WorkTimeWeekDayRelation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeletedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("WeekDay")
                         .HasColumnType("int");
 
-                    b.Property<int>("WorkTimeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkTimeId");
-
-                    b.ToTable("WorkTimeWeekDayRelations");
+                    b.ToTable("WorkTimes");
                 });
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.Appointment", b =>
@@ -846,17 +846,6 @@ namespace MediClinic.Domain.Migrations
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("MediClinic.Domain.Models.Entities.Doctor", b =>
-                {
-                    b.HasOne("MediClinic.Domain.Models.Entities.WorkTime", "WorkTime")
-                        .WithMany()
-                        .HasForeignKey("WorkTimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkTime");
-                });
-
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.DoctorDepartmentRelation", b =>
                 {
                     b.HasOne("MediClinic.Domain.Models.Entities.Department", "Department")
@@ -874,6 +863,25 @@ namespace MediClinic.Domain.Migrations
                     b.Navigation("Department");
 
                     b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("MediClinic.Domain.Models.Entities.DoctorWorkTimeRelation", b =>
+                {
+                    b.HasOne("MediClinic.Domain.Models.Entities.Doctor", "Doctor")
+                        .WithMany("DoctorWorkTimeRelation")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MediClinic.Domain.Models.Entities.WorkTime", "WorkTime")
+                        .WithMany("DoctorWorkTimeRelation")
+                        .HasForeignKey("WorkTimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("WorkTime");
                 });
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.Membership.MediClinicRoleClaim", b =>
@@ -938,17 +946,6 @@ namespace MediClinic.Domain.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("MediClinic.Domain.Models.Entities.WorkTimeWeekDayRelation", b =>
-                {
-                    b.HasOne("MediClinic.Domain.Models.Entities.WorkTime", "WorkTime")
-                        .WithMany("WorkTimeWeekDayRelation")
-                        .HasForeignKey("WorkTimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkTime");
-                });
-
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.BlogCategory", b =>
                 {
                     b.Navigation("BlogPosts");
@@ -977,12 +974,14 @@ namespace MediClinic.Domain.Migrations
 
                     b.Navigation("DoctorDepartmentRelation");
 
+                    b.Navigation("DoctorWorkTimeRelation");
+
                     b.Navigation("SocialMedia");
                 });
 
             modelBuilder.Entity("MediClinic.Domain.Models.Entities.WorkTime", b =>
                 {
-                    b.Navigation("WorkTimeWeekDayRelation");
+                    b.Navigation("DoctorWorkTimeRelation");
                 });
 #pragma warning restore 612, 618
         }

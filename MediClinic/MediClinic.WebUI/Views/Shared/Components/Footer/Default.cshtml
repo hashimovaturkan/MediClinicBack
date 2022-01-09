@@ -1,0 +1,149 @@
+﻿@model BlogPostDepartmentViewModel
+<footer>
+    <div class="container footer">
+        <div class="footer__about">
+            <div class="footer-logo">
+                <a href="#">
+                    <img src="/assets/icons/logo-2.png" alt="">
+                </a>
+            </div>
+            <p class="about-text">
+                Lorem ipsum dolor sit. beatae quasi tempora maxime praesentium.
+            </p>
+            <p class="about-text">
+                molestiae, autem ad dolorum eius? Facere accusantium nostrum quidem ea voluptatem veniam ipsum facilis!
+            </p>
+            <ul class="footer-social-links">
+                <a href="#">
+                <li><i class="fab fa-facebook-f"></i></li>
+                </a>
+                <a href="#">
+                <li><i class="fab fa-pinterest-p"></i></li>
+                </a>
+                <a href="#">
+                <li><i class="fab fa-twitter"></i></li>
+                </a>
+                <a href="#">
+                <li><i class="fab fa-skype"></i></li>
+                </a>
+                <a href="#">
+                <li><i class="fab fa-linkedin-in"></i></li>
+                </a>
+            </ul>
+        </div>
+        <div class="footer__departments">
+            <div class="footer-title">
+                <h2>
+                    Departments
+                    <span class="line">
+                        <span class="dot"></span>
+                    </span>
+                </h2>
+            </div>
+            <ul class="footer-link-pages">
+                @foreach (var item in Model.Departments)
+                {
+                    <a asp-controller="department" asp-action="details" asp-route-id="@item.Id">
+                    <li><i class="fas fa-plus"></i>@item.Title</li>
+                    </a>
+                }
+            </ul>
+        </div>
+        <div class="footer__lasted-news">
+            <div class="footer-title">
+                <h2>
+                    Lasted Blogs
+                    <span class="line">
+                        <span class="dot"></span>
+                    </span>
+                </h2>
+            </div>
+            <div class="footer-posts">
+                @foreach (var item in Model.Blogs)
+                {
+                    <div class="footer-post">
+                        <img src="/uploads/images/@item.ImgUrl" alt="photo">
+                        <div class="footer-post__description">
+                            <a asp-controller="blog" asp-action="deatils" asp-route-id="@item.Id">
+                                <p class="footer-post-title">
+                                    @item.Title
+                                </p>
+                            </a>
+                            <span class="footer-post-date">@item.CreatedDate.ToString("dd MMMM, yyyy")</span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="footer__contact-us">
+            <div class="footer-title">
+                <h2>
+                    Contact Us
+                    <span class="line">
+                        <span class="dot"></span>
+                    </span>
+                </h2>
+            </div>
+            <div class="contact-box">
+                <img src="/assets/icons/placeholder.png" alt="">
+                <div class="contact-box__description">
+                    <p class="contact-title">
+                        2130 Fulton Street San Diego
+                    </p>
+                    <span class="contact-sub-title">
+                        CA 94117-1080 USA
+                    </span>
+                </div>
+            </div>
+            <div class="contact-box">
+                <img src="/assets/icons/call (1).png" alt="">
+                <div class="contact-box__description">
+                    <p class="contact-title">
+                        Mon to Fri : 08:30 - 18:00
+                    </p>
+                    <span class="contact-sub-title">
+                        <a href="tel:+898 68679 575">+898 68679 575</a>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-box">
+                <img src="/assets/icons/email (1).png" alt="">
+                <div class="contact-box__description">
+                    <p class="contact-title">
+                        Do you have a Question?
+                    </p>
+                    <span class="contact-sub-title">
+                        <a href="mailto:info@gmail.com">
+                            info@gmail.com
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-box">
+                <img src="/assets/icons/back-in-time (1).png" alt="">
+                <div class="contact-box__description">
+                    <p class="contact-title">
+                        Mon - Sat 8.00 - 18.00
+                    </p>
+                    <span class="contact-sub-title">
+                        Sunday CLOSED
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="content-subs mt-3">
+            <form class="subscription" id="subscriptionfrm">
+                <input class="add-email" type="email" name="Email" placeholder="subscribe@me.now"
+                    data-rule-required="true"
+                    data-rule-email="true"
+                    data-msg-required="Please, enter email"
+                    data-msg-email="Invalid E-mail! Please, enter your email">
+                <button class="submit-email" type="button">
+                    <span class="before-submit">Subscribe</span>
+                    <span class="after-submit">Thank you for subscribing!</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</footer>

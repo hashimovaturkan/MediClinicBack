@@ -74,9 +74,9 @@
                                 Work Days
                             </span>
                             <span class="doctor-details__info-desc">
-                                @foreach (var item in Model.WorkTime.WorkTimeWeekDayRelation)
+                                @foreach (var item in Model.DoctorWorkTimeRelation)
                                 {
-                                    <div>@item.WeekDay  @Model.WorkTime.StartedTime.ToString("HH:mm") - @Model.WorkTime.EndedTime.ToString("HH:mm")</div>
+                                    <div>@item.WorkTime.WeekDay  @item.WorkTime.StartedTime.ToString("HH:mm") - @item.WorkTime.EndedTime.ToString("HH:mm")</div>
                                 }
                             </span>
                         </div>

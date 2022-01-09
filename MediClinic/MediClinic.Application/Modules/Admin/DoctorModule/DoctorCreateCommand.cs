@@ -30,15 +30,23 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
         public int CreatedUserId { get; set; }
         public IList<int> DepartmentIds { get; set; }
         public IFormFile file { get; set; }
-        public DateTime StartedTime { get; set; }
-        public DateTime EndedTime { get; set; }
-        public IList<string> WeekDays { get; set; }
+        //public DateTime StartedTime { get; set; }
+        //public DateTime EndedTime { get; set; }
+        //public IList<string> WeekDays { get; set; }
         public IList<SocialMediaModel> SocialMediaModels { get; set; }
+        public IList<WorkTimeModel> WorkTimeModels { get; set; }
 
         public class SocialMediaModel
         {
             public string Name { get; set; }
             public string Url { get; set; }
+        }
+
+        public class WorkTimeModel
+        {
+            public DateTime? StartedTime { get; set; }
+            public DateTime? EndedTime { get; set; }
+            public string WeekDay { get; set; }
         }
 
         public class DoctorCreateCommandHandler : IRequestHandler<DoctorCreateCommand, int>
@@ -54,6 +62,7 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
             }
             public async Task<int> Handle(DoctorCreateCommand request, CancellationToken cancellationToken)
             {
+                //started ended datetime'da standart date qoy time'i deyishsin muqayiseye gore 
                 if (ctx.IsModelStateValid())
                 {
                     var model = new Doctor();
@@ -69,32 +78,7 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     model.CreatedByUserId = request.CreatedUserId;
                     model.CreatedDate = DateTime.Now;
 
-
-                    var workTime = new WorkTime();
-                    workTime.StartedTime = request.StartedTime;
-                    workTime.EndedTime = request.EndedTime;
-
-                    db.WorkTimes.Add(workTime);
-                    await db.SaveChangesAsync(cancellationToken);
-                    model.WorkTimeId = workTime.Id;
-
-
-                    request.WeekDays = request.WeekDays.Distinct().ToList();
-                    foreach (var weekDay in request.WeekDays)
-                    {
-                        if(weekDay != null)
-                        {
-                            var workTimeWeek = new WorkTimeWeekDayRelation();
-                            workTimeWeek.WorkTimeId = model.WorkTimeId;
-                            workTimeWeek.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), weekDay, true);
-                            workTimeWeek.CreatedDate = DateTime.Now;
-                            workTimeWeek.CreatedByUserId = request.CreatedUserId;
-
-                            db.WorkTimeWeekDayRelations.Add(workTimeWeek);
-                        }
-                    }
-                    await db.SaveChangesAsync(cancellationToken);
-
+                    
                     string extension = Path.GetExtension(request.file.FileName);
                     model.ImgUrl = $"{Guid.NewGuid()}{extension}";
 
@@ -112,24 +96,70 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     db.Doctors.Add(model);
                     await db.SaveChangesAsync(cancellationToken);
 
-                    request.SocialMediaModels = request.SocialMediaModels.Distinct().OrderBy(e => e.Name).ToList();
-                    foreach (var media in request.SocialMediaModels)
+                    foreach (var item in request.WorkTimeModels)
                     {
-                        var socialMedia = new SocialMedia();
-                        socialMedia.DoctorId = model.Id;
-                        socialMedia.Name = media.Name;
-                        socialMedia.Url = media.Url;
-                        socialMedia.CreatedDate = DateTime.Now;
-                        socialMedia.CreatedByUserId = request.CreatedUserId;
+                        if (item.EndedTime != null && item.StartedTime != null && item.WeekDay != null)
+                        {
+                            var isExistWorkTime = db.WorkTimes.Where(e => e.EndedTime == item.EndedTime && e.StartedTime == item.StartedTime && e.WeekDay == (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true)).FirstOrDefault();
+                            if (isExistWorkTime == null)
+                            {
+                                var a = new DateTime();
+                                var b = new DateTime();
+                                var workTime = new WorkTime();
+                                workTime.StartedTime = a.AddHours((double)item.StartedTime?.Hour);
+                                workTime.EndedTime = b.AddHours((double)item.EndedTime?.Hour);
+                                workTime.CreatedDate = DateTime.Now;
+                                workTime.CreatedByUserId = request.CreatedUserId;
+                                workTime.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
 
-                        db.SocialMedia.Add(socialMedia);
+                                db.WorkTimes.Add(workTime);
+                                await db.SaveChangesAsync(cancellationToken);
+
+                                var workTimeRelation = new DoctorWorkTimeRelation();
+                                workTimeRelation.DoctorId = model.Id;
+                                workTimeRelation.WorkTimeId = workTime.Id;
+                                workTimeRelation.CreatedDate = DateTime.Now;
+                                workTimeRelation.CreatedByUserId = request.CreatedUserId;
+
+                                db.DoctorWorkTimeRelations.Add(workTimeRelation);
+
+                            }
+                            else
+                            {
+                                var workTimeRelation = new DoctorWorkTimeRelation();
+                                workTimeRelation.DoctorId = model.Id;
+                                workTimeRelation.WorkTimeId = isExistWorkTime.Id;
+                                workTimeRelation.CreatedDate = DateTime.Now;
+                                workTimeRelation.CreatedByUserId = request.CreatedUserId;
+
+                                db.DoctorWorkTimeRelations.Add(workTimeRelation);
+                            }
+                        }
+
                     }
                     await db.SaveChangesAsync(cancellationToken);
 
-                    request.DepartmentIds = request.DepartmentIds.Distinct().ToList();
+                    request.SocialMediaModels = request?.SocialMediaModels?.Distinct().OrderBy(e => e.Name).ToList();
+                    foreach (var media in request.SocialMediaModels)
+                    {
+                        if (media.Name != null && media.Url != null)
+                        {
+                            var socialMedia = new SocialMedia();
+                            socialMedia.DoctorId = model.Id;
+                            socialMedia.Name = media.Name;
+                            socialMedia.Url = media.Url;
+                            socialMedia.CreatedDate = DateTime.Now;
+                            socialMedia.CreatedByUserId = request.CreatedUserId;
+
+                            db.SocialMedia.Add(socialMedia);
+                        }
+                    }
+                    await db.SaveChangesAsync(cancellationToken);
+
+                    request.DepartmentIds = request?.DepartmentIds?.Distinct().ToList();
                     foreach (var id in request.DepartmentIds)
                     {
-                        if(id != 0)
+                        if (id != 0)
                         {
                             var doctorDepartment = new DoctorDepartmentRelation();
                             doctorDepartment.DoctorId = model.Id;
@@ -140,7 +170,7 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                             db.DoctorDepartmentRelations.Add(doctorDepartment);
                         }
 
-                        
+
                     }
 
                     await db.SaveChangesAsync(cancellationToken);

@@ -27,8 +27,8 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
                     .Include(e => e.Appointments)
                     .Include(c => c.BlogPosts)
                     .Include(e => e.SocialMedia)
-                    .Include(c => c.WorkTime)
-                    .ThenInclude(c => c.WorkTimeWeekDayRelation)
+                    .Include(c => c.DoctorWorkTimeRelation)
+                    .ThenInclude(c => c.WorkTime)
                     .FirstOrDefaultAsync(s => s.DeletedByUserId == null && s.Id == request.Id);
 
                 return model;

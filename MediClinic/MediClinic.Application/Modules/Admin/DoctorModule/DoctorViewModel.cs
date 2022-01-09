@@ -11,7 +11,6 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
     public class DoctorViewModel
     {
         public int? Id { get; set; }
-        public int? WorkTimeId { get; set; }
         public int? CreatedUserId { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
@@ -26,16 +25,25 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
         public List<int> DepartmentIds { get; set; }
         public IFormFile file { get; set; }
         public string fileTemp { get; set; }
-        public DateTime StartedTime { get; set; }
-        public DateTime EndedTime { get; set; }
-        public List<WeekDay> WeekDays { get; set; }
+        //public DateTime StartedTime { get; set; }
+        //public DateTime EndedTime { get; set; }
+        //public List<WeekDay> WeekDays { get; set; }
         public List<SocialMediaModel> SocialMediaModels { get; set; }
+        public IList<WorkTimeModel> WorkTimeModels { get; set; }
 
         public class SocialMediaModel
         {
             public int? Id { get; set; }
             public string Name { get; set; }
             public string Url { get; set; }
+        }
+
+        public class WorkTimeModel
+        {
+            public int? Id { get; set; }
+            public DateTime StartedTime { get; set; }
+            public DateTime EndedTime { get; set; }
+            public string WeekDay { get; set; }
         }
     }
 }
