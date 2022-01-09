@@ -752,7 +752,7 @@
         $("#subscriptionfrm").submit(function (e) {
                 e.preventDefault();
                 if (!$(e.currentTarget).valid())
-                    return;
+                return;
 
                 var frm = new FormData(e.currentTarget);
 
@@ -768,8 +768,11 @@
                     },
                     success: function (response) {
                         if (response.error == false) {
-                            toastr.success(response.message, "Successfully!")
+                            /*toastr.success(response.message, "Successfully!")*/
                             e.currentTarget.reset();
+                            e.preventDefault();
+                            document.querySelector('.subscription').classList.add('done');
+                            $(".after-submit").text(response.message);
                         }
                         else {
                             toastr.error(response.message, "Error!")

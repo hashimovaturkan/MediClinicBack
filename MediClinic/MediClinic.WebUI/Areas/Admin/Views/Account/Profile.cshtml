@@ -1,0 +1,367 @@
+﻿@model MediClinicUser
+@{
+    ViewData["Title"] = "Profile";
+}
+
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="profile">
+                    <div class="profile-head">
+                        <div class="photo-content">
+                            <div class="cover-photo"></div>
+                            <div class="profile-photo">
+                                <img src="/uploads/images/@Model.ImgUrl" class="img-fluid rounded-circle" alt="user">
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
+                                            <div class="profile-name">
+                                                <h4 class="text-primary" id="settingTitle">@Model.Name @Model.Surname</h4>
+                                                @*<p>UX / UI Designer</p>*@
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
+                                            <div class="profile-email">
+                                                <h4 class="text-muted" id="settingEmail">@Model.Email</h4>
+                                                <p>Email</p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-xl-4 col-sm-4 prf-col">
+                                            <div class="profile-call">
+                                                <h4 class="text-muted">(+1) 321-837-1030</h4>
+                                                <p>Phone No.</p>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-tab">
+                            <div class="custom-tab-1">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a href="#about-me" data-toggle="tab" class="nav-link">About Me</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#profile-settings" data-toggle="tab" class="nav-link">Profile Setting</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#password" data-toggle="tab" class="nav-link">Password Setting</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="about-me" class="tab-pane fade active show">
+                                        <div class="profile-personal-info">
+                                            <h4 class="text-primary mb-4">Personal Information</h4>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">
+                                                        Name <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span>@Model.Name</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">
+                                                        Surname <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span>@Model.Surname</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">
+                                                        UserName <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span>@Model.UserName</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">
+                                                        Email <span class="pull-right">:</span>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span>@Model.Email</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-3">
+                                                    <h5 class="f-w-500">Phone<span class="pull-right">:</span></h5>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span>@Model.PhoneNumber</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="profile-settings" class="tab-pane fade">
+                                        <div class="pt-3">
+                                            <div class="settings-form">
+                                                <h4 class="text-primary">Profile Setting</h4>
+                                                <form class="accountsettingfrm" method="post">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Name</label>
+                                                            <input type="text" name="Name" id="form-name" value="@Model.Name" placeholder="Name" class="form-control"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your name">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Name</label>
+                                                            <input type="text" name="Surname" id="form-surname" value="@Model.Surname" placeholder="Surname" class="form-control"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your surname">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Email</label>
+                                                            <input type="email" name="Email" id="form-email" value="@Model.Email" placeholder="Email" class="form-control"
+                                                                   data-rule-required="true"
+                                                                   data-rule-email="true"
+                                                                   data-msg-required="Please, enter email"
+                                                                   data-msg-email="Invalid E-mail! Please, enter your email" >
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Username</label>
+                                                            <input type="text" name="UserName" value="@Model.UserName" placeholder="Username" class="form-control"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your username">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Phone</label>
+                                                        <input type="tel" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="(+994)77 571 02 18" class="form-control">
+                                                    </div>
+                                                    <button class="btn btn-primary" type="submit">
+                                                        Update
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="password" class="tab-pane fade">
+                                        <div class="pt-3">
+                                            <div class="settings-form">
+                                                <h4 class="text-primary">Password Setting</h4>
+                                                <form>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Email</label>
+                                                            <input type="email" placeholder="Email" class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Password</label>
+                                                            <input type="password" placeholder="Password" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <input type="text" placeholder="1234 Main St" class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Address 2</label>
+                                                        <input type="text" placeholder="Apartment, studio, or floor" class="form-control">
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>City</label>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>State</label>
+                                                            <select class="form-control" id="inputState">
+                                                                <option selected="">Choose...</option>
+                                                                <option>Option 1</option>
+                                                                <option>Option 2</option>
+                                                                <option>Option 3</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-2">
+                                                            <label>Zip</label>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input" id="gridCheck">
+                                                            <label for="gridCheck" class="form-check-label">Check me out</label>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-primary" type="submit">
+                                                        Sign
+                                                        in
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section addjs{
+    <script>
+         $(document).ready(function () {
+         $("#accountsettingfrm").submit(function (e) {
+                e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("Setting", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!");
+                            $("#settingTitle").text($("#form-name").val() + " " + $("#form-surname").val());
+                            $("#settingEmail").text($("#form-email").val());
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorElement: 'div',
+                errorClass: "form__helper",
+                validClass: "valid"
+            });
+         })
+
+        $(document).ready(function () {
+            $("#form-file").change(function () {
+                $("#changeImgFrm").submit();
+            })
+             $("#changeImgFrm").submit(function (e) {
+                 e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("ChangeImage", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorElement: 'div',
+                errorClass: "form__helper",
+                validClass: "valid"
+            });
+        })
+
+        $(document).ready(function () {
+         $("#passwordsettingfrm").submit(function (e) {
+                e.preventDefault();
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("ChangePassword", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+                            e.currentTarget.reset();
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorElement: 'div',
+                errorClass: "form__helper",
+                validClass: "valid"
+            });
+         })
+    </script>
+}

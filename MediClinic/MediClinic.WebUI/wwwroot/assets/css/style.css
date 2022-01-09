@@ -9237,7 +9237,7 @@ i.icon-lg {
     width: 100%;
     border-radius: 50%;
     cursor: pointer;
-    height:220px;
+    /*height:220px;*/
     padding: 0 2rem; }
   .team-cart__image-wrapper {
     position: relative; }
@@ -10526,13 +10526,24 @@ footer {
   .team-cart:hover .team-cart__icon-wrapper {
     transform: scale(4.7) translate(-34%, 37%); }
   .our-medical__over-img--2 {
-    right: 8%; } }
+    right: 8%; }
+
+    .team-cart__image {
+        height: 222px;
+    }
+
+}
 
 @media (max-width: 1300px) {
   .team-cart:hover .team-cart__icon-wrapper {
     transform: scale(4) translate(-34%, 36%); }
   .our-medical__over-img--2 {
-    right: 0%; } }
+    right: 0%; }
+    .team-cart__image {
+        height: 196px;
+    }
+
+}
 
 @media (max-width: 1199.98px) {
   .team-cart:hover .team-cart__icon-wrapper {
@@ -10549,6 +10560,7 @@ footer {
     height: 28rem; }
   .our-medical__over-img--2 {
     right: -3%; }
+
   .appointment__title {
     font-size: 3rem; }
   .appointment__phone {
@@ -10572,7 +10584,12 @@ footer {
     margin: 3rem 0; }
   .team-cart__icon--center {
     top: 23%;
-    left: 29%; } }
+    left: 29%; }
+    .team-cart__image {
+        height: 144px;
+    }
+
+}
 
 @media (max-width: 991.98px) {
   .our-medical__images img:first-child {
@@ -10588,7 +10605,12 @@ footer {
     transform: scale(5.5) translate(-32%, 37%); }
   .team-cart__icon--center {
     top: 34%;
-    left: 37%; } }
+    left: 37%; }
+    .team-cart__image {
+        height: 260px ;
+    }
+
+}
 
 @media (max-width: 767.98px) {
   .our-medical__images img:first-child {
@@ -10604,7 +10626,11 @@ footer {
   .appointment__make-wrapper {
     padding-top: 4rem; }
   .appointment__make {
-    padding-bottom: 5rem; } }
+    padding-bottom: 5rem; }
+    .team-cart__image {
+        height: 442px ;
+    }
+}
 
 @media (max-width: 575.98px) {
   .our-medical__over-img--2 {
@@ -10622,7 +10648,11 @@ footer {
   .team-cart:hover .team-cart__icon-wrapper {
     transform: scale(7) translate(-30%, 43%); }
   .carousel__content {
-    background-color: rgba(255, 255, 255, 0.3); } }
+    background-color: rgba(255, 255, 255, 0.3); }
+    .team-cart__image {
+        height: 349px;
+    }
+}
 
 @media (max-width: 480px) {
   .carousel__text {
@@ -10630,7 +10660,9 @@ footer {
   .carousel__content {
     padding-left: 7rem; }
   .team-cart:hover .team-cart__icon-wrapper {
-    transform: scale(6) translate(-31%, 41%); }
+    transform: scale(6) translate(-31%, 41%); 
+    width:17%;
+  }
   .our-medical__over-img--1 {
     top: 27%;
     width: 19rem;
@@ -10640,15 +10672,21 @@ footer {
     height: 18rem;
     right: -12%; }
   .team-cart:hover .team-cart__icon-wrapper {
-    transform: scale(5.2) translate(-32%, 40%); } }
+    transform: scale(5.2) translate(-32%, 40%); }
+    .team-cart__image {
+        height: 256px;
+    }
+}
 
 @media (max-width: 420px) {
   .carousel__text {
     font-size: 33px; } }
 
 @media (max-width: 380px) {
-  .team-cart:hover .team-cart__icon-wrapper {
-    transform: scale(4.2) translate(-32%, 34%); }
+    .team-cart:hover .team-cart__icon-wrapper {
+        transform: scale(4.2) translate(-32%, 34%);
+        width:22%;
+    }
   .our-medical__over-img--1 {
     top: 27%;
     width: 15rem;
@@ -10656,7 +10694,11 @@ footer {
   .our-medical__over-img--2 {
     width: 15rem;
     height: 15rem;
-    right: -12%; } }
+    right: -12%; }
+    .team-cart__image {
+        height: 196px;
+    }
+}
 
 @media (max-width: 320px) {
   .team-cart:hover .team-cart__icon-wrapper {
