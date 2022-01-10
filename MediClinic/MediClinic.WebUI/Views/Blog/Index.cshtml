@@ -24,7 +24,7 @@
             {
                 <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-4" data-target="@{MediClinic.Application.Core.Extensions.Extension.ReplaceWhitespace(blog.BlogCategory?.Name, "");}">
                     <div class="blog-cart">
-                        <a href="#" class="blog-cart__img-link">
+                        <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id" class="blog-cart__img-link">
                             <img class="blog-cart__img" src="./uploads/images/@blog.ImgUrl?" alt="photo">
                         </a>
                         <div class="blog-cart__info">
@@ -32,7 +32,7 @@
                             <span class="blog-cart__info-item">@blog.PublishedDate?.ToString("dd MMMM, yyyy")</span>
                             <span>
                                 By
-                                <a href="#" class="blog-cart__info-item">@blog.Doctor.Name</a>
+                                <a asp-controller="Doctor" asp-action="Details" asp-route-id="@blog.Doctor.Id" class="blog-cart__info-item">@blog.Doctor.Name</a>
                             </span>
                         </div>
                         <div class="blog-cart__body">

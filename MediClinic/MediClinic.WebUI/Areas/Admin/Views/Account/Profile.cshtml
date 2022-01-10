@@ -12,9 +12,24 @@
                     <div class="profile-head">
                         <div class="photo-content">
                             <div class="cover-photo"></div>
-                            <div class="profile-photo">
-                                <img src="/uploads/images/@Model.ImgUrl" class="img-fluid rounded-circle" alt="user">
-                            </div>
+                            <form id="changeImgFrm" enctype="multipart/form-data" method="post">
+                                <div class="profile-photo">
+                                    <img src="/uploads/images/@Model.ImgUrl" class="img-fluid rounded-circle" alt="user">
+                                    <span class="aside-form__pen">
+                                        <input type="file" style="display:none" id="form-file" name="file">
+                                        <label for="form-file" style="cursor: pointer;">
+                                            <?xml version="1.0" encoding="utf-8" ?>
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 117.74 122.88" style="enable-background:new 0 0 117.74 122.88" xml:space="preserve"><style type="text/css">
+                                                                                                                                                                                                                                                                               .st0 {
+                                                                                                                                                                                                                                                                                   fill-rule: evenodd;
+                                                                                                                                                                                                                                                                                   clip-rule: evenodd;
+                                                                                                                                                                                                                                                                               }
+</style><g><path class="st0" d="M94.62,2c-1.46-1.36-3.14-2.09-5.02-1.99c-1.88,0-3.56,0.73-4.92,2.2L73.59,13.72l31.07,30.03l11.19-11.72 c1.36-1.36,1.88-3.14,1.88-5.02s-0.73-3.66-2.09-4.92L94.62,2L94.62,2L94.62,2z M41.44,109.58c-4.08,1.36-8.26,2.62-12.35,3.98 c-4.08,1.36-8.16,2.72-12.35,4.08c-9.73,3.14-15.07,4.92-16.22,5.23c-1.15,0.31-0.42-4.18,1.99-13.6l7.74-29.61l0.64-0.66 l30.56,30.56L41.44,109.58L41.44,109.58L41.44,109.58z M22.2,67.25l42.99-44.82l31.07,29.92L52.75,97.8L22.2,67.25L22.2,67.25z" /></g></svg>
+                                        </label>
+                                    </span>
+                                </div>
+
+                            </form>
                         </div>
                         <div class="profile-info">
                             <div class="row justify-content-center">
@@ -121,7 +136,7 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Profile Setting</h4>
-                                                <form class="accountsettingfrm" method="post">
+                                                <form class="accountfrm">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Name</label>
@@ -154,7 +169,7 @@
                                                         <input type="tel" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="(+994)77 571 02 18" class="form-control">
                                                     </div>
                                                     <button class="btn btn-primary" type="submit">
-                                                        Update
+                                                        Change
                                                     </button>
                                                 </form>
                                             </div>
@@ -164,53 +179,26 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Password Setting</h4>
-                                                <form>
+                                                <form id="passwordsettingfrm" method="post">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <label>Email</label>
-                                                            <input type="email" placeholder="Email" class="form-control">
+                                                            <label>Password</label>
+                                                            <input type="password" placeholder="Old Password" class="form-control"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your old password">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Password</label>
-                                                            <input type="password" placeholder="Password" class="form-control">
+                                                            <input type="password" placeholder="Confirm Old Password" class="form-control"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your old password">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Address</label>
-                                                        <input type="text" placeholder="1234 Main St" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Address 2</label>
-                                                        <input type="text" placeholder="Apartment, studio, or floor" class="form-control">
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>City</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label>State</label>
-                                                            <select class="form-control" id="inputState">
-                                                                <option selected="">Choose...</option>
-                                                                <option>Option 1</option>
-                                                                <option>Option 2</option>
-                                                                <option>Option 3</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-2">
-                                                            <label>Zip</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="form-check">
-                                                            <input type="checkbox" class="form-check-input" id="gridCheck">
-                                                            <label for="gridCheck" class="form-check-label">Check me out</label>
-                                                        </div>
+                                                        <label>Password</label>
+                                                        <input type="password" placeholder="New Password" class="form-control"
+                                                               data-rule-required="true" data-msg-required="Please, enter your new password">
                                                     </div>
                                                     <button class="btn btn-primary" type="submit">
-                                                        Sign
-                                                        in
+                                                        Change
                                                     </button>
                                                 </form>
                                             </div>
@@ -228,16 +216,16 @@
 
 @section addjs{
     <script>
-         $(document).ready(function () {
-         $("#accountsettingfrm").submit(function (e) {
-                e.preventDefault();
+         @*$(document).ready(function () {
+         $("#accountfrm").submit(function (e) {
+             e.preventDefault();
                 if (!$(e.currentTarget).valid())
                     return;
 
                 var frm = new FormData(e.currentTarget);
-
+             console.log("a")
                 $.ajax({
-                    url: '@Url.Action("Setting", "Account")',
+                    url: '@Url.Action("Profile", "Account")',
                     type: "Post",
                     data: frm,
                     contentType: false,
@@ -251,6 +239,7 @@
                             toastr.success(response.message, "Successfully!");
                             $("#settingTitle").text($("#form-name").val() + " " + $("#form-surname").val());
                             $("#settingEmail").text($("#form-email").val());
+                            console.log("a")
                         }
                         else {
                             toastr.error(response.message, "Error!")
@@ -271,7 +260,7 @@
                 errorClass: "form__helper",
                 validClass: "valid"
             });
-         })
+         })*@
 
         $(document).ready(function () {
             $("#form-file").change(function () {

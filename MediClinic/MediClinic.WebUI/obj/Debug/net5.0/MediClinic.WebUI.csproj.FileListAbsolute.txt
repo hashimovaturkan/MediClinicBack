@@ -710,3 +710,4 @@ C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic
 C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
 C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\SubscribeConfirm.cshtml.g.cs
 C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\Profile.cshtml.g.cs
+C:\Users\HP\Downloads\mediclinic\mediclinic\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\WorkHours.cshtml.g.cs

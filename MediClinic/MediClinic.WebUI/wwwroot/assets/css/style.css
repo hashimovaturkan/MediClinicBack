@@ -12236,3 +12236,98 @@ footer {
         visibility: visible;
         opacity: 1;
     }
+
+.working-hours {
+    margin: 7rem 0;
+}
+
+.working-hours__wrapper h4 {
+    font-size: 19px;
+    font-weight: 300;
+    color: rgb(110, 110, 110);
+    margin: 21px 0 0;
+    line-height: 1.8em;
+    margin-bottom: 5rem;
+}
+
+.working-hours__wrapper p {
+    margin-bottom: 8rem;
+    color: rgb(110, 110, 110);
+}
+
+.working-hours__service {
+    display: flex;
+}
+
+    .working-hours__service img {
+        padding-right: 22px;
+        position: relative;
+        top: 1px;
+        height: 67px;
+    }
+
+.working-hours__text {
+    padding: 0 0 0 13px;
+    padding-right: 5rem;
+}
+
+    .working-hours__text h5 {
+        margin-bottom: 14px;
+        line-height: 1.2em;
+        color: #333;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    .working-hours__text p {
+        font-weight: 400;
+        font-size: 15px;
+        color: #6e6e6e;
+    }
+
+.working-hours__opening {
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #4e6dcc;
+    color: #ffffff;
+    position: relative;
+    padding: 27px 29px 43px;
+    border-radius: 5px;
+    margin: 8rem 7rem;
+    margin-top: 0;
+}
+
+    .working-hours__opening div {
+        width: 100%;
+    }
+
+    .working-hours__opening h3 {
+        text-align: center;
+    }
+
+    .working-hours__opening ul li {
+        display: flex;
+        white-space: nowrap;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,.27);
+    }
+
+        .working-hours__opening ul li span:last-child() {
+            font-weight: 700;
+            display: inline-block;
+        }
+
+@media (max-width: 575.98px) {
+    .working-hours__opening {
+        margin-right: 0;
+        margin-left: 0%;
+    }
+}
+
+@media (max-width: 380px) {
+    .working-hours__opening {
+        font-size: 14px;
+    }
+}

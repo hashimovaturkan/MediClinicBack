@@ -3,10 +3,13 @@ using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities.Membership;
 using MediClinic.Domain.Models.FormModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -22,17 +25,20 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         readonly RoleManager<MediClinicRole> roleManager;
         readonly IConfiguration configuration;
         readonly MediClinicDbContext db;
+        readonly IWebHostEnvironment env;
         public AccountController(UserManager<MediClinicUser> userManager,
                                  SignInManager<MediClinicUser> signInManager,
                                  RoleManager<MediClinicRole> roleManager,
                                  IConfiguration configuration,
-                                 MediClinicDbContext db)
+                                 MediClinicDbContext db,
+                                 IWebHostEnvironment env)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.configuration = configuration;
             this.db = db;
+            this.env = env;
         }
 
         public async Task<IActionResult> Profile()

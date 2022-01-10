@@ -26,7 +26,9 @@ namespace MediClinic.Application.Modules.Client.BlogPostModule
                 var model = db.BlogPosts
                     .Include(e => e.BlogCategory)
                     .Include(e => e.Doctor)
-                    .Where(s => s.DeletedByUserId == null).AsQueryable();
+                    .Where(s => s.DeletedByUserId == null)
+                    .OrderByDescending(e => e.CreatedDate)
+                    .AsQueryable();
 
                 return new PagedViewModel<BlogPost>(model, request.PageIndex, request.PageSize);
             }

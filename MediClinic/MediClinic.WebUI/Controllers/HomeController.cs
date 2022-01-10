@@ -237,5 +237,10 @@ namespace MediClinic.WebUI.Controllers
         end:
             return View();
         }
+
+        public IActionResult WorkHours()
+        {
+            return View();
+        }
     }
 }
