@@ -124,6 +124,15 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        public async Task<IActionResult> DeleteAll(UserDeleteAllCommand command)
+        {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var response = await mediator.Send(command);
+            return Json(response);
+        }
+
+        [HttpPost]
         [Authorize(Policy = "admin.users.setrole")]
         [Route("/user-set-role")]
         public async Task<IActionResult> SetRole(int userId, int roleId, bool selected)

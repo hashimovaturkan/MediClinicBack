@@ -12862,11 +12862,12 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     background-position: center;
     min-height: 250px;
     width: 100%; }
-  .photo-content .profile-photo {
-    bottom: -75px;
-    left: 100px;
-    max-width: 150px;
-    position: absolute; }
+    .photo-content .profile-photo {
+        bottom: 0px;
+        left: 35px;
+        max-width: 150px;
+        position: absolute;
+    }
 
 .profile-info {
   padding: 30px 20px;

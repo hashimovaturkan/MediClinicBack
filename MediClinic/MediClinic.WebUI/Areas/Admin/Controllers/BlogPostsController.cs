@@ -118,5 +118,14 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             var response = await mediator.Send(command);
             return Json(response);
         }
+
+        [HttpPost]
+        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        public async Task<IActionResult> DeleteAll(BlogPostDeleteAllCommand command)
+        {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var response = await mediator.Send(command);
+            return Json(response);
+        }
     }
 }

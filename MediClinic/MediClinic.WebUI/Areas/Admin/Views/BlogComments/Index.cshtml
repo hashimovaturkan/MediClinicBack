@@ -13,6 +13,11 @@
                         <h2><b>Personal Setting </b></h2>
                     </div>
                     <div class="col-sm-6">
+                        @if (User.HasAccess("admin.doctors.delete"))
+                        {
+                            <a id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+
+                        }
                     </div>
                 </div>
             </div>
@@ -21,8 +26,8 @@
                     <tr>
                         <th>
                             <span class="custom-checkbox">
-                                <input type="checkbox" id="selectAll">
-                                <label for="selectAll"></label>
+                                <input type="checkbox" id="selectAllDelete">
+                                <label for="selectAllDelete"></label>
                             </span>
                         </th>
                         <th>Comment</th>
@@ -36,7 +41,7 @@
                         <tr>
                             <td class="check-content">
                                 <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox-@item.Id" name="options[]" value="1">
+                                    <input type="checkbox" id="checkbox-@item.Id" data-checkbox="@item.Id" name="options[]" value="1">
                                     <label for="checkbox-@item.Id"></label>
                                 </span>
                             </td>

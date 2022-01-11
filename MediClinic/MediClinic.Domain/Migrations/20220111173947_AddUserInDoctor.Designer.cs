@@ -4,14 +4,16 @@ using MediClinic.Domain.Models.DataContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MediClinic.Domain.Migrations
 {
     [DbContext(typeof(MediClinicDbContext))]
-    partial class MediClinicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220111173947_AddUserInDoctor")]
+    partial class AddUserInDoctor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -387,6 +387,75 @@
         });
         }
 
+        $("#deleteAll").click(function () {
+                swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                buttons:["No","Yes"]
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+
+                    var mustDeleted = [];
+                    var i = 0;
+                    
+                    $(".selectDelete").each(function () {
+                        if ($(this).is(':checked')) {
+                            mustDeleted[i] = $(this).attr('data-checkbox');
+                            i++;
+                        }
+                    })
+
+
+                    $.ajax({
+                        url: '@Url.Action("DeleteAll")',
+                        type: "post",
+                        data: { mustDeleted: mustDeleted },
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.error == false) {
+                                swal("Deleted!", "File has been deleted.", "success");
+                                window.location.reload();
+                            } else {
+                                swal("Error", "File couldn't be deleted", "error");
+                                console.log("no")
+                            }
+
+                        },
+                        error: function (response) {
+                            console.log(response)
+                        }
+                    })
+                }
+            });
+        })
+
+
+        $("#selectAllDelete").click(function (e) {
+            e.preventDefault();
+            var a = 0;
+            $(".selectDelete").each(function () {
+                if ($(this).is(':checked')) {
+                    a = a + 1;
+                }
+            })
+            if (a == 0) {
+                $(this).prop('checked', true);
+                $(".selectDelete").each(function () {
+                    $(this).prop('checked', true);
+                })
+            }
+            else {
+                $(this).prop('checked', false);
+                $(".selectDelete").each(function () {
+                    $(this).prop('checked', false);
+                })
+            }
+        })
+
         $.ajaxSetup({
             statusCode: {
                 200: function (response) {

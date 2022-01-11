@@ -167,12 +167,6 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                //var user = await userManager.FindByIdAsync(userId);
-
-                //var token = await userManager.GeneratePasswordResetTokenAsync(user);
-
-                //var result = await userManager.ResetPasswordAsync(user, token, "MyN3wP@ssw0rd");
 
                 if (model.NewPass != model.NewPassAgain)
                 {

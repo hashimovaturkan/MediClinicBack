@@ -14,12 +14,12 @@
                             <div class="cover-photo"></div>
                             <form id="changeImgFrm" enctype="multipart/form-data" method="post">
                                 <div class="profile-photo">
-                                    <img src="/uploads/images/@Model.ImgUrl" class="img-fluid rounded-circle" alt="user">
+                                    <img src="/uploads/images/@Model.ImgUrl" style="width:150px; height:140px;" class="img-fluid rounded-circle" alt="user">
                                     <span class="aside-form__pen">
                                         <input type="file" style="display:none" id="form-file" name="file">
-                                        <label for="form-file" style="cursor: pointer;">
+                                        <label for="form-file" style="cursor: pointer;" class="form-file">
                                             <?xml version="1.0" encoding="utf-8" ?>
-                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 117.74 122.88" style="enable-background:new 0 0 117.74 122.88" xml:space="preserve"><style type="text/css">
+                                            <svg version="1.1" style="color:black; width:18px;" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 117.74 122.88" style="enable-background:new 0 0 117.74 122.88" xml:space="preserve"><style type="text/css">
                                                                                                                                                                                                                                                                                .st0 {
                                                                                                                                                                                                                                                                                    fill-rule: evenodd;
                                                                                                                                                                                                                                                                                    clip-rule: evenodd;
@@ -36,16 +36,16 @@
                                 <div class="col-xl-8">
                                     <div class="row">
                                         <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
-                                            <div class="profile-name">
-                                                <h4 class="text-primary" id="settingTitle">@Model.Name @Model.Surname</h4>
+                                            <!--<div class="profile-name">
+                                                <h4 class="text-primary" id="settingTitle">@Model.Name @Model.Surname</h4>-->
                                                 @*<p>UX / UI Designer</p>*@
-                                            </div>
+                                            <!--</div>-->
                                         </div>
                                         <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
-                                            <div class="profile-email">
+                                            @*<div class="profile-email">
                                                 <h4 class="text-muted" id="settingEmail">@Model.Email</h4>
                                                 <p>Email</p>
-                                            </div>
+                                            </div>*@
                                         </div>
                                         <!-- <div class="col-xl-4 col-sm-4 prf-col">
                                             <div class="profile-call">
@@ -79,7 +79,7 @@
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div id="about-me" class="tab-pane fade active show">
+                                    <div id="about-me" class="tab-pane mt-5 fade active show">
                                         <div class="profile-personal-info">
                                             <h4 class="text-primary mb-4">Personal Information</h4>
                                             <div class="row mb-4">
@@ -132,11 +132,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="profile-settings" class="tab-pane fade">
+                                    <div id="profile-settings" class="mt-5 tab-pane fade">
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Profile Setting</h4>
-                                                <form class="accountfrm">
+                                                <form id="accountfrm">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Name</label>
@@ -175,27 +175,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="password" class="tab-pane fade">
+                                    <div id="password" class="tab-pane fade mt-5">
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Password Setting</h4>
-                                                <form id="passwordsettingfrm" method="post">
+                                                <form id="passwordfrm" >
+                                                    <div class="form-group">
+                                                        <label>Old Password</label>
+                                                        <input type="password" placeholder="Old Password" class="form-control" name="OldPass"
+                                                               data-rule-required="true" data-msg-required="Please, enter your old password" />
+                                                    </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                            <label>Password</label>
-                                                            <input type="password" placeholder="Old Password" class="form-control"
-                                                                   data-rule-required="true" data-msg-required="Please, enter your old password">
+                                                            <label>New Password</label>
+                                                            <input type="password" placeholder="New Password" class="form-control" name="NewPass"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your new password" />
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <label>Password</label>
-                                                            <input type="password" placeholder="Confirm Old Password" class="form-control"
-                                                                   data-rule-required="true" data-msg-required="Please, enter your old password">
+                                                            <label>New Password Confirm</label>
+                                                            <input type="password" placeholder="Confirm New Password" class="form-control" name="NewPassAgain"
+                                                                   data-rule-required="true" data-msg-required="Please, enter your new password" />
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Password</label>
-                                                        <input type="password" placeholder="New Password" class="form-control"
-                                                               data-rule-required="true" data-msg-required="Please, enter your new password">
                                                     </div>
                                                     <button class="btn btn-primary" type="submit">
                                                         Change
@@ -214,9 +214,22 @@
     </div>
 </div>
 
+@section addcss{
+    <style>
+        .profile-photo{
+            position:relative;
+        }
+        .form-file {
+            position: absolute;
+            bottom: 0;
+            right: 7%;
+        }
+    </style>
+}
+
 @section addjs{
     <script>
-         @*$(document).ready(function () {
+         $(document).ready(function () {
          $("#accountfrm").submit(function (e) {
              e.preventDefault();
                 if (!$(e.currentTarget).valid())
@@ -260,7 +273,7 @@
                 errorClass: "form__helper",
                 validClass: "valid"
             });
-         })*@
+         })
 
         $(document).ready(function () {
             $("#form-file").change(function () {
@@ -310,7 +323,7 @@
         })
 
         $(document).ready(function () {
-         $("#passwordsettingfrm").submit(function (e) {
+            $("#passwordfrm").submit(function (e) {
                 e.preventDefault();
                 if (!$(e.currentTarget).valid())
                     return;
@@ -334,6 +347,7 @@
                         }
                         else {
                             toastr.error(response.message, "Error!")
+                            e.currentTarget.reset();
                         }
 
                     },
