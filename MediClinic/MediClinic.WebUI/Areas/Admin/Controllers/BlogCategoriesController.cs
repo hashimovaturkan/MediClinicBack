@@ -10,6 +10,7 @@ using MediClinic.Domain.Models.Entities;
 using MediatR;
 using MediClinic.Application.Modules.Admin.BlogCategoryModule;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
 {
@@ -23,7 +24,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        //[Authorize(Policy = "admin.personalsetting.index")]
+        [Authorize(Policy = "admin.blogcategories.index")]
         public async Task<IActionResult> Index(BlogCategoryPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -34,7 +35,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.personalsetting.details")]
+        [Authorize(Policy = "admin.blogcategories.details")]
         public async Task<IActionResult> Details(BlogCategorySingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -46,7 +47,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.personalsetting.create")]
+        [Authorize(Policy = "admin.blogcategories.create")]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -55,7 +56,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.personalsetting.create")]
+        [Authorize(Policy = "admin.blogcategories.create")]
         public async Task<IActionResult> Create(BlogCategoryCreateCommand command)
         {
             command.CreatedUserId =Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -66,7 +67,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(command);
         }
 
-        //[Authorize(Policy = "admin.personalsetting.edit")]
+        [Authorize(Policy = "admin.blogcategories.edit")]
         public async Task<IActionResult> Edit(BlogCategorySingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -85,7 +86,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.personalsetting.edit")]
+        [Authorize(Policy = "admin.blogcategories.edit")]
         public async Task<IActionResult> Edit(BlogCategoryUpdateCommand command)
         {
             var response = await mediator.Send(command);
@@ -97,7 +98,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        //[Authorize(Policy = "admin.personalsetting.delete")]
+        [Authorize(Policy = "admin.blogcategories.delete")]
         public async Task<IActionResult> Delete(BlogCategoryDeleteCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -106,7 +107,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        [Authorize(Policy = "admin.blogcategories.deleteAll")]
         public async Task<IActionResult> DeleteAll(BlogCategoryDeleteAllCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MediClinic.Application.Modules.Admin.BlogCommentModule;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Claims;
@@ -17,7 +18,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        //[Authorize(Policy = "admin.personalsetting.index")]
+        [Authorize(Policy = "admin.blogcomments.index")]
         public async Task<IActionResult> Index(BlogCommentPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -28,7 +29,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.personalsetting.details")]
+        [Authorize(Policy = "admin.blogcomments.details")]
         public async Task<IActionResult> Details(BlogCommentSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -42,7 +43,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        //[Authorize(Policy = "admin.personalsetting.delete")]
+        [Authorize(Policy = "admin.blogcomments.delete")]
         public async Task<IActionResult> Delete(BlogCommentDeleteCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -51,7 +52,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        [Authorize(Policy = "admin.blogcomments.deleteAll")]
         public async Task<IActionResult> DeleteAll(BlogCommentDeleteAllCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);

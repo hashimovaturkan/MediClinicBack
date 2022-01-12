@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
-    public class FaqCreateCommand:IRequest<long>
+    public class FaqCreateCommand:IRequest<int>
     {
         public string Question { get; set; }
         public string Answer { get; set; }

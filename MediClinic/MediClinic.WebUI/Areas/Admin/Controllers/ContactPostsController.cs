@@ -24,7 +24,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        //[Authorize(Policy = "admin.contactposts.index")]
+        [Authorize(Policy = "admin.contactposts.index")]
         public async Task<IActionResult> Index(ContactPostPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -35,7 +35,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.contactposts.details")]
+        [Authorize(Policy = "admin.contactposts.details")]
         public async Task<IActionResult> Details(ContactPostSingleQuery query)
         {
             var response = await mediator.Send(query);

@@ -407,7 +407,7 @@
                             i++;
                         }
                     })
-
+                    console.log(mustDeleted)
 
                     $.ajax({
                         url: '@Url.Action("DeleteAll")',
@@ -434,8 +434,9 @@
         })
 
 
-        $("#selectAllDelete").click(function (e) {
+        $("#selectAllDelete").change(function (e) {
             e.preventDefault();
+            
             var a = 0;
             $(".selectDelete").each(function () {
                 if ($(this).is(':checked')) {
@@ -447,14 +448,19 @@
                 $(".selectDelete").each(function () {
                     $(this).prop('checked', true);
                 })
+
             }
             else {
                 $(this).prop('checked', false);
                 $(".selectDelete").each(function () {
                     $(this).prop('checked', false);
                 })
+
             }
+
+            
         })
+
 
         $.ajaxSetup({
             statusCode: {

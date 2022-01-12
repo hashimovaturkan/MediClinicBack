@@ -12,7 +12,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
 {
     public class FaqSingleQuery:IRequest<Faq>
     {
-        public long? Id { get; set; }
+        public int? Id { get; set; }
 
         public class FaqSingleQueryHandler : IRequestHandler<FaqSingleQuery, Faq>
         {

@@ -3,6 +3,7 @@ using MediClinic.Application.Core.Extensions;
 using MediClinic.Application.Modules.Admin.AppointmentModule;
 using MediClinic.Application.Modules.Admin.DoctorModule;
 using MediClinic.Domain.Models.FormModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +26,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.configuration = configuration;
         }
 
-        //[Authorize(Policy = "admin.personalsetting.index")]
+        [Authorize(Policy = "admin.appointments.index")]
         public async Task<IActionResult> Index(AppointmentPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -36,7 +37,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.personalsetting.details")]
+        [Authorize(Policy = "admin.appointments.details")]
         public async Task<IActionResult> Details(AppointmentSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -50,7 +51,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.edit")]
+        [Authorize(Policy = "admin.appointments.edit")]
         public async Task<IActionResult> Edit(AppointmentSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -77,7 +78,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.academicbackgrounds.edit")]
+        [Authorize(Policy = "admin.appointments.edit")]
         public async Task<IActionResult> Edit(AppointmentUpdateCommand command)
         {
             var response = await mediator.Send(command);
@@ -88,7 +89,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.personalsetting.delete")]
+        //[Authorize(Policy = "admin.appointments.feedback")]
         public async Task<IActionResult> Feedback(AppointmentFeedback model)
         {
             var doctor = await mediator.Send(new DoctorChooseQuery());

@@ -112,7 +112,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        [Authorize(Policy = "admin.faqs.deleteAll")]
         public async Task<IActionResult> DeleteAll(FaqDeleteAllCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);

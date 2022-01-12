@@ -2,6 +2,7 @@
 using MediClinic.Application.Modules.Admin.BlogCategoryModule;
 using MediClinic.Application.Modules.Admin.BlogPostModule;
 using MediClinic.Application.Modules.Admin.DoctorModule;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -21,7 +22,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.index")]
+        [Authorize(Policy = "admin.blogposts.index")]
         public async Task<IActionResult> Index(BlogPostPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -32,7 +33,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.details")]
+        [Authorize(Policy = "admin.blogposts.details")]
         public async Task<IActionResult> Details(BlogPostSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -47,7 +48,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.create")]
+        [Authorize(Policy = "admin.blogposts.create")]
         public async Task<IActionResult> Create()
         {
             ViewData["BlogCategoryId"] = new SelectList(await mediator.Send(new BlogCategoryChooseQuery()), "Id", "Name");
@@ -58,7 +59,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.academicbackgrounds.create")]
+        [Authorize(Policy = "admin.blogposts.create")]
         public async Task<IActionResult> Create(BlogPostCreateCommand command)
         {
             command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -72,7 +73,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(command);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.edit")]
+        [Authorize(Policy = "admin.blogposts.edit")]
         public async Task<IActionResult> Edit(BlogPostSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -99,7 +100,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.academicbackgrounds.edit")]
+        [Authorize(Policy = "admin.blogposts.edit")]
         public async Task<IActionResult> Edit(BlogPostUpdateCommand command)
         {
             var response = await mediator.Send(command);
@@ -111,7 +112,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.delete")]
+        [Authorize(Policy = "admin.blogposts.delete")]
         public async Task<IActionResult> Delete(BlogPostDeleteCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -120,7 +121,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        [Authorize(Policy = "admin.blogposts.deleteAll")]
         public async Task<IActionResult> DeleteAll(BlogPostDeleteAllCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);

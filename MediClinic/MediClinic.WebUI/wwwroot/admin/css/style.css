@@ -19469,3 +19469,7 @@ td.table-row-select {
 .metismenu a{
     color:black !important;
 }
+
+table.table td a.view {
+    color: #0089ff !important;
+}

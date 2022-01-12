@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MediClinic.Application.Modules.Admin.DepartmentModule;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Claims;
@@ -17,7 +18,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.index")]
+        [Authorize(Policy = "admin.departments.index")]
         public async Task<IActionResult> Index(DepartmentPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -28,7 +29,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.details")]
+        [Authorize(Policy = "admin.departments.details")]
         public async Task<IActionResult> Details(DepartmentSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -40,7 +41,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.create")]
+        [Authorize(Policy = "admin.departments.create")]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -49,7 +50,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.academicbackgrounds.create")]
+        [Authorize(Policy = "admin.departments.create")]
         public async Task<IActionResult> Create(DepartmentCreateCommand command)
         {
             command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -61,7 +62,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(command);
         }
 
-        //[Authorize(Policy = "admin.academicbackgrounds.edit")]
+        [Authorize(Policy = "admin.departments.edit")]
         public async Task<IActionResult> Edit(DepartmentSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -83,7 +84,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.academicbackgrounds.edit")]
+        [Authorize(Policy = "admin.departments.edit")]
         public async Task<IActionResult> Edit(DepartmentUpdateCommand command)
         {
             var response = await mediator.Send(command);
@@ -95,7 +96,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.delete")]
+        [Authorize(Policy = "admin.departments.delete")]
         public async Task<IActionResult> Delete(DepartmentDeleteCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -105,7 +106,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        [Authorize(Policy = "admin.departments.deleteAll")]
         public async Task<IActionResult> DeleteAll(DepartmentDeleteAllCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);

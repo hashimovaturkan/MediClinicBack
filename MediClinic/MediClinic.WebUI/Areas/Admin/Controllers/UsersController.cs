@@ -25,6 +25,8 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             this.db = db;
             this.mediator = mediator;
         }
+
+        [Authorize(Policy = "admin.users.index")]
         public async Task<IActionResult> Index(UserPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -35,7 +37,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.users.details")]
+        [Authorize(Policy = "admin.users.details")]
         public async Task<IActionResult> Details(UserSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -47,7 +49,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        //[Authorize(Policy = "admin.users.create")]
+        [Authorize(Policy = "admin.users.create")]
         public async Task<IActionResult> Create()
         {
             //ViewData["CvTemplateUserId"] = new SelectList(await mediator.Send(new UserChooseQuery()), "Id", "Username" ?? "Email");
@@ -57,7 +59,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.users.create")]
+        [Authorize(Policy = "admin.users.create")]
         public async Task<IActionResult> Create(UserCreateCommand command)
         {
             //var response = await mediator.Send(command);
@@ -67,7 +69,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(command);
         }
 
-        //[Authorize(Policy = "admin.users.edit")]
+        [Authorize(Policy = "admin.users.edit")]
         public async Task<IActionResult> Edit(UserSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -103,7 +105,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.users.edit")]
+        [Authorize(Policy = "admin.users.edit")]
         public async Task<IActionResult> Edit(UserUpdateCommand command)
         {
             var response = await mediator.Send(command);
@@ -115,7 +117,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
-        //[Authorize(Policy = "admin.users.delete")]
+        [Authorize(Policy = "admin.users.delete")]
         public async Task<IActionResult> Delete(UserDeleteCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -124,7 +126,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.academicbackgrounds.deleteAll")]
+        [Authorize(Policy = "admin.users.deleteAll")]
         public async Task<IActionResult> DeleteAll(UserDeleteAllCommand command)
         {
             command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -149,15 +151,15 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 });
             }
 
-            //bu method videoda hardadi
-            //if(userId = User.GetCurrentUserId())
-            //{
-            //    return Json(new
-            //    {
-            //        message = "Istifadeci ozu ozunu selahiyyetlendire bilmez!",
-            //        error = true
-            //    });
-            //}
+            
+            if (userId == User.GetCurrentUserId())
+            {
+                return Json(new
+                {
+                    message = "Istifadeci ozu ozunu selahiyyetlendire bilmez!",
+                    error = true
+                });
+            }
             #endregion
 
             if (selected)
@@ -232,14 +234,14 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             }
 
             //bu method videoda hardadi
-            //if (userId = User.GetCurrentUserId())
-            //{
-            //    return Json(new
-            //    {
-            //        message = "Istifadeci ozu ozunu selahiyyetlendire bilmez!",
-            //        error = true
-            //    });
-            //}
+            if (userId == User.GetCurrentUserId())
+            {
+                return Json(new
+                {
+                    message = "Istifadeci ozu ozunu selahiyyetlendire bilmez!",
+                    error = true
+                });
+            }
             #endregion
 
             if (selected)

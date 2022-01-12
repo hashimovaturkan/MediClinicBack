@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         @if (User.HasAccess("admin.appointments.delete"))
                         {
-                            <a asp-action="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+                            <a id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
 
                         }
                     </div>
@@ -26,8 +26,8 @@
                     <tr>
                         <th>
                             <span class="custom-checkbox">
-                                <input type="checkbox" id="selectAll">
-                                <label for="selectAll"></label>
+                                <input type="checkbox" id="selectAllDelete">
+                                <label for="selectAllDelete"></label>
                             </span>
                         </th>
                         <th>Message</th>
@@ -41,7 +41,7 @@
                         <tr>
                             <td class="check-content">
                                 <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox-@item.Id" name="options[]" value="1">
+                                    <input type="checkbox" id="checkbox-@item.Id" data-checkbox="@item.Id" class="selectDelete">
                                     <label for="checkbox-@item.Id"></label>
                                 </span>
                             </td>
