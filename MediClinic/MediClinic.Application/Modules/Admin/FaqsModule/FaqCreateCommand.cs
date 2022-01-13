@@ -17,7 +17,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
         public string Answer { get; set; }
         public int? CreatedUserId { get; set; }
 
-        public class FaqCreateCommandHandler : IRequestHandler<FaqCreateCommand, long>
+        public class FaqCreateCommandHandler : IRequestHandler<FaqCreateCommand, int>
         {
             readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
@@ -25,7 +25,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
             {
                 this.db = db;
             }
-            public async Task<long> Handle(FaqCreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(FaqCreateCommand request, CancellationToken cancellationToken)
             {
                 if (ctx.IsModelStateValid())
                 {

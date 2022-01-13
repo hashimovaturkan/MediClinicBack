@@ -63,119 +63,127 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
             public async Task<int> Handle(DoctorCreateCommand request, CancellationToken cancellationToken)
             {
                 //started ended datetime'da standart date qoy time'i deyishsin muqayiseye gore 
-                if (ctx.IsModelStateValid())
+                try
                 {
-                    var model = new Doctor();
-                    model.Name = request.Name;
-                    model.Phone = request.Phone;
-                    model.Room = request.Room;
-                    model.Speciality = request.Speciality;
-                    model.Education = request.Education;
-                    model.Experience = request.Experience;
-                    model.Email = request.Email;
-                    model.AboutContent = request.AboutContent;
-                    model.Description = request.Description;
-                    model.CreatedByUserId = request.CreatedUserId;
-                    model.CreatedDate = DateTime.Now;
-
-                    
-                    string extension = Path.GetExtension(request.file.FileName);
-                    model.ImgUrl = $"{Guid.NewGuid()}{extension}";
-
-                    string physicalFileName = Path.Combine(env.ContentRootPath,
-                                                           "wwwroot",
-                                                           "uploads",
-                                                           "images",
-                                                           model.ImgUrl);
-
-                    using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+                    if (ctx.IsModelStateValid())
                     {
-                        await request.file.CopyToAsync(stream);
-                    }
+                        var model = new Doctor();
+                        model.Name = request.Name;
+                        model.Phone = request.Phone;
+                        model.Room = request.Room;
+                        model.Speciality = request.Speciality;
+                        model.Education = request.Education;
+                        model.Experience = request.Experience;
+                        model.Email = request.Email;
+                        model.AboutContent = request.AboutContent;
+                        model.Description = request.Description;
+                        model.CreatedByUserId = request.CreatedUserId;
+                        model.CreatedDate = DateTime.Now;
 
-                    db.Doctors.Add(model);
-                    await db.SaveChangesAsync(cancellationToken);
 
-                    foreach (var item in request.WorkTimeModels)
-                    {
-                        if (item.EndedTime != null && item.StartedTime != null && item.WeekDay != null)
+                        string extension = Path.GetExtension(request.file.FileName);
+                        model.ImgUrl = $"{Guid.NewGuid()}{extension}";
+
+                        string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                               "wwwroot",
+                                                               "uploads",
+                                                               "images",
+                                                               model.ImgUrl);
+
+                        using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
                         {
-                            var isExistWorkTime = db.WorkTimes.Where(e => e.EndedTime == item.EndedTime && e.StartedTime == item.StartedTime && e.WeekDay == (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true)).FirstOrDefault();
-                            if (isExistWorkTime == null)
+                            await request.file.CopyToAsync(stream);
+                        }
+
+                        db.Doctors.Add(model);
+                        await db.SaveChangesAsync(cancellationToken);
+
+                        foreach (var item in request.WorkTimeModels)
+                        {
+                            if (item.EndedTime != null && item.StartedTime != null && item.WeekDay != null)
                             {
-                                var a = new DateTime();
-                                var b = new DateTime();
-                                var workTime = new WorkTime();
-                                workTime.StartedTime = a.AddHours((double)item.StartedTime?.Hour);
-                                workTime.EndedTime = b.AddHours((double)item.EndedTime?.Hour);
-                                workTime.CreatedDate = DateTime.Now;
-                                workTime.CreatedByUserId = request.CreatedUserId;
-                                workTime.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
+                                var isExistWorkTime = db.WorkTimes.Where(e => e.EndedTime == item.EndedTime && e.StartedTime == item.StartedTime && e.WeekDay == (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true)).FirstOrDefault();
+                                if (isExistWorkTime == null)
+                                {
+                                    var a = new DateTime();
+                                    var b = new DateTime();
+                                    var workTime = new WorkTime();
+                                    workTime.StartedTime = a.AddHours((double)item.StartedTime?.Hour);
+                                    workTime.EndedTime = b.AddHours((double)item.EndedTime?.Hour);
+                                    workTime.CreatedDate = DateTime.Now;
+                                    workTime.CreatedByUserId = request.CreatedUserId;
+                                    workTime.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
 
-                                db.WorkTimes.Add(workTime);
-                                await db.SaveChangesAsync(cancellationToken);
+                                    db.WorkTimes.Add(workTime);
+                                    await db.SaveChangesAsync(cancellationToken);
 
-                                var workTimeRelation = new DoctorWorkTimeRelation();
-                                workTimeRelation.DoctorId = model.Id;
-                                workTimeRelation.WorkTimeId = workTime.Id;
-                                workTimeRelation.CreatedDate = DateTime.Now;
-                                workTimeRelation.CreatedByUserId = request.CreatedUserId;
+                                    var workTimeRelation = new DoctorWorkTimeRelation();
+                                    workTimeRelation.DoctorId = model.Id;
+                                    workTimeRelation.WorkTimeId = workTime.Id;
+                                    workTimeRelation.CreatedDate = DateTime.Now;
+                                    workTimeRelation.CreatedByUserId = request.CreatedUserId;
 
-                                db.DoctorWorkTimeRelations.Add(workTimeRelation);
+                                    db.DoctorWorkTimeRelations.Add(workTimeRelation);
 
+                                }
+                                else
+                                {
+                                    var workTimeRelation = new DoctorWorkTimeRelation();
+                                    workTimeRelation.DoctorId = model.Id;
+                                    workTimeRelation.WorkTimeId = isExistWorkTime.Id;
+                                    workTimeRelation.CreatedDate = DateTime.Now;
+                                    workTimeRelation.CreatedByUserId = request.CreatedUserId;
+
+                                    db.DoctorWorkTimeRelations.Add(workTimeRelation);
+                                }
                             }
-                            else
+
+                        }
+                        await db.SaveChangesAsync(cancellationToken);
+
+                        request.SocialMediaModels = request?.SocialMediaModels?.Distinct().OrderBy(e => e.Name).ToList();
+                        foreach (var media in request.SocialMediaModels)
+                        {
+                            if (media.Name != null && media.Url != null)
                             {
-                                var workTimeRelation = new DoctorWorkTimeRelation();
-                                workTimeRelation.DoctorId = model.Id;
-                                workTimeRelation.WorkTimeId = isExistWorkTime.Id;
-                                workTimeRelation.CreatedDate = DateTime.Now;
-                                workTimeRelation.CreatedByUserId = request.CreatedUserId;
+                                var socialMedia = new SocialMedia();
+                                socialMedia.DoctorId = model.Id;
+                                socialMedia.Name = media.Name;
+                                socialMedia.Url = media.Url;
+                                socialMedia.CreatedDate = DateTime.Now;
+                                socialMedia.CreatedByUserId = request.CreatedUserId;
 
-                                db.DoctorWorkTimeRelations.Add(workTimeRelation);
+                                db.SocialMedia.Add(socialMedia);
                             }
                         }
+                        await db.SaveChangesAsync(cancellationToken);
 
-                    }
-                    await db.SaveChangesAsync(cancellationToken);
-
-                    request.SocialMediaModels = request?.SocialMediaModels?.Distinct().OrderBy(e => e.Name).ToList();
-                    foreach (var media in request.SocialMediaModels)
-                    {
-                        if (media.Name != null && media.Url != null)
+                        request.DepartmentIds = request?.DepartmentIds?.Distinct().ToList();
+                        foreach (var id in request.DepartmentIds)
                         {
-                            var socialMedia = new SocialMedia();
-                            socialMedia.DoctorId = model.Id;
-                            socialMedia.Name = media.Name;
-                            socialMedia.Url = media.Url;
-                            socialMedia.CreatedDate = DateTime.Now;
-                            socialMedia.CreatedByUserId = request.CreatedUserId;
+                            if (id != 0)
+                            {
+                                var doctorDepartment = new DoctorDepartmentRelation();
+                                doctorDepartment.DoctorId = model.Id;
+                                doctorDepartment.DepartmentId = id;
+                                doctorDepartment.CreatedDate = DateTime.Now;
+                                doctorDepartment.CreatedByUserId = request.CreatedUserId;
 
-                            db.SocialMedia.Add(socialMedia);
-                        }
-                    }
-                    await db.SaveChangesAsync(cancellationToken);
+                                db.DoctorDepartmentRelations.Add(doctorDepartment);
+                            }
 
-                    request.DepartmentIds = request?.DepartmentIds?.Distinct().ToList();
-                    foreach (var id in request.DepartmentIds)
-                    {
-                        if (id != 0)
-                        {
-                            var doctorDepartment = new DoctorDepartmentRelation();
-                            doctorDepartment.DoctorId = model.Id;
-                            doctorDepartment.DepartmentId = id;
-                            doctorDepartment.CreatedDate = DateTime.Now;
-                            doctorDepartment.CreatedByUserId = request.CreatedUserId;
 
-                            db.DoctorDepartmentRelations.Add(doctorDepartment);
                         }
 
+                        await db.SaveChangesAsync(cancellationToken);
+                        return model.Id;
 
                     }
+                }
+                catch (Exception)
+                {
 
-                    await db.SaveChangesAsync(cancellationToken);
-                    return model.Id;
-
+                    return 0;
                 }
 
                 return 0;

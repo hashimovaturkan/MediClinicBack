@@ -1,0 +1,80 @@
+﻿@model RoleCreateDto
+
+@{
+    ViewData["Title"] = "Create";
+    var k = 0;
+}
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <h1>Create PersonalSetting</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <div id="claimsBox">
+                            <div class="form-group claimIdAdd">
+                                <label asp-for="Claims" class="control-label"></label>
+                                <select asp-for="Claims[k]" class="form-control selectClaimIds" asp-items="ViewBag.RoleClaims"></select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-rounded btn-info addClaim">
+                            <span class="btn-icon-left text-info">
+                                <i class="fa fa-plus color-info"></i>
+                            </span>Add Role
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section addcss{
+
+    <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
+}
+
+@section addjs{
+    <script src="~/libs/ckeditor5/ckeditor.js"></script>
+    <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            var l = 1;
+            $(".addClaim").click(function (e) {
+                e.preventDefault();
+                var a = '<div class="form-group claimIdAdd"><select class="form-control selectClaimIds-' + l + ' valid" data-val="true" data-val-required="The Claim is required." id="id="Claims_' + l + '_" name="Claims[' + l + ']"></select><i class="fa fa-trash removeClaim deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
+                $("#claimsBox").append(a);
+                $(".selectClaimIds-" + l + "").append($(".selectClaimIds").html());
+                l = l + 1;
+                $(".removeClaim").click(function (e) {
+                    $(this).parent(".claimIdAdd").css("display", "none");
+                    $(this).parent(".claimIdAdd").find("select option:selected").val(null);
+                })
+            })
+        })
+    </script>
+}
+
+
+
+
+
+
+
