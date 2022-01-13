@@ -946,4 +946,3 @@ C:\Users\turkan.hashimova\Desktop\MediClinicBack\MediClinicBack\MediClinic\MediC
 C:\Users\turkan.hashimova\Desktop\MediClinicBack\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\MediClinic.WebUI.csproj.CopyComplete
 C:\Users\turkan.hashimova\Desktop\MediClinicBack\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\MediClinic.WebUI.genruntimeconfig.cache
 C:\Users\turkan.hashimova\Desktop\MediClinicBack\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Create.cshtml.g.cs
-C:\Users\turkan.hashimova\Desktop\MediClinicBack\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Details.cshtml.g.cs

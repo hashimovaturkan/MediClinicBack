@@ -1,5 +1,228 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DoctorViewModel
+
 @{
+    var k = 0;
+    var i = 0; 
+    var c = 0;
+    ViewData["Title"] = "Edit";
 }
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <h1>PersonalSetting Edit</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AboutContent" class="control-label"></label>
+                        <textarea asp-for="AboutContent" class="form-control"></textarea>
+                        <span asp-validation-for="AboutContent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Education" class="control-label"></label>
+                        <input asp-for="Education" class="form-control" />
+                        <span asp-validation-for="Education" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Speciality" class="control-label"></label>
+                        <input asp-for="Speciality" class="form-control" />
+                        <span asp-validation-for="Speciality" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Experience" class="control-label"></label>
+                        <input asp-for="Experience" class="form-control" />
+                        <span asp-validation-for="Experience" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Room" class="control-label"></label>
+                        <input asp-for="Room" class="form-control" />
+                        <span asp-validation-for="Room" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">
+                            Image
+                        </label>
+                        <label for="file" class="image-input" data-imgurl="/uploads/images/@Model.ImgUrl">
+                            <input name="fileTemp" value="@Model.ImgUrl" type="hidden" />
+                            <span>x</span>
+                        </label>
+                        <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
+                    </div>
+                    <div>
+                        <div id="weekDayBox">
+                            @foreach (var item in Model.WorkTimeModels)
+                            {
+                                <div class="form-group weekDayAdd">
+                                    <label asp-for="WorkTimeModels" class="control-label"></label>
+                                    <select asp-for="WorkTimeModels[i].WeekDay" class="form-control" asp-items="ViewBag.WeekDayId"></select>
+                                    <input asp-for="WorkTimeModels[i].StartedTime" class="form-control start" value="@item.StartedTime" />
+                                    <input asp-for="WorkTimeModels[i].EndedTime" class="form-control end" value="@item.EndedTime"/>
+                                    <i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i>
+                                </div>
+                                @(i=i+1)
+                            }
+                        </div>
+                        <button type="button" class="btn btn-rounded btn-info addWeekDay">
+                            <span class="btn-icon-left text-info">
+                                <i class="fa fa-plus color-info"></i>
+                            </span>Add Weekday
+                        </button>
+                    </div>
+                    <div>
+                        <div id="departmentBox">
+                            <div class="form-group departmentIdAdd">
+                                <label asp-for="DepartmentIds" class="control-label"></label>
+                                <select asp-for="DepartmentIds[k]" class="form-control selectDepartmentIds" asp-items="ViewBag.DepartmentId"></select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-rounded btn-info addDepartment">
+                            <span class="btn-icon-left text-info">
+                                <i class="fa fa-plus color-info"></i>
+                            </span>Add Department
+                        </button>
+                    </div>
+                    <div>
+                        <div id="socialMediaBox">
+                            <div class="form-group socialMediaAdd">
+                                <label asp-for="SocialMediaModels" class="control-label"></label>
+                                @foreach (var item in Model.WorkTimeModels)
+                                {
+                                    <select asp-for="SocialMediaModels[0].Name" class="form-control">
+                                        <option>instagram</option>
+                                        <option>mail</option>
+                                        <option>linkedin</option>
+                                        <option>facebook</option>
+                                    </select>
+                                    <input asp-for="SocialMediaModels[0].Url" class="form-control" />
+                                }
+
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-rounded btn-info addMedia">
+                            <span class="btn-icon-left text-info">
+                                <i class="fa fa-plus color-info"></i>
+                            </span>Add Social Media
+                        </button>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+@section addcss{
+
+    <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
+    <style>
+        .deleteItem {
+            color: red;
+            float: right;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+
+}
+
+@section addjs{
+    @*started ended datetime'da standart date qoy time'i deyishsin muqayiseye gore*@
+    <script src="~/libs/ckeditor5/ckeditor.js"></script>
+    <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            ClassicEditor
+                .create(document.querySelector('#AboutContent'))
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            var c = 1;
+            $(".addWeekDay").click(function (e) {
+                e.preventDefault();
+                var a = '<div class="form-group weekDayAdd"><select class="form-control valid" id="WorkTimeModels_' + c + '__WeekDay" name="WorkTimeModels[' + c + '].WeekDay" aria-invalid="false"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><input type="datetime-local" class="form-control start" type="text" id="WorkTimeModels_' + c + '__StartedTime" name="WorkTimeModels[' + c + '].StartedTime"><input type="datetime-local" class="form-control end" type="text" id="WorkTimeModels_' + c + '__EndedTime" name="WorkTimeModels[' + c + '].EndedTime"><i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
+                $("#weekDayBox").append(a);
+                c = c + 1;
+                $(".removeWeek").click(function (e) {
+                    $(this).parent(".weekDayAdd").css("display", "none");
+                    $(this).parent(".weekDayAdd").find("select option:selected").val("");
+                    $(this).parent(".weekDayAdd").find("input.start").val("");
+                    $(this).parent(".weekDayAdd").find("input.end").val("");
+
+
+                })
+            })
+
+        })
+
+        $(document).ready(function () {
+            var l = 1;
+            $(".addDepartment").click(function (e) {
+                e.preventDefault();
+                console.log("a")
+                var a = '<div class="form-group departmentIdAdd"><select class="form-control selectDepartmentIds-' + l + ' valid" data-val="true" data-val-required="The Department is required." id="DepartmentIds_' + l + '_" name="DepartmentIds[' + l + ']" aria-describedby="DepartmentIds_' + l + '_-error" aria-invalid="false"></select><i class="fa fa-trash removeDepartment deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
+                $("#departmentBox").append(a);
+                $(".selectDepartmentIds-" + l + "").append($(".selectDepartmentIds").html());
+                l = l + 1;
+                $(".removeDepartment").click(function (e) {
+                    $(this).parent(".departmentIdAdd").css("display", "none");
+                    $(this).parent(".departmentIdAdd").find("select option:selected").val(0);
+                })
+            })
+        })
+
+        $(document).ready(function () {
+            var f = 1;
+            $(".addMedia").click(function (e) {
+                e.preventDefault();
+                var a = '<div class="form-group socialMediaAdd"><select class="form-control valid" id="SocialMediaModels_' + f + '__Name" name="SocialMediaModels[' + f + '].Name" aria-invalid="false"><option>instagram</option><option>mail</option><option>linkedin</option><option>facebook</option></select ><input class="form-control" type="text" id="SocialMediaModels_' + f + '__Url" name="SocialMediaModels[' + f + '].Url"><i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i></div > ';
+                $("#socialMediaBox").append(a);
+                f = f + 1;
+                $(".removeMedia").click(function (e) {
+                    $(this).parent(".socialMediaAdd").css("display", "none");
+                    $(this).parent(".socialMediaAdd").find("select option:selected").val("");
+                    $(this).parent(".socialMediaAdd").find("input").val("");
+                })
+            })
+        })
+    </script>
+}
+
+
+
+
+

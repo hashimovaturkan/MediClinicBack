@@ -82,6 +82,9 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewData["WeekDayId"] = new SelectList(Enum.GetValues(typeof(WeekDay)));
+            ViewData["DepartmentId"] = new SelectList(await mediator.Send(new DepartmentChooseQuery()), "Id", "Title");
+
             var model = new DoctorViewModel();
             model.Id = response.Id;
             model.AboutContent = response.AboutContent;
@@ -106,6 +109,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 s.StartedTime = item.StartedTime;
                 s.EndedTime = item.EndedTime;
                 s.WeekDay = item.WeekDay.ToString();
+                model.WorkTimeModels = new List<WorkTimeModel>();
                 model.WorkTimeModels.Add(s);
             }
             foreach (var item in response.SocialMedia)
@@ -114,10 +118,13 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 s.Id = item.Id;
                 s.Name = item.Name;
                 s.Url = item.Url;
+
+                model.SocialMediaModels = new List<SocialMediaModel>();
                 model.SocialMediaModels.Add(s);
             }
             foreach (var item in response.DoctorDepartmentRelation.Select(e => e.DepartmentId))
             {
+                model.DepartmentIds = new List<int>();
                 model.DepartmentIds.Add(item);
             }
 

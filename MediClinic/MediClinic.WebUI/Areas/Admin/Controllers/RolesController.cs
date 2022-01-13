@@ -50,17 +50,6 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        [Authorize(Policy = "admin.users.details")]
-        public async Task<IActionResult> Details(RoleSingleQuery query)
-        {
-            var response = await mediator.Send(query);
-            if (response == null)
-            {
-                return NotFound();
-            }
-
-            return View(response);
-        }
 
         [Authorize(Policy = "admin.users.create")]
         public async Task<IActionResult> Create()
