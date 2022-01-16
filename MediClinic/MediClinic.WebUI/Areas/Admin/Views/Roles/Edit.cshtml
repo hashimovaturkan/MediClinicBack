@@ -1,29 +1,33 @@
-﻿@model RoleCreateDto
+﻿@model RoleRoleClaimsDto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     var k = 0;
 }
 
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-        <h1>Create PersonalSetting</h1>
+        <h1>Role Edit</h1>
         <div class="row">
             <div class="col-md-12">
-                <form asp-action="Create" enctype="multipart/form-data">
+                <form asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="MediClinicRole.Name" class="control-label"></label>
+                        <input asp-for="MediClinicRole.Name" class="form-control" />
+                        <span asp-validation-for="MediClinicRole.Name" class="text-danger"></span>
                     </div>
                     <div>
                         <div id="claimsBox">
-                            <div class="form-group claimIdAdd">
-                                <label asp-for="Claims" class="control-label"></label>
-                                <select asp-for="Claims[k]" class="form-control selectClaimIds" asp-items="ViewBag.RoleClaims"></select>
-                            </div>
+                            @foreach (var item in Model.MediClinicRoleClaims)
+                            {
+                                <div class="form-group claimIdAdd">
+                                    <label asp-for="@item.ClaimType" class="control-label"></label>
+                                    <select asp-for="@item.ClaimType[k]" class="form-control selectClaimIds-@k" asp-items="ViewBag.RoleClaims"></select>
+                                    <i class="fa fa-trash removeClaim deleteItem" data-toggle="tooltip" title="Delete"></i>
+                                </div>
+                            }
                         </div>
                         <button type="button" class="btn btn-rounded btn-info addClaim">
                             <span class="btn-icon-left text-info">
@@ -31,8 +35,9 @@
                             </span>Add Role Claim
                         </button>
                     </div>
+                    <input type="hidden" asp-for="MediClinicRole.Id" />
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
@@ -45,15 +50,24 @@
 </div>
 
 
-
 @section addcss{
 
     <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
 }
 
+
 @section addjs{
     <script src="~/libs/ckeditor5/ckeditor.js"></script>
     <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            ClassicEditor
+                .create(document.querySelector('#Content'))
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
     <script>
         $(document).ready(function () {
             var l = 1;
@@ -71,10 +85,6 @@
         })
     </script>
 }
-
-
-
-
 
 
 

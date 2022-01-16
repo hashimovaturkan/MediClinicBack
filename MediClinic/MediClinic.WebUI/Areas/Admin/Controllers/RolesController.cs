@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -51,7 +53,20 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
 
-        [Authorize(Policy = "admin.users.create")]
+        [Authorize(Policy = "admin.roles.details")]
+        public async Task<IActionResult> Details(RoleSingleQuery query)
+        {
+            var response = await mediator.Send(query);
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            return View(response);
+        }
+
+
+        [Authorize(Policy = "admin.roles.create")]
         public async Task<IActionResult> Create()
         {
             var claims = Extension.principals;
@@ -62,14 +77,16 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "admin.users.create")]
+        [Authorize(Policy = "admin.roles.create")]
         public async Task<IActionResult> Create(RoleCreateDto dto)
         {
             if (ModelState.IsValid)
             {
                     var role = new MediClinicRole()
                     {
-                        Name = dto.Name
+                        Name = dto.Name,
+                        CreatedDate = DateTime.Now,
+                        CreatedByUserId = User.GetCurrentUserId()
                     };
 
                     IdentityResult result = await roleManager.CreateAsync(role);
@@ -84,7 +101,9 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                                 {
                                     RoleId = role.Id,
                                     ClaimType = item,
-                                    ClaimValue = "1"
+                                    ClaimValue = "1",
+                                    CreatedByUserId = User.GetCurrentUserId(),
+                                    CreatedDate =  DateTime.Now
 
                                 });
                                 await db.SaveChangesAsync();
@@ -107,51 +126,75 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
 
         }
 
-        //[Authorize(Policy = "admin.users.edit")]
-        //public async Task<IActionResult> Edit(RoleSingleQuery query)
-        //{
-        //    var response = await mediator.Send(query);
-        //    if (response == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [Authorize(Policy = "admin.roles.edit")]
+        public async Task<IActionResult> Edit(RoleSingleQuery query)
+        {
+            var claims = Extension.principals;
+            ViewData["RoleClaims"] = new SelectList(claims);
 
-        //    ViewBag.Roles = await (from r in db.Roles
-        //                           join ur in db.UserRoles
-        //                           on new { RoleId = r.Id, UserId = response.Id } equals new { ur.RoleId, ur.UserId } into lJoin
-        //                           from lj in lJoin.DefaultIfEmpty()
-        //                           select Tuple.Create(r.Id, r.Name, lj != null))
-        //                     .ToListAsync();
+            var response = await mediator.Send(query);
+            if (response == null)
+            {
+                return NotFound();
+            }
 
-        //    ViewBag.Principals = (from p in Extension.principals
-        //                          join uc in db.UserClaims
-        //                          on new { ClaimValue = "1", ClaimType = p, UserId = response.Id } equals new { uc.ClaimValue, uc.ClaimType, uc.UserId } into lJoin
-        //                          from lj in lJoin.DefaultIfEmpty()
-        //                          select Tuple.Create(p, lj != null))
-        //                     .ToList();
-
-        //    var model = new UserViewModel();
-        //    model.Id = response.Id;
-        //    model.UserName = response.UserName;
-        //    model.Email = response.Email;
-        //    model.EmailConfirmed = response.EmailConfirmed;
-        //    model.PhoneNumber = response.PhoneNumber;
-        //    model.CreatedUserId = response.CreatedByUserId;
-        //    return View(model);
-        //}
+            return View(response);
+        }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Authorize(Policy = "admin.users.edit")]
-        //public async Task<IActionResult> Edit(UserUpdateCommand command)
-        //{
-        //    var response = await mediator.Send(command);
-        //    if (response > 0)
-        //        return RedirectToAction(nameof(Index));
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.roles.edit")]
+        public async Task<IActionResult> Edit(RoleEditDto dto)
+        {
+            if (ModelState.IsValid)
+            {
+                var isExistRole = db.Roles.FirstOrDefault(e => e.Id == dto.Id);
 
-        //    return View(command);
-        //}
+                if(isExistRole != null)
+                {
+                    isExistRole.Name = dto.Name;
+
+                    var IsExistRoleClaims = db.RoleClaims.Where(e => e.RoleId == dto.Id).ToList();
+
+                    var deletedClaims = IsExistRoleClaims.Where(e => !dto.ClaimType.Contains(e.ClaimType)).ToList();
+
+                    foreach (var item in deletedClaims)
+                    {
+                        item.DeletedByUserId = User.GetCurrentUserId();
+                        item.DeletedDate = DateTime.Now;
+                    }
+
+                    var createClaims = dto.ClaimType.Where(e => !IsExistRoleClaims.Select(k => k.ClaimType).Contains(e)).ToList();
+
+                    foreach (var item in createClaims)
+                    {
+                        if (item != null)
+                        {
+                            db.RoleClaims.Add(new MediClinicRoleClaim
+                            {
+                                RoleId = dto.Id,
+                                ClaimType = item,
+                                ClaimValue = "1",
+                                CreatedByUserId = User.GetCurrentUserId(),
+                                CreatedDate = DateTime.Now
+
+                            });
+                            await db.SaveChangesAsync();
+                        }
+
+                        return RedirectToAction(nameof(Index));
+                    }
+
+                    return RedirectToAction(nameof(Index));
+                }
+
+                return View(dto);
+                
+            }
+
+            return View(dto);
+        }
 
 
         //[HttpPost]

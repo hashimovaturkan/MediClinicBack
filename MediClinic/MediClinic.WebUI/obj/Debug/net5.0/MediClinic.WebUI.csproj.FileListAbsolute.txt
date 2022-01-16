@@ -1181,3 +1181,5 @@ C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\ne
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\ref\MediClinic.WebUI.dll
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\MediClinic.WebUI.pdb
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\MediClinic.WebUI.genruntimeconfig.cache
+C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Details.cshtml.g.cs
+C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Edit.cshtml.g.cs

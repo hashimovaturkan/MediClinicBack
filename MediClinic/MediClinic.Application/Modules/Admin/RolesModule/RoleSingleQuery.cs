@@ -11,25 +11,34 @@ using System.Threading.Tasks;
 
 namespace MediClinic.Application.Modules.Admin.RolesModule
 {
-    public class RoleSingleQuery : IRequest<MediClinicRole>
+    public class RoleSingleQuery : IRequest<RoleRoleClaimsDto>
     {
         public int? Id { get; set; }
 
-        public class RoleSingleQueryHandler : IRequestHandler<RoleSingleQuery, MediClinicRole>
+        public class RoleSingleQueryHandler : IRequestHandler<RoleSingleQuery, RoleRoleClaimsDto>
         {
             readonly MediClinicDbContext db;
             public RoleSingleQueryHandler(MediClinicDbContext db)
             {
                 this.db = db;
             }
-            public async Task<MediClinicRole> Handle(RoleSingleQuery request, CancellationToken cancellationToken)
+            public async Task<RoleRoleClaimsDto> Handle(RoleSingleQuery request, CancellationToken cancellationToken)
             {
                 if (request.Id == null || request.Id <= 0)
                     return null;
 
-                var role = await db.Roles.FirstOrDefaultAsync(c => c.Id == request.Id && c.DeletedByUserId == null, cancellationToken);
+                var role = await db.Roles
+                    .FirstOrDefaultAsync(c => c.Id == request.Id && c.DeletedByUserId == null, cancellationToken);
 
-                return role;
+                var roleClaims = await db.RoleClaims
+                    .Where(c => c.RoleId == request.Id && c.DeletedByUserId == null)
+                    .ToListAsync(cancellationToken);
+
+                var dto = new RoleRoleClaimsDto();
+                dto.MediClinicRoleClaims = roleClaims;
+                dto.MediClinicRole = role;
+
+                return dto;
             }
         }
     }
