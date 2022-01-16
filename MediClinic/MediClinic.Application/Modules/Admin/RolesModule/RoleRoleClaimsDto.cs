@@ -10,6 +10,6 @@ namespace MediClinic.Application.Modules.Admin.RolesModule
     public class RoleRoleClaimsDto
     {
         public MediClinicRole MediClinicRole { get; set; }
-        public IEnumerable<MediClinicRoleClaim> MediClinicRoleClaims { get; set; }
+        public List<MediClinicRoleClaim> MediClinicRoleClaims { get; set; }
     }
 }

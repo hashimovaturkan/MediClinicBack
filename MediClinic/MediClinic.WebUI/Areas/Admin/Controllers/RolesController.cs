@@ -154,10 +154,11 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 if(isExistRole != null)
                 {
                     isExistRole.Name = dto.Name;
+                    await db.SaveChangesAsync();
 
-                    var IsExistRoleClaims = db.RoleClaims.Where(e => e.RoleId == dto.Id).ToList();
+                    var IsExistRoleClaims = db.RoleClaims.Where(e => e.RoleId == dto.Id && e.DeletedByUserId == null).ToList();
 
-                    var deletedClaims = IsExistRoleClaims.Where(e => !dto.ClaimType.Contains(e.ClaimType)).ToList();
+                    var deletedClaims = IsExistRoleClaims.Where(e => !dto.Claims.Contains(e.ClaimType)).ToList();
 
                     foreach (var item in deletedClaims)
                     {
@@ -165,7 +166,8 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                         item.DeletedDate = DateTime.Now;
                     }
 
-                    var createClaims = dto.ClaimType.Where(e => !IsExistRoleClaims.Select(k => k.ClaimType).Contains(e)).ToList();
+                    await db.SaveChangesAsync();
+                    var createClaims = dto.Claims.Where(e => !IsExistRoleClaims.Select(k => k.ClaimType).Contains(e)).ToList();
 
                     foreach (var item in createClaims)
                     {
@@ -183,7 +185,6 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                             await db.SaveChangesAsync();
                         }
 
-                        return RedirectToAction(nameof(Index));
                     }
 
                     return RedirectToAction(nameof(Index));

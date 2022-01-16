@@ -14,19 +14,23 @@
                 <form asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="MediClinicRole.Name" class="control-label"></label>
-                        <input asp-for="MediClinicRole.Name" class="form-control" />
+                        <label name="Name" class="control-label"></label>
+                        <input name="Name" class="form-control" value="@Model.MediClinicRole.Name" />
                         <span asp-validation-for="MediClinicRole.Name" class="text-danger"></span>
                     </div>
                     <div>
                         <div id="claimsBox">
-                            @foreach (var item in Model.MediClinicRoleClaims)
+                            <select style="display:none;" class="selectClaimIds" asp-items="ViewBag.RoleClaims"></select>
+                            <label class="control-label">Role Claims</label>
+                            @foreach (var item in Model?.MediClinicRoleClaims)
                             {
                                 <div class="form-group claimIdAdd">
-                                    <label asp-for="@item.ClaimType" class="control-label"></label>
-                                    <select asp-for="@item.ClaimType[k]" class="form-control selectClaimIds-@k" asp-items="ViewBag.RoleClaims"></select>
+                                    <select id="Claims_@(k)_" name="Claims[@k]" class="form-control selectClaimIds-@k" asp-items="ViewBag.RoleClaims">
+                                        <option selected value="@item.ClaimType">@item.ClaimType</option>
+                                    </select>
                                     <i class="fa fa-trash removeClaim deleteItem" data-toggle="tooltip" title="Delete"></i>
                                 </div>
+                                k = k + 1;
                             }
                         </div>
                         <button type="button" class="btn btn-rounded btn-info addClaim">
@@ -35,7 +39,7 @@
                             </span>Add Role Claim
                         </button>
                     </div>
-                    <input type="hidden" asp-for="MediClinicRole.Id" />
+                    <input type="hidden" name="Id" value="@Model.MediClinicRole.Id" />
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
@@ -59,18 +63,10 @@
 @section addjs{
     <script src="~/libs/ckeditor5/ckeditor.js"></script>
     <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    
     <script>
         $(document).ready(function () {
-            ClassicEditor
-                .create(document.querySelector('#Content'))
-                .catch(error => {
-                    console.error(error);
-                });
-        })
-    </script>
-    <script>
-        $(document).ready(function () {
-            var l = 1;
+            var l = @k;
             $(".addClaim").click(function (e) {
                 e.preventDefault();
                 var a = '<div class="form-group claimIdAdd"><select class="form-control selectClaimIds-' + l + ' valid" data-val="true" data-val-required="The Claim is required." id="Claims_' + l + '_" name="Claims[' + l + ']"></select><i class="fa fa-trash removeClaim deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
@@ -81,6 +77,11 @@
                     $(this).parent(".claimIdAdd").css("display", "none");
                     $(this).parent(".claimIdAdd").find("select option:selected").val(null);
                 })
+            })
+
+            $(".removeClaim").click(function (e) {
+                $(this).parent(".claimIdAdd").css("display", "none");
+                $(this).parent(".claimIdAdd").find("select option:selected").val(null);
             })
         })
     </script>

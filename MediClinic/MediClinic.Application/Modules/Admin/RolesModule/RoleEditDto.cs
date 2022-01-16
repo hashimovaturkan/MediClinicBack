@@ -10,7 +10,7 @@ namespace MediClinic.Application.Modules.Admin.RolesModule
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<string> ClaimType { get; set; }
+        public List<string> Claims { get; set; }
     }
     
 }

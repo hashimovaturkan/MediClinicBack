@@ -117,7 +117,6 @@ C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\De
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.AssemblyInfoInputs.cache
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.AssemblyInfo.cs
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.csproj.CoreCompileInputs.cache
-C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.csproj.CopyComplete
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.dll
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\ref\MediClinic.Application.dll
 C:\Users\HP\Desktop\Medi\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.pdb
