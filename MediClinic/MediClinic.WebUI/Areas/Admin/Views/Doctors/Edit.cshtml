@@ -16,7 +16,7 @@
                 <form asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
+                        <label asp-for="Name" class="control-label">FullName</label>
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
@@ -72,16 +72,17 @@
                     </div>
                     <div>
                         <div id="weekDayBox">
+                            <label asp-for="WorkTimeModels" class="control-label"></label>
                             @foreach (var item in Model.WorkTimeModels)
                             {
                                 <div class="form-group weekDayAdd">
-                                    <label asp-for="WorkTimeModels" class="control-label"></label>
                                     <select asp-for="WorkTimeModels[i].WeekDay" class="form-control" asp-items="ViewBag.WeekDayId"></select>
-                                    <input asp-for="WorkTimeModels[i].StartedTime" class="form-control start" value="@item.StartedTime" />
-                                    <input asp-for="WorkTimeModels[i].EndedTime" class="form-control end" value="@item.EndedTime"/>
+                                    <input asp-for="WorkTimeModels[i].StartedTime" class="form-control start" />
+                                    <input asp-for="WorkTimeModels[i].EndedTime" class="form-control end" />
+                                    <input type="hidden" value="@item.Id" asp-for="WorkTimeModels[c].Id" />
                                     <i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i>
                                 </div>
-                                @(i=i+1)
+                                i = i + 1;
                             }
                         </div>
                         <button type="button" class="btn btn-rounded btn-info addWeekDay">
@@ -92,10 +93,15 @@
                     </div>
                     <div>
                         <div id="departmentBox">
-                            <div class="form-group departmentIdAdd">
-                                <label asp-for="DepartmentIds" class="control-label"></label>
-                                <select asp-for="DepartmentIds[k]" class="form-control selectDepartmentIds" asp-items="ViewBag.DepartmentId"></select>
-                            </div>
+                            <label asp-for="DepartmentIds" class="control-label"></label>
+                                @foreach (var item in Model.DepartmentIds)
+                                {
+                                    <div class="form-group departmentIdAdd">
+                                        <select asp-for="DepartmentIds[k]" class="form-control selectDepartmentIds" asp-items="ViewBag.DepartmentId"></select>
+                                        <i class="fa fa-trash removeDepartment deleteItem" data-toggle="tooltip" title="Delete"></i>
+                                    </div>
+                                    k = k + 1;
+                                }
                         </div>
                         <button type="button" class="btn btn-rounded btn-info addDepartment">
                             <span class="btn-icon-left text-info">
@@ -105,20 +111,24 @@
                     </div>
                     <div>
                         <div id="socialMediaBox">
-                            <div class="form-group socialMediaAdd">
-                                <label asp-for="SocialMediaModels" class="control-label"></label>
-                                @foreach (var item in Model.WorkTimeModels)
+                            <label asp-for="SocialMediaModels" class="control-label"></label>
+                                @foreach (var item in Model.SocialMediaModels)
                                 {
-                                    <select asp-for="SocialMediaModels[0].Name" class="form-control">
-                                        <option>instagram</option>
-                                        <option>mail</option>
-                                        <option>linkedin</option>
-                                        <option>facebook</option>
-                                    </select>
-                                    <input asp-for="SocialMediaModels[0].Url" class="form-control" />
+                                    <div class="form-group socialMediaAdd">
+                                        <select asp-for="SocialMediaModels[c].Name" class="form-control">
+                                            <option selected value="@item.Name"></option>
+                                            <option>instagram</option>
+                                            <option>mail</option>
+                                            <option>linkedin</option>
+                                            <option>facebook</option>
+                                        </select>
+                                        <input asp-for="SocialMediaModels[c].Url" class="form-control" />
+                                        <input type="hidden" value="@item.Id" asp-for="SocialMediaModels[c].Id" />
+                                        <i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i>
+                                    </div>
+                                    c = c + 1;
                                 }
-
-                            </div>
+                            
                         </div>
                         <button type="button" class="btn btn-rounded btn-info addMedia">
                             <span class="btn-icon-left text-info">
@@ -186,6 +196,14 @@
 
                 })
             })
+            $(".removeWeek").click(function (e) {
+                $(this).parent(".weekDayAdd").css("display", "none");
+                $(this).parent(".weekDayAdd").find("select option:selected").val("");
+                $(this).parent(".weekDayAdd").find("input.start").val("");
+                $(this).parent(".weekDayAdd").find("input.end").val("");
+
+
+            })
 
         })
 
@@ -203,6 +221,10 @@
                     $(this).parent(".departmentIdAdd").find("select option:selected").val(0);
                 })
             })
+            $(".removeDepartment").click(function (e) {
+                $(this).parent(".departmentIdAdd").css("display", "none");
+                $(this).parent(".departmentIdAdd").find("select option:selected").val(0);
+            })
         })
 
         $(document).ready(function () {
@@ -217,6 +239,11 @@
                     $(this).parent(".socialMediaAdd").find("select option:selected").val("");
                     $(this).parent(".socialMediaAdd").find("input").val("");
                 })
+            })
+            $(".removeMedia").click(function (e) {
+                $(this).parent(".socialMediaAdd").css("display", "none");
+                $(this).parent(".socialMediaAdd").find("select option:selected").val("");
+                $(this).parent(".socialMediaAdd").find("input").val("");
             })
         })
     </script>

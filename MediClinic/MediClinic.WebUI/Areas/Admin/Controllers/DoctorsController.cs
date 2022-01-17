@@ -102,16 +102,17 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             //model.WorkTimeId = response.WorkTimeId;
             model.CreatedUserId = response.CreatedByUserId;
 
-            foreach (var item in response.DoctorWorkTimeRelation.Select(e => e.WorkTime))
+            model.WorkTimeModels = new List<WorkTimeModel>();
+            foreach (var item in response.DoctorWorkTimeRelation)
             {
                 var s = new WorkTimeModel();
                 s.Id = item.Id;
-                s.StartedTime = item.StartedTime;
-                s.EndedTime = item.EndedTime;
-                s.WeekDay = item.WeekDay.ToString();
-                model.WorkTimeModels = new List<WorkTimeModel>();
+                s.StartedTime = item.WorkTime.StartedTime;
+                s.EndedTime = item.WorkTime.EndedTime;
+                s.WeekDay = item.WorkTime.WeekDay.ToString();
                 model.WorkTimeModels.Add(s);
             }
+            model.SocialMediaModels = new List<SocialMediaModel>();
             foreach (var item in response.SocialMedia)
             {
                 var s = new SocialMediaModel();
@@ -119,12 +120,13 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 s.Name = item.Name;
                 s.Url = item.Url;
 
-                model.SocialMediaModels = new List<SocialMediaModel>();
                 model.SocialMediaModels.Add(s);
             }
+
+            model.DepartmentIds = new List<int>();
+
             foreach (var item in response.DoctorDepartmentRelation.Select(e => e.DepartmentId))
             {
-                model.DepartmentIds = new List<int>();
                 model.DepartmentIds.Add(item);
             }
 

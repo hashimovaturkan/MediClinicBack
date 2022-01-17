@@ -152,9 +152,12 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                             var workTime = await db.WorkTimes.FirstOrDefaultAsync(e => e.Id == item.Id);
                             if (workTime == null)
                             {
+                                var a = new DateTime();
+                                var b = new DateTime();
+
                                 var workTimeModel = new WorkTime();
-                                workTimeModel.StartedTime = item.StartedTime;
-                                workTimeModel.EndedTime = item.EndedTime;
+                                workTimeModel.StartedTime = a.AddHours((double)item.StartedTime.Hour).AddMinutes((double)item.StartedTime.Minute);
+                                workTimeModel.EndedTime = b.AddHours((double)item.EndedTime.Hour).AddMinutes((double)item.EndedTime.Minute);
                                 workTimeModel.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
                                 workTimeModel.CreatedByUserId = request.CreatedUserId;
                                 workTimeModel.CreatedDate = DateTime.Now;
@@ -180,8 +183,12 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     foreach (var time in IsDeletedTime)
                     {
                         var m = await db.DoctorWorkTimeRelations.Where(e => e.DoctorId == entity.Id && e.WorkTimeId == time.Id).FirstOrDefaultAsync();
-                        m.DeletedByUserId = request.CreatedUserId;
-                        m.DeletedDate = DateTime.Now;
+                        if(m != null)
+                        {
+                            m.DeletedByUserId = request.CreatedUserId;
+                            m.DeletedDate = DateTime.Now;
+                        }
+                        
                     }
 
                     await db.SaveChangesAsync(cancellationToken);

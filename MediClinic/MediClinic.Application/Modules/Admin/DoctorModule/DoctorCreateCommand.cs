@@ -108,8 +108,8 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                                     var a = new DateTime();
                                     var b = new DateTime();
                                     var workTime = new WorkTime();
-                                    workTime.StartedTime = a.AddHours((double)item.StartedTime?.Hour);
-                                    workTime.EndedTime = b.AddHours((double)item.EndedTime?.Hour);
+                                    workTime.StartedTime = a.AddHours((double)item.StartedTime?.Hour).AddMinutes((double)item.StartedTime?.Minute);
+                                    workTime.EndedTime = b.AddHours((double)item.EndedTime?.Hour).AddMinutes((double)item.EndedTime?.Minute);
                                     workTime.CreatedDate = DateTime.Now;
                                     workTime.CreatedByUserId = request.CreatedUserId;
                                     workTime.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
