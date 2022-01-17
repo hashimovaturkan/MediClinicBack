@@ -139,6 +139,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [Authorize(Policy = "admin.doctors.edit")]
         public async Task<IActionResult> Edit(DoctorUpdateCommand command)
         {
+            command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             if (response > 0)
                 return RedirectToAction(nameof(Index));

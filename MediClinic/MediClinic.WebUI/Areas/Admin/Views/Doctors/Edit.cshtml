@@ -181,7 +181,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            var c = 1;
+            var c = @i;
             $(".addWeekDay").click(function (e) {
                 e.preventDefault();
                 var a = '<div class="form-group weekDayAdd"><select class="form-control valid" id="WorkTimeModels_' + c + '__WeekDay" name="WorkTimeModels[' + c + '].WeekDay" aria-invalid="false"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><input type="datetime-local" class="form-control start" type="text" id="WorkTimeModels_' + c + '__StartedTime" name="WorkTimeModels[' + c + '].StartedTime"><input type="datetime-local" class="form-control end" type="text" id="WorkTimeModels_' + c + '__EndedTime" name="WorkTimeModels[' + c + '].EndedTime"><i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
@@ -208,7 +208,7 @@
         })
 
         $(document).ready(function () {
-            var l = 1;
+            var l = @k;
             $(".addDepartment").click(function (e) {
                 e.preventDefault();
                 console.log("a")
@@ -228,7 +228,7 @@
         })
 
         $(document).ready(function () {
-            var f = 1;
+            var f = @c;
             $(".addMedia").click(function (e) {
                 e.preventDefault();
                 var a = '<div class="form-group socialMediaAdd"><select class="form-control valid" id="SocialMediaModels_' + f + '__Name" name="SocialMediaModels[' + f + '].Name" aria-invalid="false"><option>instagram</option><option>mail</option><option>linkedin</option><option>facebook</option></select ><input class="form-control" type="text" id="SocialMediaModels_' + f + '__Url" name="SocialMediaModels[' + f + '].Url"><i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i></div > ';

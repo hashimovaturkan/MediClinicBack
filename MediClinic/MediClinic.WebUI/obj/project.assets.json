@@ -8587,28 +8587,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\turkan.hashimova\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
       "projectName": "MediClinic.WebUI",
-      "projectPath": "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
-      "packagesPath": "C:\\Users\\turkan.hashimova\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\obj\\",
+      "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\turkan.hashimova\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8621,14 +8613,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj": {
-              "projectPath": "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj"
+            "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj"
             },
-            "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj": {
-              "projectPath": "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj"
+            "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj"
             },
-            "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
-              "projectPath": "C:\\Users\\turkan.hashimova\\Desktop\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj"
+            "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj"
             }
           }
         }
@@ -8714,7 +8706,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

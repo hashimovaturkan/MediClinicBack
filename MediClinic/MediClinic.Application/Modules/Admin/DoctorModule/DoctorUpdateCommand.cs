@@ -39,8 +39,6 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     ctx.ActionContext.ModelState.AddModelError("file", "Image was added!");
                 }
 
-                if (ctx.IsModelStateValid())
-                {
                     var entity = await db.Doctors.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeletedByUserId == null);
 
                     if (entity == null)
@@ -87,116 +85,155 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
 
                     }
 
-                    foreach (var id in request.DepartmentIds)
+                    if (request.DepartmentIds != null)
                     {
-                        if (id != 0) {
-                            //teze yaransin
-                            var department = await db.DoctorDepartmentRelations.FirstOrDefaultAsync(e => e.Id == id && e.DoctorId == entity.Id);
-                            if (department == null)
-                            {
-                                var doctorDepartment = new DoctorDepartmentRelation();
-                                doctorDepartment.DoctorId = entity.Id;
-                                doctorDepartment.DepartmentId = id;
-                                doctorDepartment.CreatedByUserId = request.CreatedUserId;
-                                doctorDepartment.CreatedDate = DateTime.Now;
-
-                                db.DoctorDepartmentRelations.Add(doctorDepartment);
-                            }
-                        }
-                            
-                    }
-
-                    //silinsin
-                    var IsDeletedDepartments = await db.DoctorDepartmentRelations.Where(e => e.DoctorId == entity.Id && !request.DepartmentIds.Contains(e.DepartmentId)).ToListAsync();
-                    foreach (var department in IsDeletedDepartments)
-                    {
-                        department.DeletedByUserId = request.CreatedUserId;
-                        department.DeletedDate = DateTime.Now;
-                    }
-
-                    foreach (var media in request.SocialMediaModels)
-                    {
-                        if (media.Name != null && media.Url != null)
+                        //silinsin
+                        var IsDeletedDepartments = await db.DoctorDepartmentRelations.Where(e => e.DoctorId == entity.Id && !request.DepartmentIds.Contains(e.DepartmentId)).ToListAsync();
+                        foreach (var department in IsDeletedDepartments)
                         {
-                            //teze yaransin
-                            var socialMedia = await db.SocialMedia.FirstOrDefaultAsync(e => e.Id == media.Id);
-                            if (socialMedia == null)
-                            {
-                                var m = new SocialMedia();
-                                m.DoctorId = entity.Id;
-                                m.Url = media.Url;
-                                m.Name = media.Name;
-                                m.CreatedByUserId = request.CreatedUserId;
-                                m.CreatedDate = DateTime.Now;
-
-                                db.SocialMedia.Add(m);
-                            }
+                            department.DeletedByUserId = request.CreatedUserId;
+                            department.DeletedDate = DateTime.Now;
                         }
-                            
-                    }
 
-                    //silinsin
-                    var IsDeletedMedia = await db.SocialMedia.Where(e => !request.SocialMediaModels.Select(k => k.Id).Contains(e.Id)).ToListAsync();
-                    foreach (var media in IsDeletedMedia)
-                    {
-                        media.DeletedByUserId = request.CreatedUserId;
-                        media.DeletedDate = DateTime.Now;
-                    }
-
-
-                    foreach (var item in request.WorkTimeModels)
-                    {
-                        if (item?.EndedTime != null && item?.StartedTime != null && item.WeekDay != null)
+                        foreach (var id in request.DepartmentIds)
                         {
-                            //teze yaransin
-                            var workTime = await db.WorkTimes.FirstOrDefaultAsync(e => e.Id == item.Id);
-                            if (workTime == null)
+                            if (id != 0)
                             {
-                                var a = new DateTime();
-                                var b = new DateTime();
+                                //teze yaransin
+                                var department = await db.DoctorDepartmentRelations.FirstOrDefaultAsync(e => e.DepartmentId == id && e.DoctorId == entity.Id);
+                                if (department == null || department.DeletedByUserId != null)
+                                {
+                                    var doctorDepartment = new DoctorDepartmentRelation();
+                                    doctorDepartment.DoctorId = entity.Id;
+                                    doctorDepartment.DepartmentId = id;
+                                    doctorDepartment.CreatedByUserId = request.CreatedUserId;
+                                    doctorDepartment.CreatedDate = DateTime.Now;
 
-                                var workTimeModel = new WorkTime();
-                                workTimeModel.StartedTime = a.AddHours((double)item.StartedTime.Hour).AddMinutes((double)item.StartedTime.Minute);
-                                workTimeModel.EndedTime = b.AddHours((double)item.EndedTime.Hour).AddMinutes((double)item.EndedTime.Minute);
-                                workTimeModel.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
-                                workTimeModel.CreatedByUserId = request.CreatedUserId;
-                                workTimeModel.CreatedDate = DateTime.Now;
-
-                                db.WorkTimes.Add(workTimeModel);
-                                await db.SaveChangesAsync(cancellationToken);
-
-                                var workTimeRelation = new DoctorWorkTimeRelation();
-                                workTimeRelation.DoctorId = entity.Id;
-                                workTimeRelation.WorkTimeId = workTimeModel.Id;
-                                workTimeRelation.CreatedDate = DateTime.Now;
-                                workTimeRelation.CreatedByUserId = request.CreatedUserId;
-
-                                db.DoctorWorkTimeRelations.Add(workTimeRelation);
-
+                                    db.DoctorDepartmentRelations.Add(doctorDepartment);
+                                    await db.SaveChangesAsync(cancellationToken);
+                                }
+                                else //update
+                                {
+                                    department.DepartmentId = id;
+                                    await db.SaveChangesAsync(cancellationToken);
+                                }
                             }
+
                         }
-                            
+
+                    
                     }
 
-                    //silinsin
-                    var IsDeletedTime = await db.WorkTimes.Where(e => !request.WorkTimeModels.Select(k => k.Id).Contains(e.Id)).ToListAsync();
-                    foreach (var time in IsDeletedTime)
+                    if(request.SocialMediaModels != null)
                     {
-                        var m = await db.DoctorWorkTimeRelations.Where(e => e.DoctorId == entity.Id && e.WorkTimeId == time.Id).FirstOrDefaultAsync();
-                        if(m != null)
+                        //silinsin
+                        var IsDeletedMedia = await db.SocialMedia.Where(e => !request.SocialMediaModels.Select(k => k.Id).Contains(e.Id) && e.DoctorId == entity.Id).ToListAsync();
+                        foreach (var media in IsDeletedMedia)
                         {
-                            m.DeletedByUserId = request.CreatedUserId;
-                            m.DeletedDate = DateTime.Now;
+                            media.DeletedByUserId = request.CreatedUserId;
+                            media.DeletedDate = DateTime.Now;
                         }
+
+                        foreach (var media in request.SocialMediaModels)
+                        {
+                            if (media.Name != null && media.Url != null)
+                            {
+                                //teze yaransin
+                                var socialMedia = await db.SocialMedia.FirstOrDefaultAsync(e => e.Id == media.Id);
+                                if (socialMedia == null || socialMedia.DeletedByUserId != null)
+                                {
+                                    var m = new SocialMedia();
+                                    m.DoctorId = entity.Id;
+                                    m.Url = media.Url;
+                                    m.Name = media.Name;
+                                    m.CreatedByUserId = request.CreatedUserId;
+                                    m.CreatedDate = DateTime.Now;
+
+                                    db.SocialMedia.Add(m);
+                                    await db.SaveChangesAsync(cancellationToken);
+                                }
+                                else  //update
+                                {
+                                    socialMedia.Url = media.Url;
+                                    socialMedia.Name = media.Name;
+                                    await db.SaveChangesAsync(cancellationToken);
+                                }
+                            }
+
+                        }
+
+                    
+                    }
+
+                    if(request.WorkTimeModels != null)
+                    {
+                        //silinsin
+                        var IsDeletedTime = await db.WorkTimes.Where(e => !request.WorkTimeModels.Select(k => k.Id).Contains(e.Id) && e.DoctorWorkTimeRelation.Select(k => k.DoctorId).Contains(entity.Id)).ToListAsync();
+                        foreach (var time in IsDeletedTime)
+                        {
+                            var m = await db.DoctorWorkTimeRelations.Where(e => e.DoctorId == entity.Id && e.WorkTimeId == time.Id).FirstOrDefaultAsync();
+                            if (m != null)
+                            {
+                                m.DeletedByUserId = request.CreatedUserId;
+                                m.DeletedDate = DateTime.Now;
+                            }
+
+                        }
+
+                        foreach (var item in request.WorkTimeModels)
+                        {
+                            if (item?.EndedTime != null && item?.StartedTime != null && item.WeekDay != null)
+                            {
+                                //teze yaransin
+                                var workTime = await db.WorkTimes.FirstOrDefaultAsync(e => e.Id == item.Id);
+                                if (workTime == null || workTime.DeletedByUserId != null)
+                                {
+                                    var a = new DateTime();
+                                    var b = new DateTime();
+
+                                    var workTimeModel = new WorkTime();
+                                    workTimeModel.StartedTime = a.AddHours((double)item.StartedTime.Hour).AddMinutes((double)item.StartedTime.Minute);
+                                    workTimeModel.EndedTime = b.AddHours((double)item.EndedTime.Hour).AddMinutes((double)item.EndedTime.Minute);
+                                    workTimeModel.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
+                                    workTimeModel.CreatedByUserId = request.CreatedUserId;
+                                    workTimeModel.CreatedDate = DateTime.Now;
+
+                                    db.WorkTimes.Add(workTimeModel);
+                                    await db.SaveChangesAsync(cancellationToken);
+
+                                    var workTimeRelation = new DoctorWorkTimeRelation();
+                                    workTimeRelation.DoctorId = entity.Id;
+                                    workTimeRelation.WorkTimeId = workTimeModel.Id;
+                                    workTimeRelation.CreatedDate = DateTime.Now;
+                                    workTimeRelation.CreatedByUserId = request.CreatedUserId;
+
+                                    db.DoctorWorkTimeRelations.Add(workTimeRelation);
+                                    await db.SaveChangesAsync(cancellationToken);
+
+                                }
+                                else //update
+                                {
+                                    var a = new DateTime();
+                                    var b = new DateTime();
+
+                                    workTime.StartedTime = a.AddHours((double)item.StartedTime.Hour).AddMinutes((double)item.StartedTime.Minute);
+                                    workTime.EndedTime = b.AddHours((double)item.EndedTime.Hour).AddMinutes((double)item.EndedTime.Minute);
+                                    workTime.WeekDay = (WeekDay)Enum.Parse(typeof(WeekDay), item.WeekDay, true);
+                                    await db.SaveChangesAsync(cancellationToken);
+                                }
+                            }
+
+                        }
+
                         
                     }
+
 
                     await db.SaveChangesAsync(cancellationToken);
 
                     return entity.Id;
 
-                }
-                return 0;
+                //return 0;
 
             }
         }
