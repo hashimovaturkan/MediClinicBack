@@ -44,7 +44,8 @@
         ***********************************-->
         <div class="nav-header" style="background-color: #c3cdd3">
             <a asp-controller="dashboard" asp-action="index" asp-area="admin" class="header__top-logo brand-logo">
-                <img src="/uploads/images/logo-dark.png" width="173" height="36" alt="logo">
+                <img class="logo-main" src="/uploads/images/logo-dark.png" width="173" height="36" alt="logo">
+                <img src="/assets/icons/letter_m_PNG79.png"class="logo-M" style="width:100%;">
             </a>
             <div class="nav-control">
                 <div class="hamburger">
@@ -149,11 +150,11 @@
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="./email-inbox.html" class="dropdown-item">
+                                    @*<a href="./email-inbox.html" class="dropdown-item">
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Inbox </span>
-                                    </a>
-                                    <a href="./page-login.html" class="dropdown-item">
+                                    </a>*@
+                                    <a asp-controller="account" asp-action="logout" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -191,7 +192,7 @@
                     {
                         <li>
                             <a aria-expanded="false" asp-controller="roles" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Roles</span>
+                                <i class="icon icon-chart-bar-33"></i><span class="nav-text">Roles</span>
                             </a>
                         </li>
                     }
@@ -207,7 +208,7 @@
                     {
                         <li>
                             <a aria-expanded="false" asp-controller="departments" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Departments</span>
+                                <i class="icon icon-single-copy-06"></i><span class="nav-text">Departments</span>
                             </a>
                         </li>
                     }
@@ -215,7 +216,7 @@
                     {
                         <li>
                             <a aria-expanded="false" asp-controller="appointments" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Appointments</span>
+                                <i class="icon icon-globe-alt"></i><span class="nav-text">Appointments</span>
                             </a>
                         </li>
                     }
@@ -247,7 +248,7 @@
                     {
                         <li>
                             <a aria-expanded="false" asp-controller="blogcomments" asp-action="index">
-                                <i class="icon icon-globe-2"></i><span class="nav-text">Blog Comments</span>
+                                <i class="icon icon-form"></i><span class="nav-text">Blog Comments</span>
                             </a>
                         </li>
                     }
@@ -359,6 +360,32 @@
         };
     </script>
     <script>
+
+        var isExist = $(".hamburger").hasClass("is-active");
+        if (isExist == true) {
+            $(".logo-M").css("display", "inline-block");
+            $(".logo-main").css("display", "none");
+        }
+        else {
+            $(".logo-M").css("display", "none");
+            $(".logo-main").css("display", "inline-block");
+        }
+
+
+        $(".hamburger").click(function () {
+            var isExist = $(this).hasClass("is-active");
+            if (isExist == true) {
+                $(".logo-M").css("display", "none");
+                $(".logo-main").css("display", "inline-block");
+            }
+            else {
+                $(".logo-M").css("display", "inline-block");
+                $(".logo-main").css("display", "none");
+            }
+        })
+
+
+
         function removeEntity(id) {
 
         swal({
