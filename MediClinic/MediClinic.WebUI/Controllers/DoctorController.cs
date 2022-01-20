@@ -6,7 +6,9 @@ using MediClinic.Domain.Models.DataContexts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MediClinic.WebUI.Controllers
@@ -49,6 +51,7 @@ namespace MediClinic.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> DoctorAppointment(DoctorAppointmentCommand command)
         {
+            command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             return Json(response);
         }

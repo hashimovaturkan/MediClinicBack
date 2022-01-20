@@ -167,22 +167,24 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
 
                     if(request.WorkTimeModels != null)
                     {
-                        //silinsin
-                        var IsDeletedTime = await db.WorkTimes.Where(e => !request.WorkTimeModels.Select(k => k.Id).Contains(e.Id) && e.DoctorWorkTimeRelation.Select(k => k.DoctorId).Contains(entity.Id)).ToListAsync();
-                        foreach (var time in IsDeletedTime)
+                        foreach (var time in request.WorkTimeModels)
                         {
-                            var m = await db.DoctorWorkTimeRelations.Where(e => e.DoctorId == entity.Id && e.WorkTimeId == time.Id).FirstOrDefaultAsync();
-                            if (m != null)
+                            if(time.Id != null && time.WeekDay == null)
                             {
-                                m.DeletedByUserId = request.CreatedUserId;
-                                m.DeletedDate = DateTime.Now;
+                                var workTime = db.DoctorWorkTimeRelations.Where(e => e.DoctorId == entity.Id && e.WorkTimeId == time.Id).FirstOrDefault();
+                                   if(workTime != null)
+                                {
+                                    workTime.DeletedByUserId = request.CreatedUserId;
+                                    workTime.DeletedDate = DateTime.Now;
+                                }
                             }
+                           
 
                         }
 
                         foreach (var item in request.WorkTimeModels)
                         {
-                            if (item?.EndedTime != null && item?.StartedTime != null && item.WeekDay != null)
+                            if ( item.WeekDay != null)
                             {
                                 //teze yaransin
                                 var workTime = await db.WorkTimes.FirstOrDefaultAsync(e => e.Id == item.Id);

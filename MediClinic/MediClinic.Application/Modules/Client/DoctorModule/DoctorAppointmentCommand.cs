@@ -20,6 +20,7 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
         public string Message { get; set; }
         public string Date { get; set; }
         public int? DoctorId { get; set; }
+        public int? CreatedUserId { get; set; }
         public class DoctorAppointmentCommandHandler : IRequestHandler<DoctorAppointmentCommand, CommandJsonResponse>
         {
 
@@ -42,6 +43,8 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
                     appointment.Phone = request.Phone;
                     appointment.DoctorId = request.DoctorId;
                     appointment.Date = DateTime.Parse(request.Date);
+                    appointment.CreatedByUserId = request.CreatedUserId;
+                    appointment.CreatedDate = DateTime.Now;
                     await db.Appointments.AddAsync(appointment);
                 }
                 catch (Exception ex)

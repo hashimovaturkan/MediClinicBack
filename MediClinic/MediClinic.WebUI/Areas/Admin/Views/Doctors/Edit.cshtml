@@ -79,7 +79,7 @@
                                     <select asp-for="WorkTimeModels[i].WeekDay" class="form-control" asp-items="ViewBag.WeekDayId"></select>
                                     <input asp-for="WorkTimeModels[i].StartedTime" class="form-control start" />
                                     <input asp-for="WorkTimeModels[i].EndedTime" class="form-control end" />
-                                    <input type="hidden" value="@item.Id" asp-for="WorkTimeModels[c].Id" />
+                                    <input type="hidden" value="@item.Id" asp-for="WorkTimeModels[i].Id" />
                                     <i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i>
                                 </div>
                                 i = i + 1;
@@ -184,7 +184,7 @@
             var c = @i;
             $(".addWeekDay").click(function (e) {
                 e.preventDefault();
-                var a = '<div class="form-group weekDayAdd"><select class="form-control valid" id="WorkTimeModels_' + c + '__WeekDay" name="WorkTimeModels[' + c + '].WeekDay" aria-invalid="false"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><input type="datetime-local" class="form-control start" type="text" id="WorkTimeModels_' + c + '__StartedTime" name="WorkTimeModels[' + c + '].StartedTime"><input type="datetime-local" class="form-control end" type="text" id="WorkTimeModels_' + c + '__EndedTime" name="WorkTimeModels[' + c + '].EndedTime"><i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
+                var a = '<div class="form-group weekDayAdd"><select class="form-control valid" id="WorkTimeModels_' + c + '__WeekDay" name="WorkTimeModels[' + c + '].WeekDay" aria-invalid="false"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><input type="datetime-local" class="form-control start" type="text" id="WorkTimeModels_' + c + '__StartedTime" name="WorkTimeModels[' + c + '].StartedTime"><input type="datetime-local" class="form-control end" type="text" id="WorkTimeModels_' + c + '__EndedTime" name="WorkTimeModels[' + c + '].EndedTime"><input type="hidden" value asp-for="WorkTimeModels[' + c + '].Id"/><i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
                 $("#weekDayBox").append(a);
                 c = c + 1;
                 $(".removeWeek").click(function (e) {

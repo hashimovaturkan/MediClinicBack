@@ -106,7 +106,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             foreach (var item in response.DoctorWorkTimeRelation)
             {
                 var s = new WorkTimeModel();
-                s.Id = item.Id;
+                s.Id = item.WorkTime.Id;
                 s.StartedTime = item.WorkTime.StartedTime;
                 s.EndedTime = item.WorkTime.EndedTime;
                 s.WeekDay = item.WorkTime.WeekDay.ToString();
