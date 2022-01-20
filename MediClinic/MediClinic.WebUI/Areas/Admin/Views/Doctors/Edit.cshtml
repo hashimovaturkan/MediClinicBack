@@ -94,10 +94,11 @@
                     <div>
                         <div id="departmentBox">
                             <label asp-for="DepartmentIds" class="control-label"></label>
+                            <select style="display:none;" class="selectDepartmentIds" asp-items="ViewBag.DepartmentId"></select>
                                 @foreach (var item in Model.DepartmentIds)
                                 {
                                     <div class="form-group departmentIdAdd">
-                                        <select asp-for="DepartmentIds[k]" class="form-control selectDepartmentIds" asp-items="ViewBag.DepartmentId"></select>
+                                        <select asp-for="DepartmentIds[k]" class="form-control selectDepartmentIds-@k" asp-items="ViewBag.DepartmentId"></select>
                                         <i class="fa fa-trash removeDepartment deleteItem" data-toggle="tooltip" title="Delete"></i>
                                     </div>
                                     k = k + 1;
@@ -122,7 +123,7 @@
                                             <option>linkedin</option>
                                             <option>facebook</option>
                                         </select>
-                                        <input asp-for="SocialMediaModels[c].Url" class="form-control" />
+                                        <input asp-for="SocialMediaModels[c].Url" class="form-control urlSocialMedia" />
                                         <input type="hidden" value="@item.Id" asp-for="SocialMediaModels[c].Id" />
                                         <i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i>
                                     </div>
@@ -231,19 +232,19 @@
             var f = @c;
             $(".addMedia").click(function (e) {
                 e.preventDefault();
-                var a = '<div class="form-group socialMediaAdd"><select class="form-control valid" id="SocialMediaModels_' + f + '__Name" name="SocialMediaModels[' + f + '].Name" aria-invalid="false"><option>instagram</option><option>mail</option><option>linkedin</option><option>facebook</option></select ><input class="form-control" type="text" id="SocialMediaModels_' + f + '__Url" name="SocialMediaModels[' + f + '].Url"><i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i></div > ';
+                var a = '<div class="form-group socialMediaAdd"><select class="form-control" id="SocialMediaModels_' + f + '__Name" name="SocialMediaModels[' + f + '].Name"><option>instagram</option><option>mail</option><option>linkedin</option><option>facebook</option></select ><input class="form-control" type="text" id="SocialMediaModels_' + f + '__Url" name="SocialMediaModels[' + f + '].Url"><input type="hidden" value asp-for="SocialMediaModels[' + f + '].Id" /><i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i></div > ';
                 $("#socialMediaBox").append(a);
                 f = f + 1;
                 $(".removeMedia").click(function (e) {
                     $(this).parent(".socialMediaAdd").css("display", "none");
                     $(this).parent(".socialMediaAdd").find("select option:selected").val("");
-                    $(this).parent(".socialMediaAdd").find("input").val("");
+                    $(this).parent(".socialMediaAdd").find("input.urlSocialMedia").val("");
                 })
             })
             $(".removeMedia").click(function (e) {
                 $(this).parent(".socialMediaAdd").css("display", "none");
                 $(this).parent(".socialMediaAdd").find("select option:selected").val("");
-                $(this).parent(".socialMediaAdd").find("input").val("");
+                $(this).parent(".socialMediaAdd").find("input.urlSocialMedia").val("");
             })
         })
     </script>

@@ -126,12 +126,19 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
 
                     if(request.SocialMediaModels != null)
                     {
-                        //silinsin
-                        var IsDeletedMedia = await db.SocialMedia.Where(e => !request.SocialMediaModels.Select(k => k.Id).Contains(e.Id) && e.DoctorId == entity.Id).ToListAsync();
-                        foreach (var media in IsDeletedMedia)
+                        foreach (var m in request.SocialMediaModels)
                         {
-                            media.DeletedByUserId = request.CreatedUserId;
-                            media.DeletedDate = DateTime.Now;
+                            if(m.Id != null && m.Name == null && m.Url == null)
+                            {
+                                var social = db.SocialMedia.Where(e => e.Id == m.Id).FirstOrDefault();
+                                if(social != null)
+                                {
+                                    social.DeletedByUserId = request.CreatedUserId;
+                                    social.DeletedDate = DateTime.Now;
+                                }
+                            }
+                           
+
                         }
 
                         foreach (var media in request.SocialMediaModels)
