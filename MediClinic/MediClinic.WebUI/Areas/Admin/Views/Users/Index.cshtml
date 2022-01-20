@@ -13,11 +13,11 @@
                         <h2><b>Users</b></h2>
                     </div>
                     <div class="col-sm-6">
-                        @*@if (User.HasAccess("admin.users.create"))
-                            {
-                                <a asp-action="Create" asp-controller="PersonalSetting" class="btn btn-success"><i class="fa fa-plus "></i> <span>Add New Size</span></a>
+                        @if (User.HasAccess("admin.users.create"))
+                        {
+                            <a asp-action="Create" asp-controller="users" class="btn btn-success"><i class="fa fa-plus "></i> <span>Add New User</span></a>
 
-                            }*@
+                        }
                         @if (User.HasAccess("admin.users.delete"))
                         {
                             <a id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>

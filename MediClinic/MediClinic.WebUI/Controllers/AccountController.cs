@@ -381,7 +381,9 @@ namespace MediClinic.WebUI.Controllers
                     UserName = user.UserName,
                     Email = user.Email,
                     EmailConfirmed = false,
-                    ImgUrl = "notfoundprofile.png"
+                    ImgUrl = "notfoundprofile.png",
+                    CreatedByUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value),
+                    CreatedDate = DateTime.Now
                 };
 
                 //password 3den yxuari olmalidi

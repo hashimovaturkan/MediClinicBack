@@ -1,4 +1,4 @@
-﻿using MediClinic.Application.Core.Extensions;
+﻿
 using MediClinic.Application.Modules.Admin.UsersModule;
 using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities.Membership;
@@ -11,19 +11,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using MediClinic.Domain.Models.FormModels;
+using System.IO;
+using Microsoft.Extensions.Configuration;
+using MediClinic.Application.Core.Extensions;
 
 namespace MediClinic.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class UsersController : Controller
     {
-        readonly IMediator mediator;
+        readonly UserManager<MediClinicUser> userManager;
+        readonly SignInManager<MediClinicUser> signInManager;
+        readonly RoleManager<MediClinicRole> roleManager;
+        readonly IConfiguration configuration;
         readonly MediClinicDbContext db;
-
-        public UsersController(IMediator mediator, MediClinicDbContext db)
+        readonly IWebHostEnvironment env;
+        readonly IMediator mediator;
+        public UsersController(UserManager<MediClinicUser> userManager,
+                                 SignInManager<MediClinicUser> signInManager,
+                                 RoleManager<MediClinicRole> roleManager,
+                                 IConfiguration configuration,
+                                 MediClinicDbContext db,
+                                 IWebHostEnvironment env,
+                                 IMediator mediator)
         {
-            this.db = db;
+            this.signInManager = signInManager;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.configuration = configuration;
+            this.env = env;
             this.mediator = mediator;
+            this.db = db;
         }
 
         [Authorize(Policy = "admin.users.index")]
@@ -52,7 +73,6 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [Authorize(Policy = "admin.users.create")]
         public async Task<IActionResult> Create()
         {
-            //ViewData["CvTemplateUserId"] = new SelectList(await mediator.Send(new UserChooseQuery()), "Id", "Username" ?? "Email");
             return View();
         }
 
@@ -60,13 +80,130 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.users.create")]
-        public async Task<IActionResult> Create(UserCreateCommand command)
+        public async Task<IActionResult> Create(CreateUserFormModel user)
         {
-            //var response = await mediator.Send(command);
-            //if (response > 0)
-            //    return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                db.Database.BeginTransaction();
+                var username = await userManager.FindByNameAsync(user.UserName);
+                var email = await userManager.FindByEmailAsync(user.Email);
+                if (username != null)
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Your username is already used!"
+                    });
 
-            return View(command);
+                if (email != null)
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Your email is already registered!"
+                    });
+
+                string password = user.Password;
+                var mediClinicUser = new MediClinicUser()
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    EmailConfirmed = false,
+                    PhoneNumber = user.PhoneNumber,
+                    CreatedByUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value),
+                    CreatedDate = DateTime.Now
+            };
+
+
+                if (user.file != null)
+                {
+                    string extension = Path.GetExtension(user.file.FileName);
+                    mediClinicUser.ImgUrl = $"{Guid.NewGuid()}{extension}";
+
+                    string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                           "wwwroot",
+                                                           "uploads",
+                                                           "images",
+                                                           mediClinicUser.ImgUrl);
+
+                    using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+                    {
+                        await user.file.CopyToAsync(stream);
+                    }
+                }
+
+                //password 3den yxuari olmalidi
+                var createdUser = userManager.CreateAsync(mediClinicUser, password).Result;
+
+                if (createdUser.Succeeded)
+                {
+
+                    string token = userManager.GenerateEmailConfirmationTokenAsync(mediClinicUser).Result;
+                    string path = $"{Request.Scheme}://{Request.Host}/email-confirm?email={mediClinicUser.Email}&token={token}";
+                    var sendMail = configuration.SendEmail(user.Email, "MediClinic email confirming", $"Please, use <a href={path}>this link</a> for confirming");
+
+                    if (sendMail == false)
+                    {
+                        db.Database.RollbackTransaction();
+                        return Json(new
+                        {
+                            error = true,
+                            message = "Please, try again"
+                        });
+                    }
+
+                    db.Database.CommitTransaction();
+
+                    if (user.SendMail == true)
+                    {
+                        var mail = configuration.SendEmail(user.Email, "MediClinic information about your username and password.", $"<strong>Your Username </strong>: {user.UserName} ; </br><strong>Your Password </strong>: {user.Password} ;</br> ");
+                        if (mail == false)
+                        {
+                            db.Database.RollbackTransaction();
+                            return Json(new
+                            {
+                                error = true,
+                                message = "Please, try again"
+                            });
+                        }
+
+                        
+                        return Json(new
+                        {
+                            error = false,
+                            message = "Successfully, please check user's email for confirming and information about user's credentials!"
+                        });
+
+                        //db.Database.CommitTransaction();
+
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            error = false,
+                            message = "Successfully, please check user's email for confirming!"
+                        });
+                    }
+
+                    
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Error, please try again!"
+                    });
+                }
+
+            }
+
+            return Json(new
+            {
+                error = true,
+                message = "Incomplete data"
+            });
         }
 
         [Authorize(Policy = "admin.users.edit")]
@@ -298,5 +435,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                 }
             }
         }
+
+        
     }
 }

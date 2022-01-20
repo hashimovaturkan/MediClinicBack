@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace MediClinic.Application.Modules.Admin.UsersModule
 {
@@ -17,10 +19,12 @@ namespace MediClinic.Application.Modules.Admin.UsersModule
         {
             readonly MediClinicDbContext db;
             readonly IActionContextAccessor ctx;
-            public UserUpdateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx)
+            readonly IWebHostEnvironment env;
+            public UserUpdateCommandHandler(MediClinicDbContext db, IActionContextAccessor ctx, IWebHostEnvironment env)
             {
                 this.ctx = ctx;
                 this.db = db;
+                this.env = env;
             }
             public async Task<int> Handle(UserUpdateCommand request, CancellationToken cancellationToken)
             {
@@ -37,6 +41,35 @@ namespace MediClinic.Application.Modules.Admin.UsersModule
                     model.Email = request.Email;
                     model.EmailConfirmed = request.EmailConfirmed;
                     model.PhoneNumber = request.PhoneNumber;
+
+                    if (request.file != null)
+                    {
+                        string extension = Path.GetExtension(request.file.FileName);
+                        request.ImgUrl = $"{Guid.NewGuid()}{extension}";
+
+                        string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                               "wwwroot",
+                                                               "uploads",
+                                                               "images",
+                                                               request.ImgUrl);
+
+                        using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+                        {
+                            await request.file.CopyToAsync(stream);
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(model.ImgUrl))
+                        {
+                            System.IO.File.Delete(Path.Combine(env.ContentRootPath,
+                                                              "wwwroot",
+                                                              "uploads",
+                                                              "images",
+                                                              model.ImgUrl));
+                        }
+
+                        model.ImgUrl = request.ImgUrl;
+
+                    }
 
                     await db.SaveChangesAsync(cancellationToken);
 
