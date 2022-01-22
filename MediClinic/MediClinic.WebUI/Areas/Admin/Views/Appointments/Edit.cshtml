@@ -7,7 +7,7 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-        <h1>PersonalSetting Edit</h1>
+        <h1>Appointment Edit</h1>
         <div class="row">
             <div class="col-md-12">
                 <form asp-action="Edit" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                         <span asp-validation-for="Message" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="DoctorId" class="control-label"></label>
+                        <label asp-for="DoctorId" class="control-label">Doctor</label>
                         <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
                         <span asp-validation-for="DoctorId" class="text-danger"></span>
                     </div>
@@ -43,9 +43,10 @@
                         <span asp-validation-for="Date" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="IsAccepted" class="control-label"></label>
-                        <input asp-for="IsAccepted" class="form-control" />
-                        <span asp-validation-for="IsAccepted" class="text-danger"></span>
+                        <div class="form-check">
+                            <input id="checkbox1" asp-for="IsAccepted" class="form-check-input" type="checkbox">
+                            <label for="checkbox1" class="form-check-label" style="font-size:15px;">This appointment was accepted.</label>
+                        </div>
                     </div>
                     <input type="hidden" asp-for="Id" />
                     <div class="form-group">

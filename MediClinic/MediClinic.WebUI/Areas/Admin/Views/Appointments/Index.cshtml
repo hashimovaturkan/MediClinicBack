@@ -10,14 +10,14 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2><b>Appointment </b></h2>
+                        <h2 class="mb-5"><b>Appointments </b></h2>
                     </div>
                     <div class="col-sm-6">
-                        @if (User.HasAccess("admin.appointments.delete"))
+                        @*@if (User.HasAccess("admin.appointments.delete"))
                         {
-                            <a id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+                            <button id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></button>
 
-                        }
+                        }*@
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                                 <label for="selectAllDelete"></label>
                             </span>
                         </th>
-                        <th>Message</th>
+                        <th>Sender</th>
                         <th></th>
 
                     </tr>
@@ -45,7 +45,7 @@
                                     <label for="checkbox-@item.Id"></label>
                                 </span>
                             </td>
-                            <td>@item.Message</td>
+                            <td>@item.Name</td>
                             <td class="crud-btn">
                                 @if (User.HasAccess("admin.appointments.edit"))
                                 {
@@ -55,6 +55,11 @@
                                 @if (User.HasAccess("admin.appointments.details"))
                                 {
                                     <a asp-action="Details" asp-route-id="@item.Id" class="view"><i class="fa fa-eye" data-toggle="tooltip" title="Details"></i></a>
+
+                                }
+                                @if (User.HasAccess("admin.appointments.send"))
+                                {
+                                    <a class="sendAppointment" style="color:darkgoldenrod; margin-left:1rem; cursor:pointer;" data-id="@item.Id" ><i class="fa fa-send" data-toggle="tooltip" title="Send"></i></a>
 
                                 }
 
@@ -71,6 +76,48 @@
     </div>
 </div>
 
+
+@section addjs{ 
+    <script>
+        $(".sendAppointment").click(function () {
+                swal({
+                title: "Do you want to send this appointment's information to patient's email?",
+                text: "If this appointment is accepted, information will send to patient's email or else information can't be sent!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                buttons:["No","Yes"]
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+
+                    var a = $(".sendAppointment").data("id");
+                    console.log(a);
+
+                    $.ajax({
+                        url: '@Url.Action("Feedback")',
+                        type: "post",
+                        data: { Id: a },
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.error == false) {
+                                swal("Appointment was sent!", "Appointment was sent to patient's mail.", "success");
+                                
+                            } else {
+                                swal("Appointment couldn't be sent", "Either this appointment wasn't accepted or Date/Doctor isn't exist or the error occurred!", "error");
+                                
+                            }
+
+                        },
+                        error: function (response) {
+                            console.log(response)
+                        }
+                    })
+                }
+            });
+        })
+    </script>
+}
 
 
 

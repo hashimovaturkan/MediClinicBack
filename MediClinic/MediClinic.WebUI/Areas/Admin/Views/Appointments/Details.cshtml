@@ -12,7 +12,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2 class="text-center">Appointment <b>Details</b></h2>
+                        <h2 class="text-center mb-5">Appointment <b>Details</b></h2>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
 
             <tbody>
                 <tr>
-                    <th>Name</th>
+                    <th>Sender</th>
                     <td>@Model?.Name</td>
                 </tr>
                 <tr>
@@ -42,7 +42,19 @@
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td>@Model?.Date</td>
+                    <td>@Model?.Date?.ToString("dd MMMM yyyy, HH:mm")</td>
+                </tr>
+                <tr>
+                    <th>Acceptableness</th>
+                    @if (Model.IsAccepted == true)
+                    {
+                        <td>This appointment was accepted</td>
+                    }
+                    else
+                    {
+                        <td>This appointment wasn't accepted</td>
+                    }
+
                 </tr>
             </tbody>
         </table>

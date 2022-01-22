@@ -2,10 +2,12 @@
 using MediClinic.Application.Core.Extensions;
 using MediClinic.Application.Modules.Admin.AppointmentModule;
 using MediClinic.Application.Modules.Admin.DoctorModule;
+using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.FormModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -19,11 +21,13 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
     {
         readonly IMediator mediator;
         readonly IConfiguration configuration;
+        readonly MediClinicDbContext db;
 
-        public AppointmentsController(IMediator mediator,IConfiguration configuration)
+        public AppointmentsController(IMediator mediator,IConfiguration configuration, MediClinicDbContext db)
         {
             this.mediator = mediator;
             this.configuration = configuration;
+            this.db = db;
         }
 
         [Authorize(Policy = "admin.appointments.index")]
@@ -89,31 +93,42 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.appointments.feedback")]
-        public async Task<IActionResult> Feedback(AppointmentFeedback model)
+        [Authorize(Policy = "admin.appointments.feedback")]
+        public async Task<IActionResult> Feedback(int Id)
         {
-            var doctor = await mediator.Send(new DoctorChooseQuery());
-            ViewData["DoctorId"] = doctor.Where(b => b.Id == model.DoctorId).FirstOrDefault(b => b.DeletedByUserId == null).Name;
+            var model = db.Appointments
+                .Include(e => e.Doctor)
+                .FirstOrDefault(e => e.Id == Id && e.DeletedByUserId == null);
 
-            string path = $"{Request.Scheme}://{Request.Host}/email-confirm?email={model.Email}";
-            var sendMail = configuration.SendEmail(model.Email, 
-                "MediClinic Appointment", $"<p style='padding: 32px; border: 1px solid #e6e6e6; font-size: 20px;line-height: 32px; box-shadow: 0 3px 20px rgba(10, 8, 59 , 12%);color:#7e7f8f;'>Dear {model.Name},<br><br>I would like to confirm your appointment with Dr.{doctor} on {model.Date?.ToString("dddd, dd MMMM yyyy")}. If you have any questions or want to request changes, please contact us.<br><br>Regards,<br>MediClinic hospital</p>");
-
-
-            if (sendMail == false)
+            if(model.IsAccepted == true && model.Date != null && model.Doctor != null)
             {
+                string path = $"{Request.Scheme}://{Request.Host}/email-confirm?email={model.Email}";
+                var sendMail = configuration.SendEmail(model.Email,
+                    "MediClinic Appointment", $"<p style='padding: 32px; border: 1px solid #e6e6e6; font-size: 20px;line-height: 32px; box-shadow: 0 3px 20px rgba(10, 8, 59 , 12%);color:#7e7f8f;'>Dear {model.Name},<br><br>I would like to confirm your appointment with Dr.{model.Doctor.Name} on {model.Date?.ToString("dd MMMM yyyy, HH:mm")}. If you have any questions or want to request changes, please contact us.<br><br>Regards,<br>MediClinic hospital</p>");
+
+
+                if (sendMail == false)
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Please, try again"
+                    });
+                }
+
                 return Json(new
                 {
-                    error = true,
-                    message = "Please, try again"
+                    error = false,
+                    message = "Appointment was sent"
                 });
             }
 
             return Json(new
             {
-                error = false,
-                message = "Successfully, Your account is updated, Please check your email for confirming!"
+                error = true,
+                message = "Please, try again"
             });
         }
+
     }
 }
