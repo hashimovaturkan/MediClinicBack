@@ -4,7 +4,6 @@
         ViewData["Title"] = "Details";
     }
 
-
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
@@ -12,7 +11,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2 class="text-center">Doctor <b>Details</b></h2>
+                            <h2 class="text-center mb-4">Doctor <b>Details</b></h2>
                         </div>
                     </div>
                 </div>
@@ -66,22 +65,27 @@
                         <th>Social Media</th>
                         @foreach (var item in Model?.SocialMedia)
                         {
-                            <td>@item.Name --------- @item.Url</td>
+                            <td style="display:block;">
+                                <div>Title: @item.Name</div>
+                                <div>Url: @item.Url</div>
+                            </td>
                         }
                     </tr>
                     <tr>
                         <th>Departments</th>
                         @foreach (var item in Model?.DoctorDepartmentRelation)
                         {
-                            <td>@item.Department.Title</td>
+                            <td style="display:block;">@item.Department.Title</td>
                         }
                     </tr>
                     <tr>
                         <th>Work Time</th>
                         @foreach (var item in Model?.DoctorWorkTimeRelation)
                         {
-                            <td>@item.WorkTime.WeekDay</td>
-                            <td>@item.WorkTime.StartedTime - @item.WorkTime.EndedTime </td>
+                            <td style="display:block;">
+                                <div>WeekDay: @item.WorkTime.WeekDay</div>
+                                <div>Time: @item.WorkTime.StartedTime.ToString("HH:mm") - @item.WorkTime.EndedTime.ToString("HH:mm")</div>
+                            </td>
                         }
                     </tr>
 
@@ -94,8 +98,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 

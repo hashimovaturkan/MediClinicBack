@@ -10,7 +10,7 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-        <h1>PersonalSetting Edit</h1>
+        <h1>Doctor Edit</h1>
         <div class="row">
             <div class="col-md-12">
                 <form asp-action="Edit" enctype="multipart/form-data">
@@ -72,13 +72,15 @@
                     </div>
                     <div>
                         <div id="weekDayBox">
-                            <label asp-for="WorkTimeModels" class="control-label"></label>
+                            <label asp-for="WorkTimeModels" class="control-label mt-5">Work Time</label>
                             @foreach (var item in Model.WorkTimeModels)
                             {
-                                <div class="form-group weekDayAdd">
-                                    <select asp-for="WorkTimeModels[i].WeekDay" class="form-control" asp-items="ViewBag.WeekDayId"></select>
-                                    <input asp-for="WorkTimeModels[i].StartedTime" class="form-control start" />
-                                    <input asp-for="WorkTimeModels[i].EndedTime" class="form-control end" />
+                                <div class="form-group weekDayAdd mb-3">
+                                    <select asp-for="WorkTimeModels[i].WeekDay" class="form-control  mb-2" asp-items="ViewBag.WeekDayId"></select>
+                                    <span style="font-size:12px;">Start Time</span>
+                                    <input asp-for="WorkTimeModels[i].StartedTime" type="time" class="form-control start mt-0" />
+                                    <span style="font-size:12px;">End Time</span>
+                                    <input asp-for="WorkTimeModels[i].EndedTime" type="time" class="form-control end mt-0" />
                                     <input type="hidden" value="@item.Id" asp-for="WorkTimeModels[i].Id" />
                                     <i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i>
                                 </div>
@@ -93,11 +95,11 @@
                     </div>
                     <div>
                         <div id="departmentBox">
-                            <label asp-for="DepartmentIds" class="control-label"></label>
+                            <label asp-for="DepartmentIds" class="control-label mt-5">Departments</label>
                             <select style="display:none;" class="selectDepartmentIds" asp-items="ViewBag.DepartmentId"></select>
                                 @foreach (var item in Model.DepartmentIds)
                                 {
-                                    <div class="form-group departmentIdAdd">
+                                    <div class="form-group departmentIdAdd mb-3">
                                         <select asp-for="DepartmentIds[k]" class="form-control selectDepartmentIds-@k" asp-items="ViewBag.DepartmentId"></select>
                                         <i class="fa fa-trash removeDepartment deleteItem" data-toggle="tooltip" title="Delete"></i>
                                     </div>
@@ -112,10 +114,10 @@
                     </div>
                     <div>
                         <div id="socialMediaBox">
-                            <label asp-for="SocialMediaModels" class="control-label"></label>
+                            <label asp-for="SocialMediaModels" class="control-label mt-5">Social Media</label>
                                 @foreach (var item in Model.SocialMediaModels)
                                 {
-                                    <div class="form-group socialMediaAdd">
+                                    <div class="form-group socialMediaAdd mb-3">
                                         <select asp-for="SocialMediaModels[c].Name" class="form-control">
                                             <option selected value="@item.Name"></option>
                                             <option>instagram</option>
@@ -123,7 +125,7 @@
                                             <option>linkedin</option>
                                             <option>facebook</option>
                                         </select>
-                                        <input asp-for="SocialMediaModels[c].Url" class="form-control urlSocialMedia" />
+                                        <input asp-for="SocialMediaModels[c].Url" class="form-control urlSocialMedia" placeholder="Url"/>
                                         <input type="hidden" value="@item.Id" asp-for="SocialMediaModels[c].Id" />
                                         <i class="fa fa-trash removeMedia deleteItem" data-toggle="tooltip" title="Delete"></i>
                                     </div>
@@ -139,7 +141,7 @@
                     </div>
                     <input type="hidden" asp-for="Id" />
                     <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <input type="submit" value="Save" class="btn btn-primary mt-5" />
                     </div>
                 </form>
             </div>
@@ -158,10 +160,45 @@
     <style>
         .deleteItem {
             color: red;
-            float: right;
+            display: flex;
+            justify-content: flex-end;
             font-size: 1.3rem;
             margin-bottom: 2rem;
             margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .ck-editor p {
+            height: 200px;
+        }
+
+        .addMedia {
+            background-color: #86c6f3;
+        }
+
+        .addDepartment {
+            background-color: #86c6f3;
+        }
+
+        .addWeekDay {
+            background-color: #86c6f3;
+        }
+
+        #socialMediaBox input {
+            margin: 1rem 0;
+        }
+
+        #weekDayBox input {
+            margin: 1rem 0;
+        }
+        .weekDayAdd {
+            padding: 1rem;
+            background-color: #c0d2e1;
+        }
+
+        .socialMediaAdd {
+            padding: 1rem;
+            background-color: #c0d2e1;
         }
     </style>
 
@@ -185,7 +222,7 @@
             var c = @i;
             $(".addWeekDay").click(function (e) {
                 e.preventDefault();
-                var a = '<div class="form-group weekDayAdd"><select class="form-control valid" id="WorkTimeModels_' + c + '__WeekDay" name="WorkTimeModels[' + c + '].WeekDay" aria-invalid="false"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><input type="datetime-local" class="form-control start" type="text" id="WorkTimeModels_' + c + '__StartedTime" name="WorkTimeModels[' + c + '].StartedTime"><input type="datetime-local" class="form-control end" type="text" id="WorkTimeModels_' + c + '__EndedTime" name="WorkTimeModels[' + c + '].EndedTime"><input type="hidden" value asp-for="WorkTimeModels[' + c + '].Id"/><i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
+                var a = '<div class="form-group weekDayAdd"><select class="form-control valid mb-2" id="WorkTimeModels_' + c + '__WeekDay" name="WorkTimeModels[' + c + '].WeekDay" aria-invalid="false"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><span style="font-size:12px;">Start Time</span><input type="time" class="form-control start mt-0" placeholder="Start Time" id="WorkTimeModels_' + c + '__StartedTime" name="WorkTimeModels[' + c + '].StartedTime"><span style="font-size:12px;">End Time</span><input type="time" placeholder="End Time" class="form-control end mt-0" id="WorkTimeModels_' + c + '__EndedTime" name="WorkTimeModels[' + c + '].EndedTime"><i class="fa fa-trash removeWeek deleteItem" data-toggle="tooltip" title="Delete"></i></div>';
                 $("#weekDayBox").append(a);
                 c = c + 1;
                 $(".removeWeek").click(function (e) {
