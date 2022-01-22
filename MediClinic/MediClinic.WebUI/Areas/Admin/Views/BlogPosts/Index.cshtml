@@ -15,12 +15,12 @@
                     <div class="col-sm-6">
                         @if (User.HasAccess("admin.blogposts.create"))
                         {
-                            <a asp-action="Create" class="btn btn-success"><i class="fa fa-plus "></i> <span>Add New Size</span></a>
+                            <a asp-action="Create" class="btn btn-success"><i class="fa fa-plus "></i> <span>Add New Blog</span></a>
 
                         }
                         @if (User.HasAccess("admin.blogposts.delete"))
                         {
-                            <a id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+                            <button id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></button>
 
                         }
                     </div>

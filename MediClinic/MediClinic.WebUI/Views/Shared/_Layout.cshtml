@@ -342,13 +342,13 @@
                                 </div>
                             </li> -->
                                 <li class="menu__list-item">
-                                    <a href="./tariffs.html" class="menu__list-link">About us</a>
+                                    <a class="menu__list-link">About us</a>
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Who We Are</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="whoweare" class="menu__dropdown-link">Who We Are</a></li>
                                             <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our Clinic</a></li>
                                             <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our Services</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Process</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="process" class="menu__dropdown-link">Process</a></li>
                                             <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our Clients</a></li>
                                             <li class="menu__dropdown-item"><a asp-controller="home" asp-action="workhours" class="menu__dropdown-link">Working Hours</a></li>
                                         </ul>
@@ -361,7 +361,7 @@
                             </ul>
                         </nav>
                         <div class="header__user-side">
-                            @if (User.Identity.IsAuthenticated)
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
                             {
                                 <div class="header__user-side-icon">
                                     <span class="header__user-side-profile">
@@ -454,7 +454,7 @@
                         <a href="./index.html" class="header__top-logo--center">
                             <img src="/uploads/images/logo-dark.png" width="173" height="36" alt="logo">
                         </a>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
                         {
 
                             <a class="header__user-account" asp-controller="account" asp-action="profile">

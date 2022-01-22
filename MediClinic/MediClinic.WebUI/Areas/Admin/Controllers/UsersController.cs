@@ -219,6 +219,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
                                    join ur in db.UserRoles
                                    on new { RoleId = r.Id, UserId = response.Id } equals new { ur.RoleId, ur.UserId } into lJoin
                                    from lj in lJoin.DefaultIfEmpty()
+                                   where r.DeletedByUserId == null
                                    select Tuple.Create(r.Id, r.Name, lj != null))
                              .ToListAsync();
 
@@ -436,6 +437,25 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             }
         }
 
-        
+        [HttpPost]
+        [Authorize(Policy = "admin.users.checkusername")]
+        public async Task<IActionResult> CheckUserName(string username)
+        {
+            var name = await userManager.FindByNameAsync(username);
+            if (name != null)
+                return Json(new
+                {
+                    error = true,
+                    message = "Your username is already used!"
+                });
+            else
+            {
+                return Json(new
+                {
+                    error = false
+                });
+            }
+        }
+
     }
 }

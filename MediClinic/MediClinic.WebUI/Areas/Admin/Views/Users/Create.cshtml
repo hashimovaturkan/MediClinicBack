@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Vertical Forms with icon</h4>
+                        <h4 class="card-title">User credentials</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
@@ -33,9 +33,9 @@
                                     <label class="text-label">Username</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                            <span class="input-group-text"> <i class="fa fa-user userIcon"></i> </span>
                                         </div>
-                                        <input type="text" class="form-control" asp-for="UserName" id="val-username1" placeholder="Enter a username..">
+                                        <input type="text" class="form-control" asp-for="UserName" id="val-username" placeholder="Enter a username..">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -44,7 +44,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                         </div>
-                                        <input type="password" class="form-control" id="val-password1" asp-for="Password" placeholder="Choose a safe one..">
+                                        <input type="password" class="form-control" id="val-password" asp-for="Password" placeholder="Choose a safe one..">
                                         <div class="input-group-append show-pass">
                                             <span class="input-group-text">
                                                 <i class="fa fa-eye-slash"></i>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        <div class="form-group row">
+                                        <div class="form-group row ml-0 mr-0">
                                             <label class="col-form-label" for="val-name">
                                                 Name <span class="text-danger">*</span>
                                             </label>
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
-                                        <div class="form-group row">
+                                        <div class="form-group row ml-0 mr-0">
                                             <label class="col-form-label" for="val-surname">
                                                 Surname <span class="text-danger">*</span>
                                             </label>
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
-                                        <div class="form-group row">
+                                        <div class="form-group row ml-0 mr-0">
                                             <label class="col-form-label" for="val-email">
                                                 Email <span class="text-danger">*</span>
                                             </label>
@@ -84,7 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
-                                        <div class="form-group row">
+                                        <div class="form-group row ml-0 mr-0">
                                             <label class="col-form-label" for="val-tel">
                                                 Phone Number
                                             </label>
@@ -94,7 +94,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
-                                        <div class="form-group row">
+                                        <div class="form-group row ml-0 mr-0">
                                             <label class="control-label">
                                                 Image
                                             </label>
@@ -149,47 +149,88 @@
 
 <script>
         $(document).ready(function () {
-         $("#createUserFrm").submit(function (e) {
-                e.preventDefault();
-                if (!$(e.currentTarget).valid())
-                    return;
+             $("#createUserFrm").submit(function (e) {
+                    e.preventDefault();
+                    if (!$(e.currentTarget).valid())
+                        return;
 
-                var frm = new FormData(e.currentTarget);
+                    var frm = new FormData(e.currentTarget);
 
-                $.ajax({
-                    url: '@Url.Action("Create", "Users")',
-                    type: "Post",
-                    data: frm,
-                    contentType: false,
-                    dataType: "json",
-                    processData: false,
-                    beforeSend: function (response) {
-                        console.log("before sending")
-                    },
-                    success: function (response) {
-                        if (response.error == false) {
-                            toastr.success(response.message, "Successfully!")
-                            e.currentTarget.reset();
+                    $.ajax({
+                        url: '@Url.Action("Create", "Users")',
+                        type: "Post",
+                        data: frm,
+                        contentType: false,
+                        dataType: "json",
+                        processData: false,
+                        beforeSend: function (response) {
+                            console.log("before sending")
+                        },
+                        success: function (response) {
+                            if (response.error == false) {
+                                toastr.success(response.message, "Successfully!")
+                                e.currentTarget.reset();
+                            }
+                            else {
+                                toastr.error(response.message, "Error!")
+                            }
+
+                        },
+                        error: function (response) {
+                            toastr.error("Please, try again...", "Error!")
                         }
-                        else {
-                            toastr.error(response.message, "Error!")
-                        }
 
-                    },
-                    error: function (response) {
-                        toastr.error("Please, try again...", "Error!")
-                    }
+                    }).always(function () {
+                        console.log("after sending")
+                    });
 
-                }).always(function () {
-                    console.log("after sending")
+
+                }).validate({
+                    errorClass: "invalid",
+                    validClass: "valid"
                 });
+            $("#val-username").change(function (e) {
+                e.preventDefault();
+                console.log("a")
+                var username = $(this).val();
+                    $.ajax({
+                        url: '@Url.Action("CheckUserName", "Users")',
+                        type: "Post",
+                        data: { username: username },
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: 'json',
+                        beforeSend: function (response) {
+                            console.log("before sending")
+                        },
+                        success: function (response) {
+                            if (response.error == false) {
+                                $(".userIcon").css("color", "#50db3f");
 
+                                
+                            }
+                            else {
+                                $(".userIcon").css("color", "#d12828");
+                            }
 
-            }).validate({
-                errorClass: "invalid",
-                validClass: "valid"
-            });
-    })
+                        },
+                        error: function (response) {
+                            toastr.error("Please, try again...", "Error!")
+                        }
+
+                    }).always(function () {
+                        console.log("after sending")
+                    });
+            })
+            $(".input-group-text").click(function () {
+                var a = $("#val-password").attr("type");
+                if (a == "text") {
+                    $("#val-password").attr("type", "password");
+                }
+                else {
+                    $("#val-password").attr("type", "text");
+                }
+            })
+        })
 </script>
 }
 

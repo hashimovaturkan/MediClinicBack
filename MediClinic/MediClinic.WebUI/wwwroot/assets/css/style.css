@@ -8752,7 +8752,7 @@ i.icon-lg {
 
 .heading__title {
     font-weight: 700;
-    color: #506481;
+    color: #333a44;
     margin-bottom: 0.8rem;
     font-size: 4rem;
     line-height: 5.6rem;
@@ -11924,10 +11924,12 @@ footer {
     background-repeat: no-repeat;
     background-position: center top;
     height: 31rem; }
-  .setting__wrapper {
-    background-color: #c8cbcf;
+.setting__wrapper {
+    background-color: #2f4353;
+    background-image: linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%);
     padding: 3rem;
-    border-radius: 8px; }
+    border-radius: 8px;
+}
 
 @media (max-width: 991.98px) {
   .aside-form {
@@ -12112,8 +12114,9 @@ footer {
 
 .accordion__btn {
     padding: 2rem 2.4rem;
-    background-color: #939393;
     color: #fff;
+    background-color: #b1bfd8;
+    background-image: linear-gradient(315deg, #b1bfd8 0%, #6782b4 74%);
     border-radius: 0.8rem;
     display: flex;
     justify-content: space-between;
@@ -12144,9 +12147,8 @@ footer {
     padding: 2rem 2.4rem 5.8rem;
     line-height: 2.6rem;
     margin-top: 0.8rem;
-    background-color: #777;
+    background-color: #6782b4;
     border-radius: 0.8rem;
-    border: 1px solid #696969;
 }
 
 .accordion__body__header {
@@ -12325,6 +12327,334 @@ footer {
         margin-left: 0%;
     }
 }
+
+@media (max-width: 380px) {
+    .working-hours__opening {
+        font-size: 14px;
+    }
+}
+
+/* prosess */
+.process__img {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.process__info {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.process__wrapper {
+    padding-top: 98px !important;
+    padding-bottom: 37px !important;
+}
+
+    .process__wrapper:not(:last-child) {
+        border-bottom: 1px solid rgb(228, 225, 225);
+    }
+
+    .process__wrapper h6 {
+        font-size: 12px;
+        line-height: 1.66em;
+        font-weight: 500;
+        letter-spacing: .03em;
+        color: #4e6dcc;
+    }
+
+    .process__wrapper h3 {
+        margin: 20px 0;
+        color: #333;
+        font-size: 24px;
+        line-height: 1.58em;
+        font-weight: 500;
+    }
+
+    .process__wrapper p {
+        margin: 10px 0;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 26px;
+        color: #6e6e6e;
+    }
+
+.process__img img {
+    width: 100%;
+}
+
+.process__info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.process-main__wrapper {
+    background-image: url('https://mediclinic.qodeinteractive.com/wp-content/uploads/2017/04/process-parallax-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 40rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about__main {
+    background-image: url("https://mediclinic.qodeinteractive.com/wp-content/uploads/2017/04/who-we-are-parallax-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 40rem;
+}
+
+
+.about-info {
+    margin: 7rem 0;
+    margin-bottom: 0%;
+}
+
+.about-info__wrapper h2 {
+    margin: 20px 0;
+    margin-bottom: 4rem;
+    color: #333;
+    font-size: 50px;
+    line-height: 1.2em;
+    font-weight: 500;
+}
+
+    .about-info__wrapper h2 span {
+        font-weight: 300;
+        display: block;
+    }
+
+.about-info__main-wrapper {
+    display: flex;
+    color: #6e6e6e;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    justify-content: space-between;
+}
+
+.about-info__main i {
+    color: #4f6dcd;
+    font-size: 16px;
+    margin-right: 2rem;
+}
+
+.about-info__main div {
+    display: flex;
+    align-items: center;
+}
+
+.about-info__main p {
+    margin-bottom: 1rem;
+}
+
+
+.about-info__img img {
+    position: relative;
+    top: -60px;
+    left: 20%;
+}
+
+.about-healthy {
+    margin: 7rem 0;
+    margin-bottom: 0;
+    background-color: #fafafa
+}
+
+.about-healthy__wrapper h2 {
+    color: #333;
+    font-size: 50px;
+    line-height: 1.2em;
+    font-weight: 500;
+    font-weight: 300;
+    padding-top: 5rem;
+}
+
+    .about-healthy__wrapper h2 span {
+        display: block;
+        font-weight: 500;
+    }
+
+.about-healthy__wrapper p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: #6e6e6e;
+    margin: 21px 0 0;
+}
+
+.about-healthy__bottom h5 {
+    margin: 25px 0;
+    margin-bottom: 1rem;
+    color: #333;
+    position: relative;
+    z-index: 10;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.66em;
+}
+
+.about-healthy__bottom span {
+    color: #4e6dcc;
+    font-size: 12px;
+    line-height: 1.66em;
+    position: relative;
+    z-index: 10;
+    font-weight: 500;
+    letter-spacing: .03em;
+    display: inline-block;
+    margin-bottom: 11rem;
+}
+
+.about-healthy__bottom {
+    position: relative;
+}
+
+    .about-healthy__bottom img {
+        position: absolute;
+        top: 0%;
+        left: 5%;
+    }
+
+.about-healthy__img img {
+    width: 70%;
+}
+
+.meter {
+    background-image: url(https://mediclinic.qodeinteractive.com/wp-content/uploads/2017/04/h1-parallax-1.jpg);
+    background-position: 50% 34px;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    height: 100%;
+}
+
+.meter-wrapper {
+    margin: 0 auto;
+    padding-top: 145px !important;
+    padding-bottom: 99px !important;
+    display: flex;
+}
+
+.meter__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .meter__item span {
+        font-size: 50px;
+        line-height: 1em;
+        font-weight: 500;
+        vertical-align: middle;
+        height: 1em;
+        transition: opacity .2s ease-in;
+        text-align: center;
+        color: white;
+    }
+
+    .meter__item h6 {
+        margin: 17px 0 0;
+        font-family: Poppins,sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: #ffffff;
+        letter-spacing: .03em;
+        line-height: 1.66em;
+    }
+
+.about-article {
+    margin: 10rem 0;
+}
+
+.about-article__main h3 {
+    font-size: 24px;
+    line-height: 1.58em;
+    font-weight: 600;
+    margin: 20px 0;
+    color: #333;
+}
+
+.about-article__main p {
+    margin: 10px 0;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: #6e6e6e;
+}
+
+.about-article__wrapper {
+    margin: 5rem 2rem;
+}
+
+.about-article__img img {
+    width: 100%;
+}
+
+
+
+@media (max-width: 1400px) {
+    .working-hours__opening {
+        margin: 2rem;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .about-info__img img {
+        top: 0;
+        left: 0;
+    }
+
+    .about-info__wrapper {
+        margin-bottom: 6rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .meter__item span {
+        font-size: 40px;
+    }
+
+    .meter__item h6 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .meter-wrapper {
+        display: inline-block;
+    }
+
+    .meter__item h6 {
+        margin-bottom: 10rem;
+    }
+
+    .about-healthy__wrapper h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 579px) {
+    .about-info__img img {
+        width: 100%;
+    }
+
+    .about-info__main-wrapper {
+        flex-direction: column;
+    }
+
+    .about-info__wrapper h2 {
+        font-size: 40px;
+    }
+}
+
 
 @media (max-width: 380px) {
     .working-hours__opening {

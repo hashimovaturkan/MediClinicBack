@@ -1659,3 +1659,5 @@ C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj
 C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\MediClinic.WebUI.genruntimeconfig.cache
 C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Create.cshtml.g.cs
 C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\EmailConfirm.cshtml.g.cs
+C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\Process.cshtml.g.cs
+C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\WhoWeAre.cshtml.g.cs
