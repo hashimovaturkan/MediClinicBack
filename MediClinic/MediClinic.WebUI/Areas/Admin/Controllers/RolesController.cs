@@ -198,23 +198,23 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         }
 
 
-        //[HttpPost]
-        //[Authorize(Policy = "admin.users.delete")]
-        //public async Task<IActionResult> Delete(UserDeleteCommand command)
-        //{
-        //    command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-        //    var response = await mediator.Send(command);
-        //    return Json(response);
-        //}
+        [HttpPost]
+        [Authorize(Policy = "admin.roles.delete")]
+        public async Task<IActionResult> Delete(RoleDeleteCommand command)
+        {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var response = await mediator.Send(command);
+            return Json(response);
+        }
 
-        //[HttpPost]
-        //[Authorize(Policy = "admin.users.deleteAll")]
-        //public async Task<IActionResult> DeleteAll(UserDeleteAllCommand command)
-        //{
-        //    command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-        //    var response = await mediator.Send(command);
-        //    return Json(response);
-        //}
+        [HttpPost]
+        [Authorize(Policy = "admin.users.deleteAll")]
+        public async Task<IActionResult> DeleteAll(RoleDeleteAllCommand command)
+        {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var response = await mediator.Send(command);
+            return Json(response);
+        }
 
         //[HttpPost]
         //[Authorize(Policy = "admin.users.setrole")]
