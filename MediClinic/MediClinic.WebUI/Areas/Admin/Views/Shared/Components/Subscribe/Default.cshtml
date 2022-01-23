@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Subscribe>
+@{
+    ViewData["Title"] = "Default";
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li class="media dropdown-item">
+        <span class="success"><i class="ti-user"></i></span>
+        <div class="media-body">
+            <a href="#">
+                <p>
+                    <strong>@item.Email</strong> has added a <strong>subscriber</strong> Successfully
+                </p>
+            </a>
+        </div>
+        <span class="notify-time">@item.EmailConfirmedDate?.ToString("HH:ss")</span>
+    </li>
+}

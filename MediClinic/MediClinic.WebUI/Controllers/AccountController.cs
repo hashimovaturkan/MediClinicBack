@@ -382,7 +382,7 @@ namespace MediClinic.WebUI.Controllers
                     Email = user.Email,
                     EmailConfirmed = false,
                     ImgUrl = "notfoundprofile.png",
-                    CreatedByUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value),
+                    //CreatedByUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value),
                     CreatedDate = DateTime.Now
                 };
 
