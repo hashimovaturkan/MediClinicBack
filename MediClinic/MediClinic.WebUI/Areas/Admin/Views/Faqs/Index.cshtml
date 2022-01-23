@@ -10,7 +10,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2><b>Personal Setting </b></h2>
+                        <h2 class="mb-5"><b>FAQs </b></h2>
                     </div>
                     <div class="col-sm-6">
                         @if (User.HasAccess("admin.faq.create"))
@@ -20,7 +20,7 @@
                         }
                         @if (User.HasAccess("admin.faq.delete"))
                         {
-                            <a id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+                            <button id="deleteAll" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></button>
 
                         }
                     </div>

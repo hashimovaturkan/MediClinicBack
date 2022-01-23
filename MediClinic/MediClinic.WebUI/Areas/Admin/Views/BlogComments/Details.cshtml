@@ -12,7 +12,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2 class="text-center">Blog Comment <b>Details</b></h2>
+                        <h2 class="text-center mb-5">Blog Comment <b>Details</b></h2>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 {
                     <tr>
                         <th>Parent Comment</th>
-                        <td>@Model?.Parent?.Comment</td>
+                        <td style="display:block;">@Model?.Parent?.Comment</td>
                     </tr>
                 }
                 <tr>
@@ -41,7 +41,7 @@
                         <th>Children Comment</th>
                         @foreach (var item in Model.Children)
                         {
-                            <td>@item.Comment</td>
+                            <td style="display:block;">@item.Comment</td>
                         })
 
                     </tr>
