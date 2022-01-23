@@ -11,6 +11,7 @@ namespace MediClinic.Application.Modules.Admin.ContactPostModule
     public class ContactPostViewModel
     {
         public int InboxCount { get; set; }
+        public int TrashCount { get; set; }
         public int UnreadCount { get; set; }
         public int SentCount { get; set; }
         public PagedViewModel<ContactPost> ContactPagedViewModel { get; set; }

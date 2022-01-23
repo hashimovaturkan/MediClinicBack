@@ -20,8 +20,8 @@ namespace MediClinic.Domain.Models.Entities
         public virtual ICollection<BlogPost> BlogPosts { get; set; }
         public virtual ICollection<DoctorWorkTimeRelation> DoctorWorkTimeRelation { get; set; }
         public virtual ICollection<SocialMedia> SocialMedia { get; set; }
-        public int? UserId { get; set; }
-        public virtual MediClinicUser User { get; set; }
+        //public int? UserId { get; set; }
+        //public virtual MediClinicUser User { get; set; }
 
     }
 }

@@ -3,6 +3,7 @@ using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities;
 using MediClinic.Domain.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace MediClinic.Application.Modules.Client.BlogPostModule
                 var model = db.BlogPosts
                     .Include(e => e.BlogCategory)
                     .Include(e => e.Doctor)
-                    .Where(s => s.DeletedByUserId == null)
+                    .Where(s => s.DeletedByUserId == null && s.PublishedDate <= DateTime.Now)
                     .OrderByDescending(e => e.CreatedDate)
                     .AsQueryable();
 

@@ -33,7 +33,7 @@ namespace MediClinic.Application.Modules.Client.BlogPostModule
                 var model = await db.BlogPosts
                     .Include(e => e.BlogCategory)
                     .Include(e => e.Doctor)
-                    .Where(s => s.DeletedByUserId == null && s.Id != request.Id && s.BlogCategoryId == request.CategoryId)
+                    .Where(s => s.DeletedByUserId == null && s.Id != request.Id && s.BlogCategoryId == request.CategoryId && s.PublishedDate <= DateTime.Now)
                     .OrderByDescending(o => o.Id)
                     .Take(3)
                     .ToListAsync();

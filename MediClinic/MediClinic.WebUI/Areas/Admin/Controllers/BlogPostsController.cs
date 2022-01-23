@@ -90,6 +90,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             model.Title = response.Title;
             model.Content = response.Content;
             model.PublishedDate = response.PublishedDate;
+            model.Description = response.Description;
             model.ImgUrl = response.ImgUrl;
             model.BlogCategoryId = response.BlogCategoryId;
             model.DoctorId = response.DoctorId;

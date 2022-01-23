@@ -26,9 +26,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="email-left-box px-0 mb-5">
-                            <div class="p-0">
+                            @*<div class="p-0">
                                 <a href="email-compose.html" class="btn btn-primary btn-block">Compose</a>
-                            </div>
+                            </div>*@
                             <div class="mail-list mt-4">
                                 <a class="list-group-item active" asp-action="index">
                                     <i class="fa fa-inbox font-18 align-middle mr-2"></i> Inbox <span class="badge badge-primary badge-sm float-right">@Model.InboxCount</span>
@@ -39,13 +39,14 @@
                                 <a asp-route-typeId="1" class="list-group-item">
                                     <i class="fa fa-star font-18 align-middle mr-2"></i>Unread <span class="badge badge-danger text-white badge-sm float-right">@Model.UnreadCount</span>
                                 </a>
-                                <a href="javascript:void()" class="list-group-item">
+                                @*<a href="javascript:void()" class="list-group-item">
                                     <i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i>Draft
-                                </a><a asp-route-typeId="5" class="list-group-item">
-                                    <i class="fa fa-trash font-18 align-middle mr-2"></i>Trash
+                                </a>*@
+                                <a asp-route-typeId="5" class="list-group-item">
+                                    <i class="fa fa-trash font-18 align-middle mr-2"></i>Trash <span class="badge badge-danger text-white badge-sm float-right" style="background-color:transparent; color:dimgrey;">@Model.TrashCount</span>
                                 </a>
                             </div>
-                            <div class="intro-title d-flex justify-content-between">
+                            @*<div class="intro-title d-flex justify-content-between">
                                 <h5>Categories</h5>
                                 <i class="icon-arrow-down" aria-hidden="true"></i>
                             </div>
@@ -74,19 +75,19 @@
                                     </span>
                                     Social
                                 </a>
-                            </div>
+                            </div>*@
                         </div>
-                        <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
-                            <div role="toolbar" class="toolbar ml-4 ml-sm-0">
-                                <div class="btn-group mb-4">
+                        <div class="email-right-box ml-0 ml-sm-12 ml-sm-0">
+                            <div role="toolbar" class="toolbar ml-12 ml-sm-0">
+                                <div class="btn-group mb-12">
                                     <span class="btn btn-dark ml-3">
-                                        <input type="checkbox">
+                                        <input type="checkbox" id="selectAllDelete">
                                     </span>
-                                    <button class="btn btn-dark" type="button">
+                                    <button class="btn btn-dark reload-page" type="button">
                                         <i class="ti-reload"></i>
                                     </button>
                                 </div>
-                                <div class="btn-group mb-4">
+                                @*<div class="btn-group mb-4">
                                     <button aria-expanded="false" data-toggle="dropdown" class="btn btn-dark dropdown-toggle" type="button">
                                         More <span class="caret"></span>
                                     </button>
@@ -94,6 +95,12 @@
                                         <a href="javascript: void(0);" class="dropdown-item">Mark as Unread</a> <a href="javascript: void(0);" class="dropdown-item">Add to Tasks</a>
                                         <a href="javascript: void(0);" class="dropdown-item">Add Star</a> <a href="javascript: void(0);" class="dropdown-item">Mute</a>
                                     </div>
+                                </div>*@
+                                <div class="btn-group">
+                                    <button id="deleteAll" class="btn btn-danger" type="button">
+                                        <i class="fa fa-trash"></i>
+                                        <span>Delete</span>
+                                    </button>
                                 </div>
                             </div>
                             <div class="email-list mt-4">
@@ -101,16 +108,22 @@
                                 {
                                     var condition = item.AnswerByUserId == null;
                                     <div class="message @(condition ? "unread bold" : "")"
-                                         @(condition ? "ondblclick=openMessage(this)" : "") data-id="@item.Id">
-                                        <div>
+                                         @(condition ? "ondblclick=openMessage(this)" : "ondblclick=openMessageOnlyRead(this)") data-id="@item.Id"
+                                         id="@item.Id" style="cursor:pointer;">
+                                        <div class="message__wrapper">
                                             <div class="d-flex message-single">
                                                 <div class="custom-control custom-checkbox pl-4">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" id="checkbox-@item.Id" data-checkbox="@item.Id" class="selectDelete">
                                                 </div>
                                                 <div class="ml-2">
                                                     <button class="border-0 bg-transparent align-middle p-0">
                                                         <i class="fa fa-star" aria-hidden="true"></i>
                                                     </button>
+                                                </div>
+                                                <div class="ml-2">
+                                                    <a role="button"  class="border-0 bg-transparent align-middle p-0 button button__link">
+                                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <a class="col-mail col-mail-2">
@@ -121,32 +134,42 @@
                                                 <p class="reply-text">@(condition ? "Waiting for Answer" : "Replied")</p>
                                             </a>
                                         </div>
-                                    </div>
-                                }
-                                @*<div class="message unread">
-                                        <div>
-                                            <div class="d-flex message-single">
-                                                <div class="custom-control custom-checkbox pl-4">
-                                                    <input type="checkbox">
+                                        <div class="modal-wrapper" style="opacity:0; visibility:hidden">
+                                            <div class="modal-body card" style="opacity:0; visibility:hidden">
+                                                <div class="modal-header">
+                                                    <h2 class="heading">@item.Name</h2>
+                                                    <a href="#!" role="button" class="close" aria-label="close this modal">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
                                                 </div>
-                                                <div class="ml-2">
-                                                    <button class="border-0 bg-transparent align-middle p-0">
-                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
+                                                <p style="padding:1rem;"><span style="color:dodgerblue;">Question: </span>@item.Comment</p>
+                                                @if (item.Answer != null)
+                                                {
+                                                    <p style="margin:1rem 0;"><span style="color:dodgerblue;">Answer:</span> @item.Answer</p>
+                                                    <p style="font-size:12px;"><span  style="color:dodgerblue;">Date :</span> @item.AnswerDate?.ToString("dd.mm.yyyy")</p>
+
+                                                }
                                             </div>
-                                            <a href="email-read.html" class="col-mail col-mail-2">
-                                                <div class="subject">Ingredia Nutrisha, A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture</div>
-                                                <div class="date">11:49 am</div>
-                                            </a>
+                                            <a href="#!" class="outside-trigger"></a>
                                         </div>
-                                    </div>*@
+                                        @*<div class="modal-wrapper-answer" style="opacity:0; visibility:hidden">
+                                            <div class="modal-body-answer card" style="opacity:0; visibility:hidden">
+                                                <div class="modal-header">
+                                                    <h2 class="heading">Answer</h2>
+                                                    <a href="#!" role="button" class="close" aria-label="close this modal">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </div>
+                                                <p style="padding:1rem;">@item?.Answer</p>
+                                            </div>
+                                            <a href="#!" class="outside-trigger"></a>
+                                        </div>*@
+                                    </div>
+                                
+                                }
                             </div>
                             <!-- panel -->
                             <div class="row mt-4 m-4 mx-sm-4">
-                                @*<div class="col-7">
-                                        <div class="text-left">1 - 20 of 568</div>
-                                    </div>*@
                                 <div class="col-5">
                                     <div class="btn-group float-right">
                                         <div class="pagination-wrapper">
@@ -165,52 +188,369 @@
 </div>
 
 
-@section addjs{
-    <script>
+    @section addjs{
+        <script>
         function openMessage(element) {
             let id = $(element).data("id");
             window.location.href = `@Url.Action("Details", "ContactPosts")/${id}`;
         }
 
+        //function openMessageOnlyRead(element) {
+        //    console.log(element)
+        //    console.log($(element).find(".modal-wrapper-answer"))
+        //    $(element).find(".modal-wrapper-answer").css("opacity", "1");
+        //    $(element).find(".modal-wrapper-answer").css("visibility", "visible");
+        //    $(element).find(".modal-body-answer").css("opacity", "1");
+        //    $(element).find(".modal-body-answer").css("visibility", "visible");
+        //}
+
         $(document).ready(() => {
+            $(".list-group-item").each(function (index, item) {
+                $(this).removeClass("active");
+            })
             $(`a[href="${window.location.pathname + window.location.search}"]`).addClass('active');
         })
 
+        $(".reload-page").click(function () {
+            location.reload();
+        })
 
-    </script>
+        //add storage
+        document.addEventListener("DOMContentLoaded",()=>{
+        const products = document.querySelectorAll(".message");
+        let selectedProducts = [];
+        products.forEach((product)=>{
+        const icon = product.querySelector(".fa-star");
+        icon.addEventListener("click",()=>{
+            let storedProducts = localStorage.getItem("storedProducts");
+            let haveOrNot=false;
+            if(storedProducts){
+                let newStoredProducts=[];
+                storedProducts = storedProducts.split("},");
+                storedProducts.forEach((product,index)=>{
 
-}
+                    if(index!==storedProducts.length-1){
+                        newStoredProducts.push(JSON.parse(product+"}"));
+                    }
+                    else{
+                        newStoredProducts.push(JSON.parse(product));
+                    }
+                })
+                storedProducts=newStoredProducts;
+                haveOrNot = storedProducts.some((selectedItem)=>{
+                    const productId = product.getAttribute("id");
+                    return productId===selectedItem.id;
+                });
 
-@section addcss{
-    <style>
-        .email-list .message .col-mail-2 .date {
-            width: 9rem;
-        }
 
-        .email-list .message .col-mail-2 .subject {
-            right: 10.5rem;
-        }
 
-        .mail-name {
-            display: inline-block;
-        }
+            }
 
-        .comment {
-            margin: 0;
-        }
+            if(haveOrNot){
 
-        .reply-text {
-            margin: 0;
-            color: rosybrown;
-        }
+                // localStorage.setItem("color","white")
+                // icon.style.fill=localStorage.getItem("color");
+                const productId = product.getAttribute("id");
+                selectedProducts=[];
+                storedProducts.forEach((product)=>{
+                    if(productId!==product.id){
+                        selectedProducts.push(JSON.stringify(product));
+                    }
+                })
+                storedProducts=selectedProducts;
 
-        .email-list .message {
-            height: 100px;
-        }
+                // selectedProducts.forEach((product)=>{
+                //     const findProduct = document.getElementById(`${product.id}`).querySelector(".product__icon");
+                //     findProduct.getElementsByClassName.fill="white";
+                // })
 
-        .bold {
-            font-weight: bold;
-        }
-    </style>
-}
+                localStorage.setItem("storedProducts",storedProducts.toString());
+            }
+            else{
+                // localStorage.setItem("color","red")
+                // icon.style.fill=localStorage.getItem("color");
+                const productId = product.getAttribute("id");
+                const obj={};
+                //const productPrice = product.querySelector(".product__price").textContent;
+                //const productName = product.querySelector(".product__name").textContent;
+                //const productYear = product.querySelector(".product__year").textContent;
+                //const productMotor = product.querySelector(".product__motor").textContent;
+                //const productKm = product.querySelector(".product__km").textContent;
+                //const productBottom = product.querySelector(".product__buttoms").textContent;
+                //const productImgUrl = product.querySelector(".product__img").getAttribute("src");
+                //const productBarter = product.querySelector(".product__barter");
+                //const productCredit = product.querySelector(".product__credit");
+                //const productSalon = product.querySelector(".product__salon");
+                obj.id=productId;
+                //obj.price=productPrice;
+                //obj.name=productName;
+                //obj.year=productYear;
+                //obj.motor=productMotor;
+                //obj.km=productKm;
+                //obj.bottom=productBottom;
+                //obj.imgUrl=productImgUrl;
+                //obj.barter=productBarter?"yes":"no";
+                //obj.credit=productCredit?"yes":"no";
+                //obj.salon=productSalon?"yes":"no";
+
+                if(storedProducts){
+                    selectedProducts=[];
+                    storedProducts.forEach((product)=>{
+                        selectedProducts.push(JSON.stringify(product));
+                    })
+                    selectedProducts.push(JSON.stringify(obj));
+                    localStorage.setItem("storedProducts",selectedProducts.toString());
+                }
+                else{
+                    selectedProducts.push(JSON.stringify(obj));
+                    localStorage.setItem("storedProducts",selectedProducts.toString());
+                }
+
+            }
+
+
+
+
+        })
+    })
+
+})
+
+        //get storage and star
+        document.addEventListener("DOMContentLoaded", () => {
+            const box = document.querySelector(".product");
+            let storedProducts = localStorage.getItem("storedProducts");
+
+            if (storedProducts) {
+                let newStoredProducts = [];
+                storedProducts = storedProducts.split("},");
+                storedProducts.forEach((product, index) => {
+                    if (index !== storedProducts.length - 1) {
+                        newStoredProducts.push(JSON.parse(product + "}"));
+                    }
+                    else {
+                        newStoredProducts.push(JSON.parse(product));
+                    }
+                })
+                storedProducts = newStoredProducts;
+                console.log(storedProducts);
+                @*$.ajax({
+                        url: '@Url.Action("StaredMessage")',
+                        type: "post",
+                        data: { messages: storedProducts },
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.error == false) {
+                                swal("Deleted!", "File has been deleted.", "success");
+                                window.location.reload();
+                            } else {
+                                swal("Error", "File couldn't be deleted", "error");
+                                console.log("no")
+                            }
+
+                        },
+                        error: function (response) {
+                            console.log(response)
+                        }
+                    })*@
+                storedProducts.forEach((product) => {
+                    //const productBox = document.createElement("div");
+                    //productBox.classList.add("product__box");
+                    //productBox.setAttribute("id", `${product.id}`);
+                    $(".message").each(function (index, item) {
+                        if ($(this).attr("id") == product.id) {
+                            /*$(this).find(".fa-star").css("color", "yellow");*/
+                            $(this).find(".fa-star").addClass("fa");
+                            $(this).find(".fa-star").addClass("fa-star");
+                            $(this).find(".fa-star").addClass("yellow");
+                        }
+                    })
+
+
+
+                })
+
+            }
+
+
+
+        })
+
+        $(".fa-star").click(function () {
+            if ($(this).hasClass("yellow") == true) {
+                console.log("a")
+                $(this).addClass("fa");
+                $(this).addClass("fa-star");
+                $(this).removeClass("yellow");
+            }
+            else {
+                console.log("b")
+                $(this).addClass("fa");
+                $(this).addClass("fa-star");
+                $(this).addClass("yellow");
+            }
+        })
+
+            //modal
+            $(".button__link").click(function () {
+                $(this).closest(".message").find(".modal-wrapper").css("opacity", "1");
+                $(this).closest(".message").find(".modal-wrapper").css("visibility", "visible");
+                $(this).closest(".message").find(".modal-body").css("opacity", "1");
+                $(this).closest(".message").find(".modal-body").css("visibility", "visible");
+            })
+
+            $(".fa-close").click(function () {
+                $(this).closest(".modal-wrapper").css("opacity", "0");
+                $(this).closest(".modal-wrapper").css("visibility", "hidden");
+                $(this).closest(".modal-body").css("opacity", "0");
+                $(this).closest(".modal-body").css("visibility", "hidden");
+                $(this).closest(".modal-wrapper-answer").css("opacity", "0");
+                $(this).closest(".modal-wrapper-asnwer").css("visibility", "hidden");
+                $(this).closest(".modal-body-answer").css("opacity", "0");
+                $(this).closest(".modal-body-answer").css("visibility", "hidden");
+            })
+
+        </script>
+
+    }
+
+    @section addcss{
+        <style>
+            .email-list .message .col-mail-2 .date {
+                width: 9rem;
+            }
+
+            .email-list .message .col-mail-2 .subject {
+                right: 10.5rem;
+            }
+
+            .mail-name {
+                display: inline-block;
+            }
+
+            .comment {
+                margin: 0;
+            }
+
+            .reply-text {
+                margin: 0;
+                color: rosybrown;
+            }
+
+            .email-list .message {
+                height: 100px;
+            }
+
+            .bold {
+                font-weight: bold;
+            }
+
+            .yellow {
+                color: yellow !important;
+            }
+
+            .fa-close {
+                position: absolute;
+                top: 12px;
+            }
+
+            .modal-header {
+                align-items: baseline;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .close {
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                height: 16px;
+                text-decoration: none;
+                width: 16px;
+            }
+            .close svg
+            {
+                width: 16px;
+            }
+
+
+
+            .modal-wrapper {
+                align-items: center;
+                background: rgba(0, 0, 0, 0.7);
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                left: 0;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 999;
+            }
+
+            .modal-wrapper-answer {
+                align-items: center;
+                background: rgba(0, 0, 0, 0.7);
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                left: 0;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 999;
+            }
+
+            #modal {
+                opacity: 0;
+                visibility: hidden;
+            }
+            #modal:target {
+                opacity: 1;
+                visibility: visible;
+            }
+            #modal:target .modal-body {
+                opacity: 1;
+                transform: translateY(1);
+            }
+
+            
+
+            .modal-body {
+                max-width: 500px;
+                opacity: 0;
+                transform: translateY(-100px);
+                width: 100%;
+                z-index: 1;
+            }
+
+            .modal-body-answer {
+                max-width: 500px;
+                opacity: 0;
+                transform: translateY(-100px);
+                width: 100%;
+                padding:1rem;
+                z-index: 1;
+            }
+
+            
+
+            .outside-trigger {
+                bottom: 0;
+                cursor: default;
+                left: 0;
+                position: fixed;
+                right: 0;
+                top: 0;
+            }
+
+            .button__link {
+                text-decoration: none;
+            }
+
+            
+        </style>
+    }
 

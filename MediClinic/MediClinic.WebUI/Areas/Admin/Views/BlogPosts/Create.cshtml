@@ -7,7 +7,7 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-        <h1>Create PersonalSetting</h1>
+        <h1 class="mb-4">Create Blog</h1>
         <div class="row">
             <div class="col-md-12">
                 <form asp-action="Create" enctype="multipart/form-data">
@@ -28,7 +28,7 @@
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="PublishedDate" class="control-label"></label>
+                        <label asp-for="PublishedDate" class="control-label">Published Date</label>
                         <input asp-for="PublishedDate" class="form-control" />
                         <span asp-validation-for="PublishedDate" class="text-danger"></span>
                     </div>
@@ -43,11 +43,11 @@
                         <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="BlogCategoryId" class="control-label"></label>
+                        <label asp-for="BlogCategoryId" class="control-label">Blog Category</label>
                         <select asp-for="BlogCategoryId" class="form-control" asp-items="ViewBag.BlogCategoryId"></select>
                     </div>
                     <div class="form-group">
-                        <label asp-for="DoctorId" class="control-label"></label>
+                        <label asp-for="DoctorId" class="control-label">Doctor</label>
                         <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.BlogDoctorId"></select>
                     </div>
                     @*<div class="form-group ">
@@ -61,7 +61,7 @@
                         <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
                     </div>*@
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <button type="submit" class="btn btn-success mt-5">Create</button>
                     </div>
                 </form>
             </div>
@@ -78,6 +78,11 @@
 @section addcss{
 
     <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
+    <style>
+        .ck-editor p {
+            height: 200px;
+        }
+    </style>
 }
 
 @section addjs{

@@ -96,9 +96,9 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
         [Authorize(Policy = "admin.appointments.feedback")]
         public async Task<IActionResult> Feedback(int Id)
         {
-            var model = db.Appointments
+            var model =await db.Appointments
                 .Include(e => e.Doctor)
-                .FirstOrDefault(e => e.Id == Id && e.DeletedByUserId == null);
+                .FirstOrDefaultAsync(e => e.Id == Id && e.DeletedByUserId == null);
 
             if(model.IsAccepted == true && model.Date != null && model.Doctor != null)
             {

@@ -27,7 +27,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="email-left-box generic-width px-0 mb-5">
+                        @*<div class="email-left-box generic-width px-0 mb-5">
                             <div class="p-0">
                                 <a href="email-compose.html" class="btn btn-primary btn-block">Compose</a>
                             </div>
@@ -76,8 +76,8 @@
                                     Social
                                 </a>
                             </div>
-                        </div>
-                        <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
+                        </div>*@
+                        <div class="ml-0 ml-sm-4 ml-sm-0">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="right-box-padding">
@@ -85,7 +85,7 @@
                                             <div class="media pt-3">
                                                 <div class="media-body">
                                                     <h5 class="text-primary">@Model.Email</h5>
-                                                    <p class="mb-0">@Model.CreatedDate.ToString("MMM d, YYYY")</p>
+                                                    <p class="mb-0">@Model.CreatedDate.ToString("MMM d, yyyy")</p>
                                                 </div>
                                                 <a href="javascript:void()" class="text-muted ">
                                                     <i class="fa fa-reply"></i>
@@ -100,17 +100,17 @@
                                             <hr>
                                             <div class="media mb-4 mt-5">
                                                 <div class="media-body">
-                                                    <span class="pull-right">@Model.CreatedDate.ToString("MMM d, YYYY")</span>
+                                                    <span class="pull-right">@Model.CreatedDate.ToString("MMM d, yyyy")</span>
                                                 </div>
                                             </div>
                                             <div class="read-content-body">
                                                 <p>Comment</p>
                                                 <p class="bold">@Model.Comment</p>
-                                                <h5 class="pt-3">@Model.Name</h5>
+                                                <h5 class="pt-3">By : @Model.Name</h5>
                                                 <hr>
                                             </div>
                                             <form class="form-group pt-3" method="POST" asp-controller="contactposts" asp-action="answer">
-                                                <textarea @(Model.AnswerDate != null ? "disable" : "") name="Answer" class="w-100" id="write-email" cols="30" rows="5" style="color:black;"></textarea>
+                                                <textarea @(Model.AnswerDate != null ? "disable" : "") name="Answer" class="w-100" id="write-email" cols="30" rows="5" style="color: black; background-color: rgba(189,189,189 , 0.3); resize:none;"></textarea>
                                                 <span asp-validation-for="Answer"></span>
                                                 <input type="hidden" asp-for="@Model.Id" />
                                                 @if (Model.AnswerDate == null)

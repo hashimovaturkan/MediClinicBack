@@ -34,8 +34,9 @@ namespace MediClinic.Application.Modules.Admin.ContactPostModule
                 model.InboxCount = query.Count();
                 model.UnreadCount = query.Where(q => q.AnswerByUserId == null).Count();
                 model.SentCount = query.Where(q => q.AnswerByUserId != null).Count();
+                model.TrashCount = query.Where(q => q.DeletedByUserId != null).Count();
 
-                if(request.typeId != null)
+                if (request.typeId != null)
                 {
                     switch (request.typeId)
                     {
@@ -44,6 +45,9 @@ namespace MediClinic.Application.Modules.Admin.ContactPostModule
                             break;
                         case 2:
                             query = query.Where(q => q.AnswerByUserId != null);
+                            break;
+                        case 5:
+                            query = query.Where(q => q.DeletedByUserId != null);
                             break;
                         default:
                             break;

@@ -12,7 +12,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2 class="text-center">AcademicBacGround <b>Details</b></h2>
+                        <h2 class="text-center mb-5">Blog <b>Details</b></h2>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <th>PublishedDate</th>
-                    <td>@Model?.PublishedDate</td>
+                    <td>@Model?.PublishedDate?.ToString("MM/dd/yyyy HH:mm")</td>
                 </tr>
                 <tr>
                     <th>Author (Doctor)</th>

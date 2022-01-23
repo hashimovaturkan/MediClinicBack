@@ -60,5 +60,36 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             return Redirect(nameof(Index));
         }
 
+        [HttpPost]
+        [Authorize(Policy = "admin.contactposts.delete")]
+        public async Task<IActionResult> Delete(ContactPostDeleteCommand command)
+        {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var response = await mediator.Send(command);
+            return Json(response);
+        }
+
+        [HttpPost]
+        [Authorize(Policy = "admin.contactposts.deleteAll")]
+        public async Task<IActionResult> DeleteAll(ContactPostDeleteAllCommand command)
+        {
+            command.DeletedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var response = await mediator.Send(command);
+            return Json(response);
+        }
+
+        //[HttpPost]
+        //[Authorize(Policy = "admin.contactposts.staredmessage")]
+        //public async Task<IActionResult> StaredMessage(int[] messages)
+        //{
+        //    //model.AnswerUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        //    //var response = await mediator.Send(model);
+
+        //    //if (response == null)
+        //    //    return NotFound();
+
+        //    return Redirect(nameof(Index));
+        //}
+
     }
 }
