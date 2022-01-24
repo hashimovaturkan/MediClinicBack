@@ -209,6 +209,29 @@ registerModalOpenBtn?.addEventListener("click",function(e){
 })
 
 
+//forgotpassword
+const forgotPasswordModal = document.querySelector(".forgotpassword__wrapper");
+const forgotPasswordModalCloseBtn = document.querySelector(".forgotpassword__form-close");
+const forgotPasswordModalOpenBtn = document.querySelector(".makeForgotPasswordModal");
+forgotPasswordModalCloseBtn?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    forgotPasswordModal.style.opacity = "0";
+    forgotPasswordModal.style.visibility = "hidden";
+    document.querySelectorAll(".appointment-modal__input").forEach(function (item) {
+        item.value = "";
+    })
+})
+forgotPasswordModalOpenBtn?.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    forgotPasswordModal.style.opacity = "1";
+    forgotPasswordModal.style.visibility = "visible";
+    loginModal.style.opacity = "0";
+    loginModal.style.visibility = "hidden";
+})
+
+
 //lang
 const lang = document.querySelector(".header__lang");
 const langDropdown =document.querySelector(".header__lang__list");

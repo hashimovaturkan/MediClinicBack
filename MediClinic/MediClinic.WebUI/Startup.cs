@@ -45,6 +45,7 @@ namespace MediClinic.WebUI
                     cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 );
 
+
             services.AddDbContext<MediClinicDbContext>(cfg => {
                 cfg.UseSqlServer(configuration.GetConnectionString("cString"));  
             }, ServiceLifetime.Scoped);

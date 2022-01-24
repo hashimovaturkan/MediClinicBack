@@ -1664,3 +1664,4 @@ C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj
 C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Components\Subscribe\Default.cshtml.g.cs
 C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\OurClients.cshtml.g.cs
 C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Home\OurServices.cshtml.g.cs
+C:\Users\HP\Desktop\MainMediclinc\MediClinicBack\MediClinic\MediClinic.WebUI\obj\Debug\net5.0\Razor\Views\Account\ResetPassword.cshtml.g.cs

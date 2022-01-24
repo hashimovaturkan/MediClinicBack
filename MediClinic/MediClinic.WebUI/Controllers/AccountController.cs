@@ -480,5 +480,119 @@ namespace MediClinic.WebUI.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string Email)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(Email);
+                if (user == null)
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Your email isn't exist!"
+                    });
+                }
+
+                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+
+                var callback = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email }, Request.Scheme);
+                //var message = new Message(new string[] { user.Email }, "Reset password token", callback, null);
+
+                db.Database.BeginTransaction();
+                
+
+                //string token = userManager.GenerateEmailConfirmationTokenAsync(mediClinicUser).Result;
+                //string path = $"{Request.Scheme}://{Request.Host}/email-confirm?email={mediClinicUser.Email}&token={token}";
+                var sendMail = configuration.SendEmail(user.Email, "MediClinic email confirming", $"Please, use <a href={callback}>this link</a> for reseting your password");
+
+                if (sendMail == false)
+                {
+                    db.Database.RollbackTransaction();
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Please, try again"
+                    });
+                }
+
+                db.Database.CommitTransaction();
+
+
+                return Json(new
+                {
+                    error = false,
+                    message = "Successfully, please check your email!"
+                });
+                
+
+            }
+
+            return Json(new
+            {
+                error = true,
+                message = "Incomplete data"
+            });
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(string token, string email)
+        {
+            var model = new ResetPasswordModel { Token = token, Email = email };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel resetPasswordModel)
+        {
+            if (!ModelState.IsValid)
+                return View(resetPasswordModel);
+
+            var user = await userManager.FindByEmailAsync(resetPasswordModel.Email);
+            if (user == null)
+                return Json(new
+                {
+                    error = true,
+                    message = "Error! Please, try again.."
+                });
+
+            if (!await userManager.IsInRoleAsync(user, "User"))
+                return Json(new
+                {
+                    error = true,
+                    message = "This user isn't exist.."
+                });
+
+
+            if(resetPasswordModel.Password != resetPasswordModel.ConfirmPassword)
+                return Json(new
+                {
+                    error = true,
+                    message = "Please, try again.."
+                });
+
+            var resetPassResult = await userManager.ResetPasswordAsync(user, resetPasswordModel.Token, resetPasswordModel.Password);
+            if (!resetPassResult.Succeeded)
+            {
+                foreach (var error in resetPassResult.Errors)
+                {
+                    ModelState.TryAddModelError(error.Code, error.Description);
+                }
+
+                return Json(new
+                {
+                    error = true,
+                    message = "Error! Please, try again.."
+                });
+            }
+
+            return Json(new
+            {
+                error = false,
+                message = "Successfully! Your password was changed.."
+            });
+        }
     }
 }

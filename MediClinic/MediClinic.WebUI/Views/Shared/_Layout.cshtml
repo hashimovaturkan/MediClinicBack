@@ -193,6 +193,32 @@
         </div>
         @await Component.InvokeAsync("Login")
         @await Component.InvokeAsync("Register")
+        <div class="forgotpassword__wrapper">
+            <div class="login">
+                <div class="appointment-modal__form-wrapper">
+                    <div class="appointment-modal__title-box">
+                        <h4>Forgot Password</h4>
+                        <div class="appointment-modal__title-text">
+                            If you forgot your password, we can send url to your email and you can change your password, when you use this url.
+                        </div>
+                    </div>
+                    <form class="appointment-modal__form" id="forgotpasswordfrm">
+                        <div class="row">
+                            <label class="text-danger label-validation">@ViewBag.Message</label>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                                <input type="email" class="appointment-modal__input" name="Email" placeholder="Your E-mail"
+                                       data-rule-required="true" data-msg-required="Please, enter your email">
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 appointment-modal__row">
+                                <button class="btn btn--black btn--login" style="border:none">Submit now</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <a href="#" class="forgotpassword__form-close"></a>
+            </div>
+        </div>
         <div class="search__wrapper">
             <div class="search">
                 <div class="search__form-wrapper">
@@ -425,19 +451,19 @@
                                 </ul>
                             </div>
                             <!-- <a href="#" class="header__user-side-icon">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span class="header__user-side-circle">
-                                    <span class="header__user-side-count">2</span>
-                                </span>
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="header__user-side-circle">
+                                <span class="header__user-side-count">2</span>
+                            </span>
 
-                            </a> -->
+                        </a> -->
 
                             <a href="#" class="header__user-side-icon header__search header__search-1">
                                 <i class="fa fa-search"></i>
                             </a>
                             <!-- <a href="#" class="header__user-side-icon">
-                                    <i class="fa fa-bars"></i>
-                                </a> -->
+                                <i class="fa fa-bars"></i>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -793,6 +819,95 @@
             });
     })
 
+    //forgotPassword
+    $(document).ready(function () {
+        $("#forgotpasswordfrm").submit(function (e) {
+            console.log("a")
+            e.preventDefault();
+            if (!$(e.currentTarget).valid())
+                return;
+
+            var frm = new FormData(e.currentTarget);
+
+            $.ajax({
+                url: '@Url.Action("ForgotPassword", "Account")',
+                type: "Post",
+                data: frm,
+                contentType: false,
+                dataType: "json",
+                processData: false,
+                beforeSend: function (response) {
+                    console.log("before sending")
+                },
+                success: function (response) {
+                    if (response.error == false) {
+                        toastr.success(response.message, "Successfully!")
+                    }
+                    else {
+                        toastr.error(response.message, "Error!")
+                    }
+
+                },
+                error: function (response) {
+                    toastr.error("Please, try again...", "Error!")
+                }
+
+            }).always(function () {
+                console.log("after sending")
+            });
+
+
+        }).validate({
+            errorClass: "invalid",
+            validClass: "valid"
+        });
+})
+
+    //resetPassword
+    $(document).ready(function () {
+        $("#resetpasswordfrm").submit(function (e) {
+            e.preventDefault();
+            if (!$(e.currentTarget).valid())
+                return;
+            console.log("a")
+            var frm = new FormData(e.currentTarget);
+
+            $.ajax({
+                url: '@Url.Action("ResetPassword", "Account")',
+                type: "Post",
+                data: frm,
+                contentType: false,
+                dataType: "json",
+                processData: false,
+                beforeSend: function (response) {
+                    console.log("before sending")
+                },
+                success: function (response) {
+                    if (response.error == false) {
+                        //toastr.success(response.message, "Successfully!")
+                        e.currentTarget.reset();
+                        window.location.pathname = "/home";
+                    }
+                    else {
+                        toastr.error(response.message, "Error!")
+                    }
+
+                },
+                error: function (response) {
+                    console.log(response)
+                    toastr.error("Please, try again...", "Error!")
+                }
+
+            }).always(function () {
+                console.log("after sending")
+            });
+
+
+        }).validate({
+            errorClass: "invalid",
+            validClass: "valid"
+        });
+})
     </script>
 </body>
 </html>
