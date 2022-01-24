@@ -252,5 +252,15 @@ namespace MediClinic.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult OurServices()
+        {
+            return View();
+        }
+
+        public IActionResult OurClients()
+        {
+            return View();
+        }
     }
 }

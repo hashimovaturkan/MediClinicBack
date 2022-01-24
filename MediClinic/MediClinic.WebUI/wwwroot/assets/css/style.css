@@ -12661,3 +12661,295 @@ footer {
         font-size: 14px;
     }
 }
+
+.services__main {
+    background-image: url("https://mediclinic.qodeinteractive.com/wp-content/uploads/2017/04/services-paralax-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 40rem;
+}
+
+.services {
+    margin: 8rem 0;
+}
+
+.services__title {
+    padding: 0px 15% 76px;
+}
+
+    .services__title h2 {
+        color: #333;
+        font-size: 50px;
+        line-height: 1.2em;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+    }
+
+    .services__title h4 {
+        display: block;
+        margin: 21px 0 0;
+        font-size: 21px;
+        line-height: 1.8em;
+        font-weight: 300;
+        text-align: center;
+        color: #333;
+    }
+
+.services__box {
+    margin: 2rem 0;
+}
+
+    .services__box:hover img {
+        transform: scale(0);
+    }
+
+    .services__box:hover span {
+        opacity: 1;
+        transform: translate(-50%,-50%);
+    }
+
+.services__img-box {
+    width: 188px;
+    height: 188px;
+    position: relative;
+    border: 2px solid #b9b9b9;
+    border-radius: 50%;
+    background: 0 0;
+    margin: 0 auto;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.services__img-circle {
+    text-align: center;
+}
+
+.services__img-box img {
+    transform: scale(1);
+    -moz-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+.services__img-circle {
+    text-align: center;
+    display: inline-block;
+}
+
+.services__img-box span {
+    opacity: 0;
+    font-size: 55px;
+    font-family: Poppins,sans-serif;
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    top: 53%;
+    transform: translate(-50%,200%);
+    -moz-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+.services__text h5 {
+    color: #333;
+    text-align: center;
+    margin: 43px 0 12px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.66em;
+}
+
+.services__text p {
+    margin: 10px 0;
+    text-align: center;
+    padding: 0 23px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: #6e6e6e;
+}
+
+.services__about-text {
+    margin-bottom: 3rem;
+}
+
+.services__about {
+    background-color: #fafafa;
+    padding: 0 16rem;
+    padding-top: 100px !important;
+    padding-bottom: 49px !important;
+}
+
+.services__about-text h2 {
+    color: #333;
+    font-size: 50px;
+    line-height: 1.2em;
+    font-weight: 500;
+}
+
+.services__about-text span {
+    display: block;
+    font-weight: 600;
+}
+
+.services__about-text p {
+    margin: 21px 0 0;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: #6e6e6e;
+}
+
+.services__about img {
+    width: 100%;
+}
+
+.services__addition {
+    padding: 0 16rem;
+    padding-top: 68px !important;
+    padding-bottom: 16rem !important;
+}
+
+    .services__addition h3 {
+        margin: 20px 0;
+        color: #333;
+        font-size: 24px;
+        line-height: 1.58em;
+        font-weight: 600;
+    }
+
+    .services__addition p {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 26px;
+        color: #6e6e6e;
+    }
+
+.services__addition-wrapper {
+    padding: 2rem 4rem;
+}
+
+@media (max-width: 992px) {
+    .services__wrapper h2 {
+        font-size: 33px;
+    }
+
+    .services__title {
+        padding: 0px 0 76px;
+    }
+
+    .services__about-text h2 {
+        font-size: 35px;
+    }
+
+    .services__about {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .services__addition {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+.clients__main {
+    background-image: url("https://mediclinic.qodeinteractive.com/wp-content/uploads/2017/04/client-title-img-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 40rem;
+}
+
+.our-clients__box {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: #6e6e6e;
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 0 0 #dadada;
+}
+
+.client-4 {
+    box-shadow: 0 1px 0 0 #dadada;
+}
+
+.client-8 {
+    box-shadow: 0 0px 0 0 #dadada;
+}
+
+.client-5 {
+    box-shadow: 1px 0px 0 0 #dadada;
+}
+
+.client-6 {
+    box-shadow: 1px 0px 0 0 #dadada;
+}
+
+.client-7 {
+    box-shadow: 1px 0px 0 0 #dadada;
+}
+
+
+
+.our-clients {
+    margin: 16rem 10rem;
+}
+/* .client-1{
+  box-shadow: 1px 0px 0 0 #dadada;
+}
+
+.client-5{
+  box-shadow: 1px 0px 0 0 #dadada;
+} */
+
+@media (max-width: 992px) {
+    .client-2 {
+        box-shadow: 0 1px 0 0 #dadada;
+    }
+
+    .client-5 {
+        box-shadow: 1px 1px 0 0 #dadada;
+    }
+
+    .client-6 {
+        box-shadow: 0 1px 0 0 #dadada;
+    }
+
+    .client-7 {
+        box-shadow: 1px 0px 0 0px #dadada;
+    }
+
+    .client-8 {
+        box-shadow: 0 0px 0 0 #dadada;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .client-1 {
+        box-shadow: 0 1px 0 0 #dadada;
+    }
+
+    .our-clients {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .client-3 {
+        box-shadow: 0 1px 0 0 #dadada;
+    }
+
+    .client-5 {
+        box-shadow: 0 1px 0 0 #dadada;
+    }
+
+    .client-7 {
+        box-shadow: 0 1px 0 0 #dadada;
+    }
+}

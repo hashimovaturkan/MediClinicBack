@@ -229,7 +229,7 @@
                     <li class="menu-side__list-item"><a asp-controller="department" asp-action="index" class="menu-side__list-link">Departments</a></li>
                     <li class="menu-side__list-item"><a asp-controller="Blog" asp-action="Index" class="menu-side__list-link">Blogs</a></li>
                     <li class="menu-side__list-item"><a asp-controller="home" asp-action="faq" class="menu-side__list-link">FAQ</a></li>
-                    <li class="menu-side__list-item"><a href="./contact.html" class="menu-side__list-link">About us</a></li>
+                    <li class="menu-side__list-item"><a asp-controller="home" asp-action="whoweare" class="menu-side__list-link">About us</a></li>
                     <li class="menu-side__list-item"><a asp-controller="home" asp-action="contact" class="menu-side__list-link">Contact us</a></li>
                 </ul>
             </nav>
@@ -306,7 +306,7 @@
                         <nav class="menu">
                             <ul class="menu__list">
                                 <li class="menu__list-item">
-                                    <a href="./about.html" class="menu__list-link">Home</a>
+                                    <a href="#" class="menu__list-link">Home</a>
                                 </li>
                                 <li class="menu__list-item">
                                     <a class="menu__list-link">Doctors</a>
@@ -346,10 +346,9 @@
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
                                             <li class="menu__dropdown-item"><a asp-controller="home" asp-action="whoweare" class="menu__dropdown-link">Who We Are</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our Clinic</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our Services</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="ourservices" class="menu__dropdown-link">Our Services</a></li>
                                             <li class="menu__dropdown-item"><a asp-controller="home" asp-action="process" class="menu__dropdown-link">Process</a></li>
-                                            <li class="menu__dropdown-item"><a href="./tariffs.html" class="menu__dropdown-link">Our Clients</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="ourclients" class="menu__dropdown-link">Our Clients</a></li>
                                             <li class="menu__dropdown-item"><a asp-controller="home" asp-action="workhours" class="menu__dropdown-link">Working Hours</a></li>
                                         </ul>
                                     </div>

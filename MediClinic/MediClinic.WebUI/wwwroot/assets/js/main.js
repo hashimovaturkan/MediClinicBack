@@ -135,7 +135,7 @@ timetableLink?.forEach(function(item){
 //appointment-modal
 const appointmentModal = document.querySelector(".appointment-modal__wrapper");
 const appointmentModalCloseBtn = document.querySelector(".appointment-modal__form-close");
-const appointmentModalOpenBtn = document.querySelector(".makeAppointmentModal");
+const appointmentModalOpenBtn = document.querySelectorAll(".makeAppointmentModal");
 
 appointmentModalCloseBtn?.addEventListener("click",function(e){
   e.preventDefault();
@@ -146,12 +146,21 @@ appointmentModalCloseBtn?.addEventListener("click",function(e){
         item.value = "";
     })
 })
-appointmentModalOpenBtn?.addEventListener("click",function(e){
-  e.preventDefault();
-  e.stopPropagation();
-  appointmentModal.style.opacity="1";
-  appointmentModal.style.visibility="visible";
+
+appointmentModalOpenBtn?.forEach(function (item, index) {
+    item.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        appointmentModal.style.opacity = "1";
+        appointmentModal.style.visibility = "visible";
+    })
 })
+//appointmentModalOpenBtn?.addEventListener("click",function(e){
+//  e.preventDefault();
+//  e.stopPropagation();
+//  appointmentModal.style.opacity="1";
+//  appointmentModal.style.visibility="visible";
+//})
 
 //login
 const loginModal = document.querySelector(".login__wrapper");
@@ -562,32 +571,34 @@ faqButtons?.forEach((btn) => {
 var counted = 0;
 $(window).scroll(function () {
 
-    var oTop = $('.meter').offset().top - window.innerHeight;
-    if (counted == 0 && $(window).scrollTop() > oTop) {
-        $('.count').each(function () {
-            var $this = $(this),
-                countTo = $this.attr('data-count');
-            $({
-                countNum: $this.text()
-            }).animate({
-                countNum: countTo
-            },
+    if ($('.meter') != undefined) {
+        var oTop = $('.meter')?.offset()?.top - window.innerHeight;
+        if (counted == 0 && $(window).scrollTop() > oTop) {
+            $('.count')?.each(function () {
+                var $this = $(this),
+                    countTo = $this.attr('data-count');
+                $({
+                    countNum: $this.text()
+                }).animate({
+                    countNum: countTo
+                },
 
-                {
+                    {
 
-                    duration: 2000,
-                    easing: 'swing',
-                    step: function () {
-                        $this.text(Math.floor(this.countNum));
-                    },
-                    complete: function () {
-                        $this.text(this.countNum);
-                        //alert('finished');
-                    }
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function () {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function () {
+                            $this.text(this.countNum);
+                            //alert('finished');
+                        }
 
-                });
-        });
-        counted = 1;
+                    });
+            });
+            counted = 1;
+        }
     }
 
 });
