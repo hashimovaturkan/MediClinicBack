@@ -27,8 +27,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
             }
             public async Task<int> Handle(FaqCreateCommand request, CancellationToken cancellationToken)
             {
-                if (ctx.IsModelStateValid())
-                {
+                
                     var faq =new Faq();
                     faq.Answer = request.Answer;
                     faq.Question = request.Question;
@@ -39,8 +38,7 @@ namespace MediClinic.Application.Modules.Admin.FaqsModule
                     await db.SaveChangesAsync(cancellationToken);
 
                     return faq.Id;
-                }
-                return 0;
+                
             }
         }
     }
