@@ -290,31 +290,31 @@ blogCategories?.forEach(function(item){
 
 //blog category filter
 
-  var $filters = $('[data-filter]'),
-    $boxes = $('[data-target]');
+  //var $filters = $('[data-filter]'),
+  //  $boxes = $('[data-target]');
 
-  $filters.on('click', function(e) {
-    e.preventDefault();
-    var $this = $(this);
+  //$filters.on('click', function(e) {
+  //  e.preventDefault();
+  //  var $this = $(this);
     
-    $filters.removeClass('active');
-    $this.addClass('active');
+  //  $filters.removeClass('active');
+  //  $this.addClass('active');
 
-    var $filterBoxes = $this.attr('data-filter');
+  //  var $filterBoxes = $this.attr('data-filter');
 
-    if ($filterBoxes == 'all') {
-      $boxes.removeClass('is-animated')
-        .fadeOut().promise().done(function() {
-          $boxes.addClass('is-animated').fadeIn();
-        });
-    } else {
-      $boxes.removeClass('is-animated')
-        .fadeOut().promise().done(function() {
-          $boxes.filter('[data-target = "' + $filterBoxes + '"]')
-            .addClass('is-animated').fadeIn();
-        });
-    }
-  });
+  //  if ($filterBoxes == 'all') {
+  //    $boxes.removeClass('is-animated')
+  //      .fadeOut().promise().done(function() {
+  //        $boxes.addClass('is-animated').fadeIn();
+  //      });
+  //  } else {
+  //    $boxes.removeClass('is-animated')
+  //      .fadeOut().promise().done(function() {
+  //        $boxes.filter('[data-target = "' + $filterBoxes + '"]')
+  //          .addClass('is-animated').fadeIn();
+  //      });
+  //  }
+  //});
 
 
   //loading

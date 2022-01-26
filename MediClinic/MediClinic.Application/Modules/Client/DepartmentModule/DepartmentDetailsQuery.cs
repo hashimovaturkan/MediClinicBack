@@ -28,7 +28,7 @@ namespace MediClinic.Application.Modules.Client.DepartmentModule
 
                 var model = await db.Departments
                     .Include(e => e.DoctorDepartmentRelation)
-                    .ThenInclude(e => e.Doctor).ThenInclude(e => e.SocialMedia)
+                    .ThenInclude(e => e.Doctor).ThenInclude(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
                     .FirstOrDefaultAsync(s => s.DeletedByUserId == null && s.Id == request.Id);
 
                 return model;

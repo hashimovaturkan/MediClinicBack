@@ -236,6 +236,7 @@ namespace MediClinic.WebUI.Areas.Admin.Controllers
             model.Email = response.Email;
             model.EmailConfirmed = response.EmailConfirmed;
             model.PhoneNumber = response.PhoneNumber;
+            model.ImgUrl = response.ImgUrl;
             model.CreatedUserId = response.CreatedByUserId;
             return View(model);
         }

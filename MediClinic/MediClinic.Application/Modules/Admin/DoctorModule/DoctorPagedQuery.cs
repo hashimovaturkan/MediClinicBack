@@ -31,7 +31,7 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     .ThenInclude(e => e.Department)
                     .Include(e => e.DoctorWorkTimeRelation)
                     .ThenInclude(e => e.WorkTime)
-                    .Include(e => e.SocialMedia)
+                    .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
                     .Where(s => s.DeletedByUserId == null).AsQueryable();
 
                 return new PagedViewModel<Doctor>(model, request.PageIndex, request.PageSize);

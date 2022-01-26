@@ -8592,11 +8592,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
       "projectName": "MediClinic.WebUI",
-      "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
+      "projectPath": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\MediClinic.WebUI.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.WebUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8613,14 +8613,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj"
+            "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj": {
+              "projectPath": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Application\\MediClinic.Application.csproj"
             },
-            "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj"
+            "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj": {
+              "projectPath": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj"
             },
-            "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj"
+            "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj": {
+              "projectPath": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Resources\\MediClinic.Resources.csproj"
             }
           }
         }

@@ -51,7 +51,8 @@ namespace MediClinic.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> DoctorAppointment(DoctorAppointmentCommand command)
         {
-            command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if(User.FindFirst(ClaimTypes.NameIdentifier).Value != null)
+                    command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             return Json(response);
         }
@@ -66,7 +67,7 @@ namespace MediClinic.WebUI.Controllers
                 StreamReader str = new StreamReader(FilePath);
                 string MailText = str.ReadToEnd();
                 str.Close();
-                var sendMail = configuration.SendEmail(Email, "MediClinic email confirming", MailText);
+                var sendMail = configuration.SendEmail(Email, "Need Help Finding The Right Doctor? Look at this brochure", MailText);
 
                 if (sendMail == false)
                 {

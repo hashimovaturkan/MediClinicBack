@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AV1MLG8CvBbepGpo5VhnDTaI2nwP9+DXVROiYv7PltS1sTGKAYHhSp0J+Km3MhjoYQlSbFOZnCRIcSvEeKq+lw==",
+  "dgSpecHash": "QPRZkrtza4rXpwNs+AgMNDIdPE5qiILq/t8jxXU15ujcwE5LSlILTMMq9bJg3YbJQz6ywsRNpSdLq4jKhJv/Bg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Desktop\\MainMediclinc\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Downloads\\MediMain\\MediMain\\MediClinicBack\\MediClinic\\MediClinic.Domain\\MediClinic.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

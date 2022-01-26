@@ -9237,6 +9237,7 @@ i.icon-lg {
     width: 100%;
     border-radius: 50%;
     cursor: pointer;
+    object-fit: cover;
     /*height:220px;*/
     padding: 0 2rem; }
   .team-cart__image-wrapper {
@@ -10570,11 +10571,19 @@ footer {
   .team-cart:hover .team-cart__icon-wrapper {
     transform: scale(6) translate(-31%, 41%); }
   .appointment::before {
-    top: -1%; } }
+    top: -1%; } 
+  .team-cart__image {
+        height: 296px;
+    }
+}
 
 @media (max-width: 1600px) {
   .team-cart:hover .team-cart__icon-wrapper {
-    transform: scale(5) translate(-33%, 40%); } }
+    transform: scale(5) translate(-33%, 40%); }
+    .team-cart__image {
+        height: 249px;
+    }
+}
 
 @media (max-width: 1400px) {
   .team-cart:hover .team-cart__icon-wrapper {

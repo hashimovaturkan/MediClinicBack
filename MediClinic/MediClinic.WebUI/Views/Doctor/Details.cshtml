@@ -6,7 +6,7 @@
 <section class="doctor-details-main">
     <div class="custom-container-fluid p-0 main__img">
         <div class="main__wrapper">
-            <h1 class="main__title">Jordan Kelley</h1>
+            <h1 class="main__title">@Model.Name</h1>
             <span class="main__subtitle">Home  /  @Model.Name</span>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-12 col-md-4 col-lg-4 col-sm-12 col-xl-4">
                 <div class="doctor-details__info">
-                    <img src="~/uploads/images/team-member-2.jpg" class="doctor-details__img" alt="doctor">
+                    <img src="~/uploads/images/@Model.ImgUrl" class="doctor-details__img" alt="doctor">
                     <h3 class="doctor-details__name">@Model.Name</h3>
                     @foreach (var item in Model.DoctorDepartmentRelation)
                     {

@@ -22,7 +22,7 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
             {
                 var model =await db.Doctors
                     .Include(e => e.DoctorDepartmentRelation).ThenInclude(e => e.Department)
-                    .Include(e => e.SocialMedia)
+                    .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
                     .Where(e => e.DeletedByUserId == null)
                     .ToListAsync();
 
