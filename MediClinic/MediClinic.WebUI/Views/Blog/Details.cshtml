@@ -211,7 +211,7 @@
                         <ul>
                             @foreach (var item in Model.BlogCategories)
                             {
-                                <li><a>@item.Name</a>(@item.BlogPosts.Count())</li>
+                                <li><a asp-action="Index" asp-route-id="@item.Id">@item.Name</a>(@item.BlogPosts.Count())</li>
                             }
                             @*<li><a href="#">Laboratory</a>(3)</li>
                             <li><a href="#">Research</a>(7)</li>*@
