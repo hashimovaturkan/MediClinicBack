@@ -70,6 +70,7 @@ namespace MediClinic.Application.Modules.Client.BlogPostModule
 
                 //var a = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+
                 var commentModel = new BlogPostComment
                 {
                     ParentId = request.commentId,

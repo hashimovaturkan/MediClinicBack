@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using MediClinic.Application.Modules.Admin.BlogCategoryModule;
 using MediClinic.Application.Modules.Client.BlogPostModule;
+using MediClinic.Domain.Models.DataContexts;
+using MediClinic.Domain.Models.Entities.Membership;
 using MediClinic.Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,10 +16,14 @@ namespace MediClinic.WebUI.Controllers
     public class BlogController : Controller
     {
         readonly IMediator mediator;
+        readonly MediClinicDbContext db;
+        readonly UserManager<MediClinicUser> userManager;
 
-        public BlogController(IMediator mediator)
+        public BlogController(IMediator mediator, UserManager<MediClinicUser> userManager, MediClinicDbContext db)
         {
             this.mediator = mediator;
+            this.userManager = userManager;
+            this.db = db;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Index(BlogPostListQuery query)
@@ -55,6 +62,16 @@ namespace MediClinic.WebUI.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 query.id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                if (! User.IsInRole("User"))
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "You can't post a comment without login!"
+                    });
+                }
+                
                 var response = await mediator.Send(query);
                 if (response.BlogPostComment == null && response.CommandJsonResponse.Error == true)
                 {

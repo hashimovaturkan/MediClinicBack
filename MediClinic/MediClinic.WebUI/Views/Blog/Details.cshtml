@@ -317,13 +317,14 @@
                             if (toCommentId != undefined) {
                                 $(response.responseText).insertAfter($(`#c-${toCommentId}`));
 
-                                $(".response").css("display", "block");;
+                                $(".response").css("display", "block");
                                 e.currentTarget.reset();
                                 location.reload();
                             }
                             else {
                                 $(".blog-details__comments-main").append($(response.responseText));
-                                location.reload();
+                                toastr.error(response.message, 'Error!');
+                                /*location.reload();*/
                             }
                             location.reload();
                         }
