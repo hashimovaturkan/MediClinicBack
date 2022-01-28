@@ -151,3 +151,5 @@ C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Res
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.dll
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\ref\MediClinic.Resources.dll
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.pdb
+C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Home.HomeResource.resources
+C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Resources\obj\Debug\net5.0\MediClinic.Resources.User.Home.HomeResource.en.resources

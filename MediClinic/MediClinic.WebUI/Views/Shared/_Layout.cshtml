@@ -335,31 +335,31 @@
                         <nav class="menu">
                             <ul class="menu__list">
                                 <li class="menu__list-item">
-                                    <a asp-controller="home" asp-action="index" class="menu__list-link">Home</a>
+                                    <a asp-controller="home" asp-action="index" class="menu__list-link">@HomeResource.Home</a>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a class="menu__list-link">Doctors</a>
+                                    <a class="menu__list-link">@HomeResource.Doctors</a>
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
-                                            <li class="menu__dropdown-item"><a asp-controller="doctor" asp-action="index" class="menu__dropdown-link">Our doctors</a></li>
-                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="timetable" class="menu__dropdown-link">Timetable</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="doctor" asp-action="index" class="menu__dropdown-link">@HomeResource.OurDoctors</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="timetable" class="menu__dropdown-link">@HomeResource.TimeTable</a></li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a class="menu__list-link">Departments</a>
+                                    <a class="menu__list-link">@HomeResource.Departments</a>
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
-                                            <li class="menu__dropdown-item"><a asp-controller="department" asp-action="index" class="menu__dropdown-link">All Departments</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="department" asp-action="index" class="menu__dropdown-link">@HomeResource.AllDepartments</a></li>
                                             @await Component.InvokeAsync("Department")
                                         </ul>
                                     </div>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a asp-controller="Blog" asp-action="Index" class="menu__list-link">Blogs</a>
+                                    <a asp-controller="Blog" asp-action="Index" class="menu__list-link">@HomeResource.Blogs</a>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a asp-controller="home" asp-action="faq" class="menu__list-link">FAQ</a>
+                                    <a asp-controller="home" asp-action="faq" class="menu__list-link">@HomeResource.FAQ</a>
                                 </li>
                                 <!-- <li class="menu__list-item">
                                     <a href="./tariffs.html" class="menu__list-link">My Account</a>
@@ -371,19 +371,19 @@
                                     </div>
                                 </li> -->
                                 <li class="menu__list-item">
-                                    <a class="menu__list-link">About us</a>
+                                    <a class="menu__list-link">@HomeResource.AboutUs</a>
                                     <div class="menu__dropdown">
                                         <ul class="menu__dropdown-list">
-                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="whoweare" class="menu__dropdown-link">Who We Are</a></li>
-                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="ourservices" class="menu__dropdown-link">Our Services</a></li>
-                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="process" class="menu__dropdown-link">Process</a></li>
-                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="ourclients" class="menu__dropdown-link">Our Clients</a></li>
-                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="workhours" class="menu__dropdown-link">Working Hours</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="whoweare" class="menu__dropdown-link">@HomeResource.WhoWeAre</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="ourservices" class="menu__dropdown-link">@HomeResource.OurServices</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="process" class="menu__dropdown-link">@HomeResource.Process</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="ourclients" class="menu__dropdown-link">@HomeResource.OurClients</a></li>
+                                            <li class="menu__dropdown-item"><a asp-controller="home" asp-action="workhours" class="menu__dropdown-link">@HomeResource.WorkingHours</a></li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li class="menu__list-item">
-                                    <a asp-controller="home" asp-action="contact" class="menu__list-link">Contact us</a>
+                                    <a asp-controller="home" asp-action="contact" class="menu__list-link">@HomeResource.ContactUs</a>
                                 </li>
                                 <li class="menu__list-elem"></li>
                             </ul>
@@ -438,14 +438,14 @@
                             {
                                 <a class="header__user-account makeLoginModal">
                                     <i class="icon-user_two_tone"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
-                                    <span class="header__user-account__text">Account</span>
+                                    <span class="header__user-account__text">@HomeResource.Account</span>
                                 </a>
                             }
 
 
-                            <a href="#" class="btn btn--primary makeAppointmentModal">
-                                Make an Appointment
-                            </a>
+                        <a href="#" class="btn btn--primary makeAppointmentModal">
+                            @HomeResource.MakeAnAppointment
+                        </a>
                             <div class="header__lang" tabindex="0">
                                 <a class="header__lang__current" data-lang-viewer="language">AZE</a>
                                 <ul class="header__lang__list d-none">

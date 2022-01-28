@@ -182,3 +182,4 @@ C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.App
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\ref\MediClinic.Application.dll
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.pdb
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.genruntimeconfig.cache
+C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Application\obj\Debug\net5.0\MediClinic.Application.csproj.CopyComplete

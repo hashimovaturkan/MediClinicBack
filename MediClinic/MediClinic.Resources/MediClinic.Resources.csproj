@@ -14,6 +14,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ContactResource.resx</DependentUpon>
     </Compile>
+    <Compile Update="User\Home\HomeResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HomeResource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +28,15 @@
     <EmbeddedResource Update="User\Contact\ContactResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ContactResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="User\Home\HomeResource.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="User\Home\HomeResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeResource.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

@@ -164,3 +164,4 @@ C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Dom
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\ref\MediClinic.Domain.dll
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.pdb
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.genruntimeconfig.cache
+C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.csproj.CopyComplete
