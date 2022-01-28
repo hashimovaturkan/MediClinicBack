@@ -20,7 +20,7 @@ namespace MediClinic.Application.Core.Components
         {
             var vm = new BlogPostDepartmentViewModel();
             vm.Departments = db.Departments.ToList();
-            vm.Blogs = db.BlogPosts.OrderByDescending(e => e.CreatedDate).Take(3).ToList();
+            vm.Blogs = db.BlogPosts.Where(e => e.DeletedByUserId == null).OrderByDescending(e => e.CreatedDate).Take(3).ToList();
             return View(vm);
         }
     }
