@@ -57,7 +57,7 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
                 await db.SaveChangesAsync(cancellationToken);
 
                 response.Error = false;
-                response.Message = "Successfully, Your appointment was accepted!";
+                response.Message = "Successfully, We will send information about appointment to ypur email!";
                 return response;
 
             }

@@ -2,6 +2,7 @@
 using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,10 +25,10 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
 
                 var model = await db.Doctors
                     .Include(e => e.DoctorDepartmentRelation).ThenInclude(e => e.Department)
-                    .Include(e => e.Appointments)
-                    .Include(c => c.BlogPosts)
-                    .Include(e => e.SocialMedia)
-                    .Include(c => c.DoctorWorkTimeRelation)
+                    .Include(e => e.Appointments.Where(k => k.DeletedByUserId == null))
+                    .Include(c => c.BlogPosts.Where(k => k.DeletedByUserId == null))
+                    .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
+                    .Include(c => c.DoctorWorkTimeRelation.Where(k => k.DeletedByUserId == null))
                     .ThenInclude(c => c.WorkTime)
                     .FirstOrDefaultAsync(s => s.DeletedByUserId == null && s.Id == request.Id);
 

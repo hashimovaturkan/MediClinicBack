@@ -1,4 +1,6 @@
-﻿using MediClinic.Application.Core.Extensions;
+﻿using MediatR;
+using MediClinic.Application.Core.Extensions;
+using MediClinic.Application.Modules.Admin.DoctorModule;
 using MediClinic.Domain.Models.DataContexts;
 using MediClinic.Domain.Models.Entities;
 using MediClinic.Domain.Models.Enums;
@@ -19,16 +21,23 @@ namespace MediClinic.WebUI.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private readonly MediClinicDbContext db;
+        readonly IMediator mediator;
+        readonly MediClinicDbContext db;
         readonly IConfiguration configuration;
-        public HomeController(MediClinicDbContext db, IConfiguration configuration)
+
+        public HomeController(IMediator mediator, MediClinicDbContext db, IConfiguration configuration)
         {
+            this.mediator = mediator;
             this.db = db;
             this.configuration = configuration;
+
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await mediator.Send(new DoctorChooseQuery());
+            model = model.Take(4).OrderByDescending(e => e.CreatedDate).ToList();
+
+            return View(model);
         }
 
         public async Task<IActionResult> Faq()

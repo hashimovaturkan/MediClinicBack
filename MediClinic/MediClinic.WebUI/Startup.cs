@@ -1,5 +1,6 @@
 using MediatR;
 using MediClinic.Application.Core.Extensions;
+using MediClinic.Application.Core.Hubs;
 using MediClinic.Application.Core.Middlewares;
 using MediClinic.Application.Core.Provider;
 using MediClinic.Domain.Models.DataContexts;
@@ -45,7 +46,7 @@ namespace MediClinic.WebUI
                     cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 );
 
-
+            services.AddSignalR();
             services.AddDbContext<MediClinicDbContext>(cfg => {
                 cfg.UseSqlServer(configuration.GetConnectionString("cString"));  
             }, ServiceLifetime.Scoped);
@@ -227,6 +228,8 @@ namespace MediClinic.WebUI
                         lang = "en|az|ru"
                     });
                 endpoints.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
+
+                endpoints.MapHub<ChatHub>("/home/index");
             });
         }
     }

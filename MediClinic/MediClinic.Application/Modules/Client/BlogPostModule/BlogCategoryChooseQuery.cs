@@ -22,7 +22,7 @@ namespace MediClinic.Application.Modules.Admin.BlogCategoryModule
             public async Task<List<BlogCategory>> Handle(BlogCategoryChooseQuery request, CancellationToken cancellationToken)
             {
                 var categories = await db.BlogCategories
-                                    .Include(e => e.BlogPosts)
+                                    .Include(e => e.BlogPosts.Where(k => k.DeletedByUserId == null))
                                     .Where(c => c.DeletedByUserId == null ).ToListAsync();
                 return categories;
             }

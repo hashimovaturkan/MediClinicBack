@@ -21,7 +21,7 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
             public async Task<IEnumerable<Doctor>> Handle(DoctorListQuery request, CancellationToken cancellationToken)
             {
                 var model =await db.Doctors
-                    .Include(e => e.DoctorDepartmentRelation).ThenInclude(e => e.Department)
+                    .Include(e => e.DoctorDepartmentRelation.Where(k => k.DeletedByUserId == null)).ThenInclude(e => e.Department)
                     .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
                     .Where(e => e.DeletedByUserId == null)
                     .ToListAsync();

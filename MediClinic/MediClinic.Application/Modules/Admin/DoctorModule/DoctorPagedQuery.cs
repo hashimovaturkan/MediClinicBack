@@ -32,7 +32,9 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     .Include(e => e.DoctorWorkTimeRelation)
                     .ThenInclude(e => e.WorkTime)
                     .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
-                    .Where(s => s.DeletedByUserId == null).AsQueryable();
+                    .Where(s => s.DeletedByUserId == null)
+                    .OrderByDescending(e => e.CreatedDate)
+                    .AsQueryable();
 
                 return new PagedViewModel<Doctor>(model, request.PageIndex, request.PageSize);
             }

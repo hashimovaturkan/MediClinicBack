@@ -204,7 +204,7 @@
                         <div>
                             Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis
                         </div>
-                        <a href="#" class="blog-details__readMe">Read More</a>
+                        <a asp-controller="home" asp-action="about"class="blog-details__readMe">Read More</a>
                     </div>
                     <div class="blog-details__category">
                         <h5>Categories</h5>
@@ -228,7 +228,7 @@
                                             <img src="/uploads/images/@blog.ImgUrl" alt="photo">
                                         </div>
                                         <div class="blog-details__sidebar-posts-info">
-                                            <h4>@blog.BlogCategory.Name</h4>
+                                            <h4>@blog.Title</h4>
                                             <span>@blog.PublishedDate?.ToString("dd MMMM, yyyy")</span>
                                         </div>
                                     </a>
@@ -239,21 +239,21 @@
                     <div class="blog-details__sidebar-media">
                         <h5>Follow Us</h5>
                         <div class="blog-details__main-footer--left">
-                            <a href="#">
+                            <a href="https://www.facebook.com/">
                                 <i class="fa fa-facebook"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://www.instagram.com/">
                                 <i class="fa fa-instagram"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://www.linkedin.com/feed/">
                                 <i class="fa fa-linkedin"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://twitter.com/?lang=tr">
                                 <i class="fa fa-twitter"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="blog-details__tags">
+                    @*<div class="blog-details__tags">
                         <h5>Tags</h5>
                         <div>
                             <a href="#">Care</a>
@@ -263,7 +263,7 @@
                             <a href="#">Care</a>
                             <a href="#">Health</a>
                         </div>
-                    </div>
+                    </div>*@
                 </aside>
             </div>
         </div>

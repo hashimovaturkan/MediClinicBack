@@ -25,7 +25,8 @@ namespace MediClinic.Application.Modules.Admin.BlogPostModule
             }
             public async Task<PagedViewModel<BlogPost>> Handle(BlogPostPagedQuery request, CancellationToken cancellationToken)
             {
-                var model = db.BlogPosts.Where(s => s.DeletedByUserId == null).AsQueryable();
+                var model = db.BlogPosts.Where(s => s.DeletedByUserId == null)
+                    .OrderByDescending(e => e.CreatedDate).AsQueryable();
 
                 return new PagedViewModel<BlogPost>(model, request.PageIndex, request.PageSize);
             }

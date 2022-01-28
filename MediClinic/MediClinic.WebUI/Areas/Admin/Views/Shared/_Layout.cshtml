@@ -16,6 +16,12 @@
     <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
     @RenderSection("addcss", required: false)
 
+    <style>
+        .cm-msg-name {
+            font-size: 10px;
+            color: #a5a5a5;
+        }
+    </style>
 
 </head>
 
@@ -40,12 +46,12 @@
     <div id="main-wrapper">
 
         <!--**********************************
-            Nav header start
-        ***********************************-->
+        Nav header start
+    ***********************************-->
         <div class="nav-header" style="background-color: #c3cdd3">
             <a asp-controller="dashboard" asp-action="index" asp-area="admin" class="header__top-logo brand-logo">
                 <img class="logo-main" src="/uploads/images/logo-dark.png" width="173" height="36" alt="logo">
-                <img src="/assets/icons/letter_m_PNG79.png"class="logo-M" style="width:100%;">
+                <img src="/assets/icons/letter_m_PNG79.png" class="logo-M" style="width:100%;">
             </a>
             <div class="nav-control">
                 <div class="hamburger">
@@ -54,17 +60,17 @@
             </div>
         </div>
         <!--**********************************
-            Nav header end
-        ***********************************-->
+        Nav header end
+    ***********************************-->
         <!--**********************************
-            Header start
-        ***********************************-->
+        Header start
+    ***********************************-->
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-                            <div class="search_bar dropdown">
+                            @*<div class="search_bar dropdown">
                                 <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
                                     <i class="mdi mdi-magnify"></i>
                                 </span>
@@ -73,7 +79,7 @@
                                         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                                     </form>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
 
                         <ul class="navbar-nav header-right">
@@ -85,7 +91,7 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <ul class="list-unstyled">
                                         @await Component.InvokeAsync("Subscribe")
-                                       
+
                                     </ul>
                                     @*<a class="all-notification" href="#">
                                         See all notifications <i class="ti-arrow-right"></i>
@@ -117,11 +123,11 @@
             </div>
         </div>
         <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
+        Header end ti-comment-alt
+    ***********************************-->
         <!--**********************************
-            Sidebar start
-        ***********************************-->
+        Sidebar start
+    ***********************************-->
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
@@ -219,18 +225,43 @@
 
         </div>
         <!--**********************************
-            Sidebar end
-        ***********************************-->
+        Sidebar end
+    ***********************************-->
         <!--**********************************
-            Content body start
-        ***********************************-->
+        Content body start
+    ***********************************-->
         @RenderBody()
         <!--**********************************
-            Content body end
-        ***********************************-->
+        Content body end
+    ***********************************-->
+
+        <div id="chat-circle" class="btn btn-raised">
+            <div id="chat-overlay"></div>
+            <i class=" fa fa-comment" style="font-size: 25px;"></i>
+        </div>
+        <div class="chat-box">
+            <div class="chat-box-header">
+                MediClinic Chat
+                <span class="chat-box-toggle"><i class="fa fa-close"></i></span>
+            </div>
+            <div class="chat-box-body">
+                <div class="chat-box-overlay">
+                </div>
+                <div class="chat-logs">
+
+                </div><!--chat-log -->
+            </div>
+            <div class="chat-input">
+                <form>
+                    <input type="text" data-id="@User.GetPrincipalUserName()" name="Text" id="chat-input" placeholder="Send a message..." />
+                    <button type="submit" class="chat-submit" id="chat-submit"><i class="fa fa-send material-icons" style="color: #5A5EB9; "></i></button>
+                </form>
+            </div>
+        </div>
+
         <!--**********************************
-            Footer start
-        ***********************************-->
+        Footer start
+    ***********************************-->
         <div class="footer">
             <div class="copyright">
                 <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
@@ -238,14 +269,14 @@
             </div>
         </div>
         <!--**********************************
-            Footer end
-        ***********************************-->
+        Footer end
+    ***********************************-->
         <!--**********************************
-           Support ticket button start
-        ***********************************-->
+       Support ticket button start
+    ***********************************-->
         <!--**********************************
-           Support ticket button end
-        ***********************************-->
+       Support ticket button end
+    ***********************************-->
 
 
     </div>
@@ -260,7 +291,7 @@
     <script src="~/admin/js/quixnav-init.js"></script>
     <script src="~/admin/js/custom.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Vectormap -->
     <script src="~/admin/vendor/raphael/raphael.min.js"></script>
@@ -279,6 +310,8 @@
     <!-- Owl Carousel -->
     <script src="~/admin/vendor/owl-carousel/js/owl.carousel.min.js"></script>
 
+    <script src="~/libs/microsoft-signalr/signalr.min.js"></script>
+    <script src="~/libs/jquery/jquery.min.js"></script>
     <!-- Counter Up -->
     <script src="~/admin/vendor/jqvmap/js/jquery.vmap.min.js"></script>
     <script src="~/admin/vendor/jqvmap/js/jquery.vmap.usa.js"></script>
@@ -386,7 +419,7 @@
 
                     var mustDeleted = [];
                     var i = 0;
-                    
+
                     $(".selectDelete").each(function () {
                         if ($(this).is(':checked')) {
                             mustDeleted[i] = $(this).attr('data-checkbox');
@@ -422,7 +455,7 @@
 
         $("#selectAllDelete").change(function (e) {
             e.preventDefault();
-            
+
             var a = 0;
             $(".selectDelete").each(function () {
                 if ($(this).is(':checked')) {
@@ -444,9 +477,178 @@
 
             }
 
-            
+
         })
 
+
+        //chat
+        //$(function () {
+        //    const connection = new signalR.HubConnectionBuilder()
+        //        .withUrl("/home/index")
+        //        .withAutomaticReconnect([1000, 1000, 2000, 3000]) /*baglanti var ama qopanda isleyir*/
+        //        .build();
+
+        //    async function start() {
+        //        try {
+        //            await connection.start();
+        //        }
+        //        catch {
+        //            setTimeout(() => start(), 2000);
+        //        }
+        //    }
+
+        //    start();
+        //    var INDEX = 0;
+        //    $("#chat-submit").click(function (e) {
+        //        e.preventDefault();
+        //        console.log("a")
+
+
+        //        console.log("b")
+        //        var msg = $("#chat-input").val();
+        //        var id = $("#chat-input").data("id");
+        //        if (msg.trim() == '') {
+        //            return false;
+        //        }
+                
+
+        //        connection.invoke("AddGroupAdmin");
+        //        connection.invoke("SendMessageToGroupAdmin",msg, id, 0);
+        //        generate_message(msg, 'self');
+        //        console.log("k")
+
+        //    })
+
+        //    function generate_message(msg, type) {
+        //        INDEX++;
+        //        var str = "";
+        //        str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + "\">";
+        //        str += "          <div class=\"cm-msg-text\">";
+        //        str += msg;
+        //        str += "          <\/div>";
+        //        str += "        <\/div>";
+        //        $(".chat-logs").append(str);
+        //        $("#cm-msg-" + INDEX).hide().fadeIn(300);
+        //        if (type == 'self') {
+        //            $("#chat-input").val('');
+        //        }
+        //        $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
+        //    }
+
+        //    $(document).delegate(".chat-btn", "click", function () {
+        //        var value = $(this).attr("chat-value");
+        //        var name = $(this).html();
+        //        $("#chat-input").attr("disabled", false);
+        //        generate_message(name, 'self');
+        //    })
+
+        //    $("#chat-circle").click(function () {
+        //        $("#chat-circle").toggle('scale');
+        //        $(".chat-box").toggle('scale');
+        //    })
+
+        //    $(".chat-box-toggle").click(function () {
+        //        $("#chat-circle").toggle('scale');
+        //        $(".chat-box").toggle('scale');
+        //    })
+
+
+        //    connection.on("receiveMessage", msg => {
+        //        generate_message(msg, 'user');
+        //        console.log("djska")
+        //    })
+        //})
+
+
+        $(function () {
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("/home/index")
+                .withAutomaticReconnect([1000, 1000, 2000, 3000]) /*baglanti var ama qopanda isleyir*/
+                .build();
+
+            async function start() {
+                try {
+                    await connection.start()
+                        .then(() => {
+                            connection.invoke("AddNewGroup");
+                            connection.invoke("AddUserToGroup");
+
+                        })
+                        .catch(function (err) {
+                            //failed to connect
+                            return console.error(err.toString());
+                        });
+                }
+                catch {
+                    setTimeout(() => start(), 2000);
+                }
+            }
+
+            start();
+
+
+            
+
+            var INDEX = 0;
+            $("#chat-submit").click(function (e) {
+                e.preventDefault();
+
+
+                var msg = $("#chat-input").val();
+                var name = $("#chat-input").data("id");
+                if (msg.trim() == '') {
+                    return false;
+                }
+
+
+                
+                connection.invoke("SendMessage", msg,name);
+                generate_message(msg,name, 'self');
+
+            })
+
+            function generate_message(msg,name, type) {
+                INDEX++;
+                var str = "";
+                str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + "\">";
+                str += "          <div class=\"cm-msg-text\">";
+                str += msg;
+                str += "          <div class=\"cm-msg-name\">";
+                str += name;
+                str += "          <\/div>";
+                str += "          <\/div>";
+                str += "        <\/div>";
+                $(".chat-logs").append(str);
+                $("#cm-msg-" + INDEX).hide().fadeIn(300);
+                if (type == 'self') {
+                    $("#chat-input").val('');
+                }
+                $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
+            }
+
+            $(document).delegate(".chat-btn", "click", function () {
+                var value = $(this).attr("chat-value");
+                var name = $(this).html();
+                $("#chat-input").attr("disabled", false);
+                generate_message(name, 'self');
+            })
+
+            $("#chat-circle").click(function () {
+                $("#chat-circle").toggle('scale');
+                $(".chat-box").toggle('scale');
+            })
+
+            $(".chat-box-toggle").click(function () {
+                $("#chat-circle").toggle('scale');
+                $(".chat-box").toggle('scale');
+            })
+
+
+
+            connection.on("giveMessage", (msg, name) => {
+                generate_message(msg,name, 'user');
+            })
+        })
 
         $.ajaxSetup({
             statusCode: {

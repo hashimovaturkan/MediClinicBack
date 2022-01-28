@@ -22,6 +22,11 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
             public async Task<List<Doctor>> Handle(DoctorChooseQuery request, CancellationToken cancellationToken)
             {
                 var categories = await db.Doctors
+                    .Include(e => e.DoctorDepartmentRelation.Where(k => k.DeletedByUserId == null))
+                    .ThenInclude(e => e.Department)
+                    .Include(e => e.DoctorWorkTimeRelation.Where(k => k.DeletedByUserId == null))
+                    .ThenInclude(e => e.WorkTime)
+                    .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
                                     .Where(c => c.DeletedByUserId == null).ToListAsync();
                 return categories;
             }

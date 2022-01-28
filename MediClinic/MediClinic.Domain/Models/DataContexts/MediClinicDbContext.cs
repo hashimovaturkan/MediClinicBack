@@ -44,6 +44,7 @@ namespace MediClinic.Domain.Models.DataContexts
         public DbSet<WorkTime> WorkTimes { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

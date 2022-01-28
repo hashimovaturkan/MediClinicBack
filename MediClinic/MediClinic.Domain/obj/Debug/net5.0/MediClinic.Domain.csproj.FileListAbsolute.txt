@@ -160,7 +160,6 @@ C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Dom
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.AssemblyInfoInputs.cache
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.AssemblyInfo.cs
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.csproj.CoreCompileInputs.cache
-C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.csproj.CopyComplete
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.dll
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\ref\MediClinic.Domain.dll
 C:\Users\HP\Downloads\MediMain\MediMain\MediClinicBack\MediClinic\MediClinic.Domain\obj\Debug\net5.0\MediClinic.Domain.pdb

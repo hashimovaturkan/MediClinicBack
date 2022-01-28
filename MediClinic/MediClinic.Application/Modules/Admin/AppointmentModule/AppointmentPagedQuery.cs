@@ -25,7 +25,8 @@ namespace MediClinic.Application.Modules.Admin.AppointmentModule
             }
             public async Task<PagedViewModel<Appointment>> Handle(AppointmentPagedQuery request, CancellationToken cancellationToken)
             {
-                var model = db.Appointments.Where(s => s.DeletedByUserId == null).AsQueryable();
+                var model = db.Appointments.Where(s => s.DeletedByUserId == null)
+                    .OrderByDescending(e => e.CreatedDate).AsQueryable();
 
                 return new PagedViewModel<Appointment>(model, request.PageIndex, request.PageSize);
             }

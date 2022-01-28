@@ -51,7 +51,7 @@ namespace MediClinic.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> DoctorAppointment(DoctorAppointmentCommand command)
         {
-            if(User.FindFirst(ClaimTypes.NameIdentifier).Value != null)
+            if(User.FindFirst(ClaimTypes.NameIdentifier)?.Value != null)
                     command.CreatedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var response = await mediator.Send(command);
             return Json(response);
