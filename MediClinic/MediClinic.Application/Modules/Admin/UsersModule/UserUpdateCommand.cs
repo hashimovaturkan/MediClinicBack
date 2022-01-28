@@ -40,6 +40,8 @@ namespace MediClinic.Application.Modules.Admin.UsersModule
                     model.UserName = request.UserName;
                     model.Email = request.Email;
                     model.EmailConfirmed = request.EmailConfirmed;
+                    model.NormalizedEmail = request.Email.ToUpper();
+                    model.NormalizedUserName = request.UserName.ToUpper();
                     model.PhoneNumber = request.PhoneNumber;
 
                     if (request.file != null)

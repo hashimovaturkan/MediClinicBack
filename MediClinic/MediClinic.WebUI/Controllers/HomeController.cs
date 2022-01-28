@@ -53,24 +53,24 @@ namespace MediClinic.WebUI.Controllers
             if (department != "all")
             {
                 doctors = await db.Doctors
-                        .Include(e => e.DoctorDepartmentRelation.Where(e => e.Department.Title == department)).ThenInclude(e => e.Department)
-                        .Include(e => e.Appointments)
-                        .Include(c => c.BlogPosts)
-                        .Include(e => e.SocialMedia)
-                        .Include(c => c.DoctorWorkTimeRelation)
+                        .Include(e => e.DoctorDepartmentRelation.Where(e => e.Department.Title == department && e.DeletedByUserId == null)).ThenInclude(e => e.Department)
+                        .Include(e => e.Appointments.Where(e => e.DeletedByUserId == null))
+                        .Include(c => c.BlogPosts.Where(e => e.DeletedByUserId == null))
+                        .Include(e => e.SocialMedia.Where(e => e.DeletedByUserId == null))
+                        .Include(c => c.DoctorWorkTimeRelation.Where(e => e.DeletedByUserId == null))
                         .ThenInclude(c => c.WorkTime)
-                        .Where(e => e.DeletedByUserId == null && e.DoctorDepartmentRelation.Select(e => e.Department.Title).Contains(department)).ToListAsync();
+                        .Where(e => e.DeletedByUserId == null && e.DoctorDepartmentRelation.Where(k => k.DeletedByUserId == null).Select(e => e.Department.Title).Contains(department)).ToListAsync();
             }
             else
             {
                 doctors = await db.Doctors
-                        .Include(e => e.DoctorDepartmentRelation).ThenInclude(e => e.Department)
-                        .Include(e => e.Appointments)
-                        .Include(c => c.BlogPosts)
-                        .Include(e => e.SocialMedia)
-                        .Include(c => c.DoctorWorkTimeRelation)
+                        .Include(e => e.DoctorDepartmentRelation.Where(e => e.DeletedByUserId == null)).ThenInclude(e => e.Department)
+                        .Include(e => e.Appointments.Where(e => e.DeletedByUserId == null))
+                        .Include(c => c.BlogPosts.Where(e => e.DeletedByUserId == null))
+                        .Include(e => e.SocialMedia.Where(e => e.DeletedByUserId == null))
+                        .Include(c => c.DoctorWorkTimeRelation.Where(e => e.DeletedByUserId == null))
                         .ThenInclude(c => c.WorkTime)
-                        .Where(e => e.DeletedByUserId == null).ToListAsync();
+                        .Where(e => e.DeletedByUserId == null && e.DoctorDepartmentRelation.Count() > 0).ToListAsync();
             }
 
             var vm = new DepartmentDoctorViewModel();

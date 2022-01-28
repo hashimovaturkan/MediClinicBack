@@ -245,7 +245,9 @@
                     },
                     success: function (response) {
                         if (response.error == false) {
+
                             toastr.success(response.message, "Successfully!")
+                            location.reload();
 
                         }
                         else {
@@ -291,6 +293,7 @@
                         if (response.error == false) {
                             toastr.success(response.message, "Successfully!")
                             e.currentTarget.reset();
+                            window.location.href = "/";
                         }
                         else {
                             toastr.error(response.message, "Error!")

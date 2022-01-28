@@ -39,7 +39,7 @@ namespace MediClinic.Application.Modules.Admin.DepartmentModule
 
                 if (ctx.IsModelStateValid())
                 {
-                    var entity = await db.BlogPosts.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeletedByUserId == null);
+                    var entity = await db.Departments.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeletedByUserId == null);
 
                     if (entity == null)
                     {
@@ -79,7 +79,7 @@ namespace MediClinic.Application.Modules.Admin.DepartmentModule
 
                     }
 
-                    await db.SaveChangesAsync();
+                    await db.SaveChangesAsync(cancellationToken);
                     return entity.Id;
 
                 }

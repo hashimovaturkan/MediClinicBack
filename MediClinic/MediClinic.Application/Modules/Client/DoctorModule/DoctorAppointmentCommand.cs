@@ -42,9 +42,10 @@ namespace MediClinic.Application.Modules.Client.DoctorModule
                     appointment.IsAccepted = false;
                     appointment.Phone = request.Phone;
                     appointment.DoctorId = request.DoctorId;
-                    appointment.Date = DateTime.Parse(request.Date);
                     appointment.CreatedByUserId = request.CreatedUserId;
                     appointment.CreatedDate = DateTime.Now;
+                    if (request.Date != null)
+                        appointment.Date = DateTime.Parse(request.Date);
                     await db.Appointments.AddAsync(appointment);
                 }
                 catch (Exception ex)

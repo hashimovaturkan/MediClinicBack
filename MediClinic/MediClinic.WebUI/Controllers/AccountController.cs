@@ -174,6 +174,7 @@ namespace MediClinic.WebUI.Controllers
                 message = "Your account's image is changed! Please, refresh page!"
             });
 
+
         }
 
         [HttpPost]
@@ -217,6 +218,7 @@ namespace MediClinic.WebUI.Controllers
                     }
                     else
                     {
+                        await signInManager.SignOutAsync();
                         return Json(new
                         {
                             error = false,

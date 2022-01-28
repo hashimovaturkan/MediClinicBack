@@ -27,6 +27,7 @@ namespace MediClinic.Application.Modules.Admin.DoctorModule
                     .Include(e => e.DoctorWorkTimeRelation.Where(k => k.DeletedByUserId == null))
                     .ThenInclude(e => e.WorkTime)
                     .Include(e => e.SocialMedia.Where(k => k.DeletedByUserId == null))
+                    .OrderByDescending(e => e.CreatedDate)
                                     .Where(c => c.DeletedByUserId == null).ToListAsync();
                 return categories;
             }
