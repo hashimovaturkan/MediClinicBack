@@ -79,7 +79,9 @@
 
 @section addjs{ 
     <script>
+        var a;
         $(".sendAppointment").click(function () {
+                a = $(this).data("id");
                 swal({
                 title: "Do you want to send this appointment's information to patient's email?",
                 text: "If this appointment is accepted, information will send to patient's email or else information can't be sent!",
@@ -90,7 +92,6 @@
             }).then(function (isConfirm) {
                 if (isConfirm) {
 
-                    var a = $(this).data("id");
                     console.log(a);
 
                     $.ajax({
